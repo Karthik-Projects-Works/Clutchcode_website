@@ -2446,6 +2446,79 @@ footer {
 }
 
 /* ==========================================================================
+   18B. ANIMATED SOCIAL DOCK (Footer & Contact)
+   ========================================================================== */
+.social-dock {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 52px;
+  width: 220px;
+  margin-top: 18px;
+}
+
+.social-dock .social-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--white);
+  text-decoration: none;
+  transition: background var(--trans-fast), transform var(--trans-snap), border-color var(--trans-fast);
+  border-radius: 50px;
+  background: var(--ink-2);
+  border: 1px solid var(--line-bright);
+}
+
+.social-dock .social-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--trans-fast);
+}
+
+.social-dock .social-link1:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  border-color: #dc2743;
+  animation: bounce_613 0.4s linear;
+}
+
+.social-dock .social-link2:hover {
+  background-color: #00ccff;
+  border-color: #00ccff;
+  color: #05060A;
+  animation: bounce_613 0.4s linear;
+}
+
+.social-dock .social-link3:hover {
+  background-color: #5865f2;
+  border-color: #5865f2;
+  animation: bounce_613 0.4s linear;
+}
+
+.social-dock .social-link4:hover {
+  background-color: #12a50b;
+  border-color: #12a50b;
+  animation: bounce_613 0.4s linear;
+}
+
+@keyframes bounce_613 {
+  40% {
+    transform: scale(1.35);
+  }
+  60% {
+    transform: scale(0.85);
+  }
+  80% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
    19. REDUCED MOTION PREFERENCE
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
