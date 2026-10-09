@@ -1,0 +1,27 @@
+# Dependencies & package caches
+node_modules/
+.npm/
+
+# OS metadata & editors
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary test logs & reports
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lh-*.json
+
+# Workspace build artifacts & scratch scripts
+scratch/
+tmp/
+*.tmp

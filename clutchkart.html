@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClutchKart — Supermarket & Retail Management Software | Clutch Code</title>
+<meta name="description" content="ClutchKart is billing, inventory, and multi-branch management software for supermarkets and retail chains, built by Clutch Code.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+  <meta name="theme-color" content="#05060A">
+  <link rel="canonical" href="https://example.com/clutchkart.html">
+  <meta property="og:title" content="ClutchKart — Supermarket & Retail Management Software | Clutch Code">
+  <meta property="og:description" content="Run the whole supermarket from one screen. Point of sale, inventory, multi-branch sync, and GST-ready invoices designed for Indian retail.">
+  <meta property="og:image" content="https://example.com/assets/og.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/clutchkart.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ClutchKart — Supermarket & Retail Management Software | Clutch Code">
+  <meta name="twitter:description" content="Run the whole supermarket from one screen. Point of sale, inventory, multi-branch sync, and GST-ready invoices designed for Indian retail.">
+  <meta name="twitter:image" content="https://example.com/assets/og.png">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "ClutchKart",
+  "operatingSystem": "All modern web browsers",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "INR"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Clutch Code"
+  }
+}
+</script>
+</head>
+<body>
+<div class="grid-bg"></div>
+<header>
+  <nav>
+    <a class="logo" href="index.html"><img src="assets/logo.png" alt="Clutch Code"><span>CLUTCH CODE</span></a>
+    <div class="navlinks"><a href="services.html">Services</a><a href="work.html">Work</a><a href="about.html">About</a></div>
+    <div class="navcta">
+      <a href="contact.html" class="btn btn-primary btn-primary-desktop">Talk to our team</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <span class="mark"><img src="assets/logo.png" alt="" width="22" height="23"><span class="cross"><span></span><span></span></span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="kicker">// menu</div>
+  <a href="index.html" class="mlink">Home</a><a href="services.html" class="mlink">Services</a><a href="work.html" class="mlink">Work</a><a href="about.html" class="mlink">About</a><a href="contact.html" class="mlink">Contact</a>
+  <div class="mfoot"><a href="contact.html" class="btn btn-primary btn-lg">Talk to our team</a></div>
+</div>
+<main>
+
+<section class="page-hero"><div class="wrap hero-split">
+  <div>
+    <div class="badge">// clutchkart &middot; by Clutch Code</div>
+    <h1>Run the whole supermarket from one screen.</h1>
+    <p class="lede">ClutchKart is our billing, inventory, and store-management platform — built for supermarkets and retail chains that are done reconciling stock by hand at midnight.</p>
+    <div class="hero-ctas"><a href="contact.html?interest=clutchkart" class="btn btn-primary btn-lg">Request a demo</a><a href="#features" class="btn btn-ghost btn-lg">See features</a></div>
+  </div>
+  <div class="pos-register" id="posRegister">
+        <div class="pos-header">
+          <span><span class="live-dot"></span>LIVE DEMO // COUNTER 2</span>
+          <span style="color:var(--grey-dim);">GSTIN: 29ABCDE1234F1Z5</span>
+        </div>
+        <div class="rcpt">
+          <div style="font-size:11px; color:var(--grey-dim); margin-bottom:12px; text-transform:uppercase; letter-spacing:0.04em;">Interactive register · Click + / − to test calculations</div>
+          <div id="rcptItemList">
+            <div class="rcpt-item-row"><div><span class="rcpt-item-name">Basmati Rice 5kg</span> (₹540.00 × 1)</div><div><b>₹540.00</b></div></div>
+            <div class="rcpt-item-row"><div><span class="rcpt-item-name">Sunflower Oil 1L</span> (₹210.00 × 1)</div><div><b>₹210.00</b></div></div>
+            <div class="rcpt-item-row"><div><span class="rcpt-item-name">Toor Dal 1kg</span> (₹140.00 × 1)</div><div><b>₹140.00</b></div></div>
+          </div>
+          <div class="sep"></div>
+          <div class="row"><span>Subtotal</span><b id="rcptSubtotal">₹890.00</b></div>
+          <div class="row"><span>Loyalty discount (5%)</span><b id="rcptDiscount" style="color:var(--signal-lime);">−₹44.50</b></div>
+          <div class="sep"></div>
+          <div class="row total"><span>Total</span><b id="rcptTotal">₹845.50</b></div>
+          <div class="flags">
+            <span class="flag ok">● stock updated</span>
+            <span class="flag ok">● 3 branches in sync</span>
+            <span class="flag warn" id="flagLowStock">low stock: Toor Dal · 12 left</span>
+          </div>
+        </div>
+      </div>
+  </div>
+</div></section>
+
+<section id="features"><div class="wrap">
+  <div class="section-head"><div class="kicker">// features</div><h2>Everything the counter, the stockroom, and the office need.</h2></div>
+  <div class="grid c4">
+    <div class="cell"><div class="num">01</div><h3>Point of sale</h3><p>Fast billing at the counter with barcode scanning, held bills, and returns.</p></div>
+    <div class="cell"><div class="num">02</div><h3>Inventory &amp; stock</h3><p>Live stock levels per item, with low-stock alerts before the shelf empties.</p></div>
+    <div class="cell"><div class="num">03</div><h3>Multi-branch</h3><p>Run one store or fifteen from the same dashboard, with per-branch reporting.</p></div>
+    <div class="cell"><div class="num">04</div><h3>Reports &amp; analytics</h3><p>Daily, weekly, and monthly sales by item, category, cashier, and branch.</p></div>
+    <div class="cell"><div class="num">05</div><h3>Vendors &amp; purchase orders</h3><p>Track what you’ve ordered, what’s arrived, and what’s overdue.</p></div>
+    <div class="cell"><div class="num">06</div><h3>Loyalty &amp; offers</h3><p>Points, repeat-customer discounts, and promotions applied automatically at billing.</p></div>
+    <div class="cell"><div class="num">07</div><h3>Offline billing</h3><p>When the internet drops, billing continues and syncs once you’re back online.</p></div>
+    <div class="cell"><div class="num">08</div><h3>Tax-ready invoices</h3><p>GST-ready invoices and tax summaries, so month-end filing stops being a project.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap"><div class="split">
+  <div><div class="kicker">// built for</div><h2>Stores that have outgrown the ledger.</h2>
+    <p class="lede">ClutchKart suits retailers who need to see stock, sales, and suppliers in one place.</p></div>
+  <div class="panel-box"><h4>A good fit for</h4><ul class="ticks">
+    <li><b>Single-store supermarkets</b> moving off paper bills or basic billing software</li>
+    <li><b>Neighbourhood grocery chains</b> adding second and third branches</li>
+    <li><b>Multi-branch retailers</b> who need one view of stock across stores</li>
+    <li><b>Wholesale-and-retail mixes</b> that bill at different price levels</li>
+  </ul></div>
+</div></div></section>
+
+<section id="rollout"><div class="wrap">
+  <div class="section-head"><div class="kicker">// rollout</div><h2>From first visit to go-live.</h2><p class="section-sub">We do the setup with you — you don’t get a login and a manual.</p></div>
+  <div class="steps four">
+    <div class="step"><div class="step-num">01</div><h3>Store walkthrough</h3><p>We see how your counters, stockroom, and back office work today.</p></div>
+    <div class="step"><div class="step-num">02</div><h3>Setup &amp; import</h3><p>Products, prices, suppliers, and opening stock loaded from your existing sheets.</p></div>
+    <div class="step"><div class="step-num">03</div><h3>Staff training</h3><p>Hands-on sessions for cashiers and managers, on your own hardware.</p></div>
+    <div class="step"><div class="step-num">04</div><h3>Go-live support</h3><p>We’re on hand through the first week of real trading, and after.</p></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <div class="section-head"><div class="kicker">// questions</div><h2>ClutchKart FAQ.</h2></div>
+  <div class="faq"><details class="q"><summary>Do I need special hardware?</summary><p>No. ClutchKart runs on a standard PC or tablet and works with common barcode scanners and receipt printers. We’ll check what you already have before suggesting anything new.</p></details><details class="q"><summary>What happens if the internet goes down?</summary><p>Billing keeps working in offline mode. Sales are stored on the device and sync to your other counters and branches as soon as the connection returns.</p></details><details class="q"><summary>Can I move my existing product list across?</summary><p>Yes. We import products, prices, suppliers, and opening stock from your spreadsheets or current billing software as part of setup.</p></details><details class="q"><summary>How many branches can it handle?</summary><p>From one store to a full chain. Each branch has its own stock and reports, and you get a combined view on top.</p></details><details class="q"><summary>Who supports it after go-live?</summary><p>The same team that set it up. You’ll have a direct line to us for questions, fixes, and updates.</p></details><details class="q"><summary>Can ClutchKart be customised?</summary><p>Yes. Because we build custom software too, we can adapt reports, receipts, and workflows to how your stores run.</p></details></div>
+</div></section>
+
+<section style="padding-bottom:110px;"><div class="wrap"><div class="cta-banner">
+  <h2>See ClutchKart on your own store’s data.</h2><p>Book a demo and we’ll walk through billing, stock, and reports using a sample of your product list.</p><a href="contact.html?interest=clutchkart" class="btn btn-primary btn-lg">Request a demo</a>
+</div></div></section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="logo" href="index.html"><img src="assets/logo.png" alt="Clutch Code" style="height:20px;"><span>CLUTCH CODE</span></a>
+        <p>Software, digital marketing, and branding for growing businesses.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-heading">Services</div>
+        <a href="services.html#software">Software Solutions</a>
+        <a href="services.html#marketing">Digital Marketing</a>
+        <a href="services.html#branding">Branding</a></div>
+      <div class="footer-col">
+        <div class="footer-heading">Company</div>
+        <a href="about.html">About</a>
+        <a href="work.html">Work</a>
+        <a href="contact.html">Contact</a></div>
+      <div class="footer-col">
+        <div class="footer-heading">Start</div>
+        <a href="contact.html">Talk to our team</a>
+        <a href="contact.html?interest=branding">Request a brand review</a></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2026 Clutch Code</span><span>everything clicks into place</span></div>
+  </div>
+</footer>
+<script src="js/main.js" defer></script>
+</body>
+</html>
