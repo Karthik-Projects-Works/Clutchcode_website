@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+﻿import React, { useState, useEffect, useRef } from "react";
 
 const PROJECTS = [
   {
-    name: "Operations Portal � Horizon Retail",
-    kicker: "// practice 01 � core software",
+    name: "Operations Portal — Horizon Retail",
+    kicker: "// practice 01 — core software",
     pill: "RELEASE ACTIVE",
     pillClass: "",
     windowId: "terminal: node-03.us-east.horizon",
@@ -12,9 +12,9 @@ const PROJECTS = [
     winOk: false,
     kind: "software",
     chips: [
-      { icon: "?", l: "CONCURRENT USERS", n: "1,204" },
-      { icon: "??", l: "UPTIME SLA", n: "99.98%", ok: true },
-      { icon: "?", l: "QUERY LATENCY", n: "48ms" },
+      { icon: "⚡", l: "CONCURRENT USERS", n: "1,204" },
+      { icon: "🛡", l: "UPTIME SLA", n: "99.98%", ok: true },
+      { icon: "⏱", l: "QUERY LATENCY", n: "48ms" },
     ],
     plan: [
       { phase: "Discover", pct: 100, done: true },
@@ -26,7 +26,7 @@ const PROJECTS = [
   },
   {
     name: "Q3 Customer Acquisition Campaign",
-    kicker: "// practice 02 � growth marketing",
+    kicker: "// practice 02 — growth marketing",
     pill: "CAMPAIGN RUNNING",
     pillClass: "pill-lime",
     windowId: "analytics: pipeline-meta-v2",
@@ -37,9 +37,9 @@ const PROJECTS = [
     bars: [21, 29, 25, 36, 32, 44, 52],
     chipNote: "+34% vs last week",
     chips: [
-      { icon: "??", l: "REACH", n: "8.2k" },
-      { icon: "??", l: "BOOKED CALLS", n: "412", ok: true },
-      { icon: "??", l: "CTR", n: "5.0%" },
+      { icon: "📊", l: "REACH", n: "8.2k" },
+      { icon: "📞", l: "BOOKED CALLS", n: "412", ok: true },
+      { icon: "📈", l: "CTR", n: "5.0%" },
     ],
     plan: [
       { phase: "Discover", pct: 100, done: true },
@@ -50,8 +50,8 @@ const PROJECTS = [
     foot: "Funnel tracked weekly to booked calls and revenue.",
   },
   {
-    name: "Kairali Organics � Brand System",
-    kicker: "// practice 03 � brand identity",
+    name: "Kairali Organics — Brand System",
+    kicker: "// practice 03 — brand identity",
     pill: "GUIDELINES DELIVERED",
     pillClass: "pill-brand",
     windowId: "tokens: figma.tokens.export",
@@ -60,9 +60,9 @@ const PROJECTS = [
     winOk: false,
     kind: "brand",
     chips: [
-      { icon: "??", l: "TOKENS", n: "120" },
-      { icon: "??", l: "TYPE PAIRINGS", n: "3" },
-      { icon: "??", l: "SWATCHES", n: "24" },
+      { icon: "🎨", l: "TOKENS", n: "120" },
+      { icon: "🔤", l: "TYPE PAIRINGS", n: "3" },
+      { icon: "🏷", l: "SWATCHES", n: "24" },
     ],
     plan: [
       { phase: "Discover", pct: 100, done: true },

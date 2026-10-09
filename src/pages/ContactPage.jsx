@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+ï»¿import React, { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export default function ContactPage() {
@@ -81,9 +81,9 @@ export default function ContactPage() {
       <section className="page-hero" style={{ paddingBottom: "40px" }}>
         <div className="wrap">
           <div className="eyebrow">// contact</div>
-          <h1>Tell us what you’re building.</h1>
+          <h1>Tell us what youâ€™re building.</h1>
           <p className="lede">
-            Software, a campaign, a brand, or all three. Share a few details and we’ll get back to you with next steps.
+            Software, a campaign, a brand, or all three. Share a few details and weâ€™ll get back to you with next steps.
           </p>
         </div>
       </section>
@@ -107,7 +107,7 @@ export default function ContactPage() {
                     style={{ display: "block" }}
                   >
                     <img className="success-mark-spin" src="/assets/logo.png" alt="" width="26" height="27" />
-                    <h3>Thanks — message received.</h3>
+                    <h3>Thanks â€” message received.</h3>
                     <p>Someone from our team will reply within one business day.</p>
                   </div>
                 ) : (
@@ -183,7 +183,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="field">
-                      <span className="lab">I’m interested in</span>
+                      <span className="lab">Iâ€™m interested in</span>
                       <div className="pick">
                         <label className={`pick-label ${interests.includes("software") ? "is-picked" : ""}`}>
                           <input
@@ -237,9 +237,9 @@ export default function ContactPage() {
                         onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                       >
                         <option value="">Not sure yet</option>
-                        <option>Under ?50,000</option>
-                        <option>?50,000 – ?2,00,000</option>
-                        <option>?2,00,000 – ?10,00,000</option>
+                        <option>Under â‚¹50,000</option>
+                        <option>â‚¹50,000 â€“ â‚¹2,00,000</option>
+                        <option>â‚¹2,00,000 â€“ ?10,00,000</option>
                         <option>?10,00,000+</option>
                       </select>
                     </div>
@@ -257,7 +257,7 @@ export default function ContactPage() {
                     <button type="submit" className="btn btn-primary btn-lg" disabled={isSubmitting}>
                       {isSubmitting ? "Transmitting docket..." : "Send message"}
                     </button>
-                    <div className="note">We’ll only use your details to reply to this enquiry.</div>
+                    <div className="note">Weâ€™ll only use your details to reply to this enquiry.</div>
                   </form>
                 )}
               </div>
@@ -275,7 +275,7 @@ export default function ContactPage() {
                 <div className="step">
                   <div className="step-num">02</div>
                   <h3>We talk</h3>
-                  <p>A 30-minute conversation about your goals — no sales script.</p>
+                  <p>A 30-minute conversation about your goals â€” no sales script.</p>
                 </div>
                 <div className="step" style={{ marginBottom: 0 }}>
                   <div className="step-num">03</div>

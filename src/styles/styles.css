@@ -1,10 +1,31 @@
-/**
- * CLUTCH CODE — DISTINCTIVE DESIGN SYSTEM
+﻿/**
+ * CLUTCH CODE â€” DISTINCTIVE DESIGN SYSTEM
  * Theme: Machined Ink + Technical Warm Paper + Mechanical Indigo + Signal Lime
  * Typography: Space Grotesk + Instrument Serif + DM Sans + JetBrains Mono
  */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..800;1,9..40,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  background: var(--brand);
+  color: #fff;
+  padding: 8px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  z-index: 99999;
+  transition: top 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 16px;
+  outline: 2px solid var(--signal-lime);
+  outline-offset: 2px;
+}
 
 /* ==========================================================================
    1. DESIGN TOKENS
@@ -457,13 +478,13 @@ nav {
 }
 
 .kicker::before {
-  content: '┌';
+  content: 'â”Œ';
   color: var(--brand-lt);
   font-weight: 400;
 }
 
 .kicker::after {
-  content: '┐';
+  content: 'â”';
   color: var(--brand-lt);
   font-weight: 400;
 }
@@ -1900,7 +1921,7 @@ a.cell:hover .more {
 }
 
 /* ==========================================================================
-   12. WORK PAGE — CONTACT SHEET & PROOF WALL (ASYMMETRIC MASONRY)
+   12. WORK PAGE â€” CONTACT SHEET & PROOF WALL (ASYMMETRIC MASONRY)
    ========================================================================== */
 .cards {
   display: grid;
@@ -2028,7 +2049,7 @@ a.cell:hover .more {
 }
 
 /* ==========================================================================
-   13. SERVICES — PARTS CATALOGUE SPEC PLATES
+   13. SERVICES â€” PARTS CATALOGUE SPEC PLATES
    ========================================================================== */
 .spec-plate {
   border: 1px solid var(--line-bright);
@@ -2112,7 +2133,7 @@ ul.ticks li b {
 }
 
 ul.ticks li::before {
-  content: '▸';
+  content: 'â–¸';
   position: absolute;
   left: 0;
   top: 0;
@@ -2137,7 +2158,7 @@ ul.ticks li::before {
 }
 
 /* ==========================================================================
-   14. ABOUT — BROADSHEET MANIFESTO & CROPPED BLADE GEOMETRY
+   14. ABOUT â€” BROADSHEET MANIFESTO & CROPPED BLADE GEOMETRY
    ========================================================================== */
 .broadsheet-layout {
   display: grid;
@@ -2254,7 +2275,7 @@ ul.ticks li::before {
 }
 
 /* ==========================================================================
-   15. CLUTCHKART — INTERACTIVE LIVE SUPERMARKET COUNTER
+   15. CLUTCHKART â€” INTERACTIVE LIVE SUPERMARKET COUNTER
    ========================================================================== */
 .hero-split {
   display: grid;
@@ -2396,7 +2417,7 @@ ul.ticks li::before {
 }
 
 /* ==========================================================================
-   16. CONTACT — WORK ORDER FORM (WO-0001)
+   16. CONTACT â€” WORK ORDER FORM (WO-0001)
    ========================================================================== */
 .work-order-sheet {
   border: 1px solid var(--line-bright);
@@ -2555,7 +2576,7 @@ ul.ticks li::before {
 }
 
 .pick input:checked + span::before {
-  content: '✓';
+  content: 'âœ“';
   font-weight: 800;
 }
 
@@ -3584,7 +3605,7 @@ footer {
 }
 
 /* ==========================================================================
-    20. CLUTCHKART PRODUCT PAGE — SCROLL REVEAL, COUNTERS & MOTION (.ck)
+    20. CLUTCHKART PRODUCT PAGE â€” SCROLL REVEAL, COUNTERS & MOTION (.ck)
    Scoped to the ClutchKart page; does not affect any other route.
    ========================================================================== */
 .ck.reveal-ready [data-reveal] {
@@ -4177,7 +4198,7 @@ details.q[open] { transform: translateY(0); }
 details.q[open] p { animation: fadeIn 0.35s ease both; }
 
 /* ==========================================================================
-    20B. ABOUT PAGE — ENTRANCE, REVEAL & MICRO-INTERACTIONS (.ab)
+    20B. ABOUT PAGE â€” ENTRANCE, REVEAL & MICRO-INTERACTIONS (.ab)
    Scoped to the About page; does not affect any other route.
    ========================================================================== */
 .ab .page-hero .eyebrow { animation: riseIn 0.75s var(--ease-snap) both; }

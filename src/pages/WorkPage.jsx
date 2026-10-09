@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+ï»¿import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function WorkPage() {
@@ -38,7 +38,7 @@ export default function WorkPage() {
           <div className="eyebrow">// work</div>
           <h1>Work that solves problems and looks sharp.</h1>
           <p className="lede">
-            A selection of projects across software, marketing, and brand identity. Real businesses, real goals, and work we’re proud to put our name to.
+            A selection of projects across software, marketing, and brand identity. Real businesses, real goals, and work weâ€™re proud to put our name to.
           </p>
           <div className="subnav" role="toolbar" aria-label="Filter case studies">
             <button
@@ -85,7 +85,7 @@ export default function WorkPage() {
           <div className="section-head" style={{ marginBottom: "40px" }}>
             <div className="kicker">// selected work</div>
             <h2>Four projects worth showing.</h2>
-            <p className="section-sub">Filter by practice — every one shipped for a real business.</p>
+            <p className="section-sub">Filter by practice â€” every one shipped for a real business.</p>
           </div>
           <div className="grid bento-layout work-deck-layout">
             {/* Project 1: ClutchKart */}
@@ -95,7 +95,7 @@ export default function WorkPage() {
                   <span className="num">PROPRIETARY // 01</span>
                   <span className="tag-bracket">[ SOFTWARE &middot; RETAIL ]</span>
                 </div>
-                <h3>ClutchKart — Supermarket &amp; Retail POS</h3>
+                <h3>ClutchKart â€” Supermarket &amp; Retail POS</h3>
                 <p>
                   A complete retail management and billing platform built for high-throughput Indian grocery and supermarket operations. Offline fallback, barcode engine, and live cloud stock sync.
                 </p>
@@ -117,7 +117,7 @@ export default function WorkPage() {
                   <span className="num">CLIENT // 02</span>
                   <span className="tag-bracket">[ SOFTWARE &middot; FINTECH ]</span>
                 </div>
-                <h3>Apex Payments — Real-Time Settlement Engine</h3>
+                <h3>Apex Payments â€” Real-Time Settlement Engine</h3>
                 <p>
                   High-throughput B2B payment gateway dashboard with webhook monitors, automated merchant reconciliations, and low-latency API infrastructure.
                 </p>
@@ -134,7 +134,7 @@ export default function WorkPage() {
                   <span className="num">CLIENT // 03</span>
                   <span className="tag-bracket">[ MARKETING &middot; ENERGY ]</span>
                 </div>
-                <h3>Aura Solar — High-Converting Acquisition Engine</h3>
+                <h3>Aura Solar â€” High-Converting Acquisition Engine</h3>
                 <p>
                   Full-funnel digital marketing campaign and interactive solar savings estimator generating high-intent residential and commercial installation leads.
                 </p>
@@ -154,7 +154,7 @@ export default function WorkPage() {
                 <div className="split">
                   <div>
                     <div className="kicker">// brand systems</div>
-                    <h2>Horizon Health — Clinical Telemedicine Rebrand</h2>
+                    <h2>Horizon Health â€” Clinical Telemedicine Rebrand</h2>
                     <p className="lede">
                       Comprehensive brand identity overhaul for an enterprise medical software provider. Visual design system, accessible token exports in Figma, and complete design collateral.
                     </p>

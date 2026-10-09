@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+ï»¿import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function ServicesPage() {
@@ -37,7 +37,7 @@ export default function ServicesPage() {
           <div className="eyebrow">// services</div>
           <h1>Software, marketing, and brand. Built together.</h1>
           <p className="lede">
-            Three practices that share one brief, one plan, and one team — so what we build, how we promote it, and how it looks all point the same way.
+            Three practices that share one brief, one plan, and one team â€” so what we build, how we promote it, and how it looks all point the same way.
           </p>
           <div className="subnav sticky-subnav" role="navigation" aria-label="Services in-page navigation">
             <a
@@ -80,7 +80,7 @@ export default function ServicesPage() {
               <div className="kicker">// 01 &middot; software</div>
               <h2>Software Solutions</h2>
               <p className="lede">
-                Custom applications and business systems designed around how your company actually works — not the other way round.
+                Custom applications and business systems designed around how your company actually works â€” not the other way round.
               </p>
               <div className="tag-bracket" style={{ marginBottom: "20px" }}>
                 [ WEB &middot; MOBILE &middot; INTERNAL SYSTEMS ]
@@ -100,12 +100,12 @@ export default function ServicesPage() {
               <div className="panel-box">
                 <h4>What we deliver</h4>
                 <ul className="ticks">
-                  <li><b>Web applications</b> — portals, booking systems, dashboards, customer-facing products</li>
-                  <li><b>Mobile apps</b> — iOS and Android, from first prototype to store release</li>
-                  <li><b>Internal tools</b> — replace the spreadsheets and WhatsApp threads running your operations</li>
-                  <li><b>Business systems</b> — billing, inventory, CRM, and reporting that talk to each other</li>
-                  <li><b>Integrations &amp; APIs</b> — connect payment gateways, accounting tools, and the software you already use</li>
-                  <li><b>Maintenance &amp; support</b> — updates, monitoring, and fixes after launch</li>
+                  <li><b>Web applications</b> â€” portals, booking systems, dashboards, customer-facing products</li>
+                  <li><b>Mobile apps</b> â€” iOS and Android, from first prototype to store release</li>
+                  <li><b>Internal tools</b> â€” replace the spreadsheets and WhatsApp threads running your operations</li>
+                  <li><b>Business systems</b> â€” billing, inventory, CRM, and reporting that talk to each other</li>
+                  <li><b>Integrations &amp; APIs</b> â€” connect payment gateways, accounting tools, and the software you already use</li>
+                  <li><b>Maintenance &amp; support</b> â€” updates, monitoring, and fixes after launch</li>
                 </ul>
               </div>
               <div className="panel-box">
@@ -129,7 +129,7 @@ export default function ServicesPage() {
               <div className="kicker">// 02 &middot; marketing</div>
               <h2>Digital Marketing</h2>
               <p className="lede">
-                Marketing that’s tied to enquiries and sales — planned, run, and reported on in plain numbers.
+                Marketing thatâ€™s tied to enquiries and sales â€” planned, run, and reported on in plain numbers.
               </p>
               <div className="tag-bracket" style={{ marginBottom: "20px" }}>
                 [ SEO &middot; PERFORMANCE &middot; CONTENT ]
@@ -146,19 +146,19 @@ export default function ServicesPage() {
               <div className="panel-box">
                 <h4>What we deliver</h4>
                 <ul className="ticks">
-                  <li><b>SEO &amp; content</b> — be found by people already searching for what you do</li>
-                  <li><b>Paid advertising</b> — Google and Meta campaigns with budgets that are tracked to the rupee</li>
-                  <li><b>Social media management</b> — consistent, on-brand posting and community replies</li>
-                  <li><b>Email &amp; WhatsApp campaigns</b> — keep existing customers coming back</li>
-                  <li><b>Landing pages &amp; conversion</b> — turn visits into enquiries</li>
-                  <li><b>Analytics &amp; reporting</b> — a monthly report you can read in five minutes</li>
+                  <li><b>SEO &amp; content</b> â€” be found by people already searching for what you do</li>
+                  <li><b>Paid advertising</b> â€” Google and Meta campaigns with budgets that are tracked to the rupee</li>
+                  <li><b>Social media management</b> â€” consistent, on-brand posting and community replies</li>
+                  <li><b>Email &amp; WhatsApp campaigns</b> â€” keep existing customers coming back</li>
+                  <li><b>Landing pages &amp; conversion</b> â€” turn visits into enquiries</li>
+                  <li><b>Analytics &amp; reporting</b> â€” a monthly report you can read in five minutes</li>
                 </ul>
               </div>
               <div className="panel-box">
                 <h4>A good fit if</h4>
                 <ul className="ticks">
                   <li>You have a good product or service, but not enough people know about it</li>
-                  <li>You’re spending on ads without knowing what’s working</li>
+                  <li>Youâ€™re spending on ads without knowing whatâ€™s working</li>
                   <li>Your social channels are active but not bringing in business</li>
                 </ul>
               </div>
@@ -175,7 +175,7 @@ export default function ServicesPage() {
               <div className="kicker">// 03 &middot; branding</div>
               <h2>Branding</h2>
               <p className="lede">
-                A brand that looks and sounds like one business everywhere — signage, packaging, social, and screen.
+                A brand that looks and sounds like one business everywhere â€” signage, packaging, social, and screen.
               </p>
               <div className="tag-bracket" style={{ marginBottom: "20px" }}>
                 [ IDENTITY &middot; SYSTEMS &middot; GUIDELINES ]
@@ -192,19 +192,19 @@ export default function ServicesPage() {
               <div className="panel-box">
                 <h4>What we deliver</h4>
                 <ul className="ticks">
-                  <li><b>Brand strategy</b> — positioning, audience, and the voice you’ll speak in</li>
-                  <li><b>Logo &amp; visual identity</b> — mark, colours, typography, and usage rules</li>
-                  <li><b>Brand guidelines</b> — a proper brand book, not a three-page PDF</li>
-                  <li><b>Packaging &amp; print</b> — cards, letterheads, labels, and signage artwork</li>
-                  <li><b>Digital templates</b> — social posts, presentations, and email signatures</li>
-                  <li><b>Website look &amp; feel</b> — the identity carried through to your online presence</li>
+                  <li><b>Brand strategy</b> â€” positioning, audience, and the voice youâ€™ll speak in</li>
+                  <li><b>Logo &amp; visual identity</b> â€” mark, colours, typography, and usage rules</li>
+                  <li><b>Brand guidelines</b> â€” a proper brand book, not a three-page PDF</li>
+                  <li><b>Packaging &amp; print</b> â€” cards, letterheads, labels, and signage artwork</li>
+                  <li><b>Digital templates</b> â€” social posts, presentations, and email signatures</li>
+                  <li><b>Website look &amp; feel</b> â€” the identity carried through to your online presence</li>
                 </ul>
               </div>
               <div className="panel-box">
                 <h4>A good fit if</h4>
                 <ul className="ticks">
-                  <li>You’re launching a new business and want to start with a strong identity</li>
-                  <li>You’ve outgrown your first logo or your name has changed</li>
+                  <li>Youâ€™re launching a new business and want to start with a strong identity</li>
+                  <li>Youâ€™ve outgrown your first logo or your name has changed</li>
                   <li>Your brand looks different on every channel</li>
                 </ul>
               </div>
@@ -225,7 +225,7 @@ export default function ServicesPage() {
             <div className="cell model-cell">
               <div className="num">A</div>
               <h3>Fixed-scope project</h3>
-              <p>A defined deliverable with a clear timeline and price — a brand identity, a website, an app, a campaign launch.</p>
+              <p>A defined deliverable with a clear timeline and price â€” a brand identity, a website, an app, a campaign launch.</p>
             </div>
             <div className="cell model-cell">
               <div className="num">B</div>
@@ -245,8 +245,8 @@ export default function ServicesPage() {
       <section style={{ paddingBottom: "110px" }}>
         <div className="wrap">
           <div className="cta-banner">
-            <h2>Tell us what you’re building.</h2>
-            <p>Software, a campaign, a brand, or all three — we’ll tell you honestly what we can do and when.</p>
+            <h2>Tell us what youâ€™re building.</h2>
+            <p>Software, a campaign, a brand, or all three â€” weâ€™ll tell you honestly what we can do and when.</p>
             <Link to="/contact" className="btn btn-primary btn-lg">
               Talk to our team
             </Link>
