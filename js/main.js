@@ -531,4 +531,80 @@
       revealObserver.observe(el);
     });
   }
+
+  /* ==========================================================================
+     11. ADVANCED GSAP MOTION SUITE (gpt-taste & clutch-design-system)
+     ========================================================================== */
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // A. Scrubbed Sequential Word Illumination
+    var scrubQuotes = document.querySelectorAll('[data-scrub-text]');
+    scrubQuotes.forEach(function(quoteEl) {
+      var rawText = quoteEl.innerText.trim();
+      var words = rawText.split(/\s+/);
+      quoteEl.innerHTML = words.map(function(w) {
+        return '<span class="word-scrub">' + w + '</span>';
+      }).join(' ');
+
+      var wordSpans = quoteEl.querySelectorAll('.word-scrub');
+      gsap.to(wordSpans, {
+        scrollTrigger: {
+          trigger: quoteEl,
+          start: 'top 80%',
+          end: 'bottom 45%',
+          scrub: 0.6
+        },
+        opacity: 1,
+        stagger: 0.08,
+        ease: 'power2.out'
+      });
+    });
+
+    // B. Magnetic Button Physics (Tactile Pull)
+    var magneticBtns = document.querySelectorAll('.btn-primary, .btn-ghost');
+    if (window.matchMedia('(hover: hover)').matches) {
+      magneticBtns.forEach(function(btn) {
+        btn.classList.add('btn-magnetic');
+        btn.addEventListener('mousemove', function(e) {
+          var rect = btn.getBoundingClientRect();
+          var relX = e.clientX - (rect.left + rect.width / 2);
+          var relY = e.clientY - (rect.top + rect.height / 2);
+          gsap.to(btn, {
+            x: relX * 0.28,
+            y: relY * 0.28,
+            duration: 0.35,
+            ease: 'power2.out'
+          });
+        });
+
+        btn.addEventListener('mouseleave', function() {
+          gsap.to(btn, {
+            x: 0,
+            y: 0,
+            duration: 0.5,
+            ease: 'elastic.out(1, 0.4)'
+          });
+        });
+      });
+    }
+
+    // C. Portfolio Cards Parallax & Scale Scrub
+    var workCards = document.querySelectorAll('.cards .card');
+    if (workCards.length > 0 && window.innerWidth > 768) {
+      workCards.forEach(function(card, idx) {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 90%',
+            end: 'top 55%',
+            scrub: 1
+          },
+          y: 28 + (idx % 2 === 0 ? 12 : -8),
+          opacity: 0.85,
+          ease: 'power1.out'
+        });
+      });
+    }
+  }
 })();

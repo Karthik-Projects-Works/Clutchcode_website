@@ -2621,6 +2621,28 @@ footer {
 }
 
 /* ==========================================================================
+   18D. ADVANCED GSAP MOTION & MAGNETIC UTILITIES
+   ========================================================================== */
+.word-scrub {
+  display: inline-block;
+  opacity: 0.18;
+  color: var(--white);
+  transition: opacity 0.1s linear, color 0.1s linear;
+  margin-right: 0.24em;
+}
+
+.word-scrub.active {
+  opacity: 1;
+  color: var(--white);
+}
+
+.btn-magnetic {
+  display: inline-flex;
+  transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1), box-shadow var(--trans-fast);
+  will-change: transform;
+}
+
+/* ==========================================================================
    19. REDUCED MOTION PREFERENCE
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
