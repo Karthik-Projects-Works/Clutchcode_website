@@ -337,10 +337,7 @@ export default function ClutchKartPage() {
     root.classList.add("reveal-ready");
     const io = new IntersectionObserver((entries) => {
       entries.forEach((en) => {
-        if (en.isIntersecting) {
-          en.target.classList.add("is-in");
-          io.unobserve(en.target);
-        }
+        en.target.classList.toggle("is-in", en.isIntersecting);
       });
     }, { threshold: 0.14, rootMargin: "0px 0px -8% 0px" });
     els.forEach((e) => io.observe(e));
