@@ -17,6 +17,7 @@ export default function Header() {
 
   return (
     <>
+      <a href="#main" className="skip-link">Skip to content</a>
       <div className="grid-bg"></div>
       <header>
         <nav>
@@ -94,3 +95,4 @@ export default function Header() {
     </>
   );
 }
+
