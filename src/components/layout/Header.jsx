@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import useGlobalInteractions from "../../hooks/useGlobalInteractions";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { scrollProgress, isScrolled } = useGlobalInteractions();
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -12,16 +14,31 @@ export default function Header() {
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", mobileMenuOpen);
-    return () => document.body.classList.remove("menu-open");
+    
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.classList.remove("menu-open");
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [mobileMenuOpen]);
 
   return (
     <>
       <a href="#main" className="skip-link">Skip to content</a>
+      <div
+        className="scroll-progress-bar"
+        style={{ transform: `scaleX(${scrollProgress / 100})` }}
+        aria-hidden="true"
+      ></div>
       <div className="grid-bg"></div>
-      <header>
+      <header className={isScrolled ? "is-scrolled" : ""}>
         <nav>
-          <Link className="logo" to="/">
+          <Link className="logo logo-hover-spin" to="/">
             <img src="/assets/logo.png" alt="Clutch Code" />
             <span>CLUTCH CODE</span>
           </Link>
@@ -40,7 +57,7 @@ export default function Header() {
             </NavLink>
           </div>
           <div className="navcta">
-            <Link to="/contact" className="btn btn-primary btn-primary-desktop">
+            <Link to="/contact" className="btn btn-primary btn-primary-desktop nav-attention-cta">
               Talk to our team
             </Link>
             <button
@@ -62,11 +79,7 @@ export default function Header() {
         </nav>
       </header>
 
-      <div
-        className={`mobile-menu ${mobileMenuOpen ? "is-open" : ""}`}
-        id="mobileMenu"
-        aria-hidden={!mobileMenuOpen}
-      >
+      <div className={`mobile-menu ${mobileMenuOpen ? "open" : ""}`} id="mobileMenu">
         <div className="kicker">// menu</div>
         <NavLink to="/" end className={({ isActive }) => `mlink ${isActive ? "current" : ""}`}>
           Home
@@ -95,4 +108,3 @@ export default function Header() {
     </>
   );
 }
-

@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useGlobalInteractions from "../../hooks/useGlobalInteractions";
 
 export default function Footer() {
+  const { showBackToTop, scrollToTop } = useGlobalInteractions();
+
   return (
     <footer>
       <div className="wrap">
@@ -29,20 +32,20 @@ export default function Footer() {
           </div>
           <div className="footer-col">
             <div className="footer-heading">Services</div>
-            <Link to="/services#software">Software Solutions</Link>
-            <Link to="/services#marketing">Digital Marketing</Link>
-            <Link to="/services#branding">Branding</Link>
+            <Link to="/services#software" className="footer-interactive-link">Software Solutions</Link>
+            <Link to="/services#marketing" className="footer-interactive-link">Digital Marketing</Link>
+            <Link to="/services#branding" className="footer-interactive-link">Branding</Link>
           </div>
           <div className="footer-col">
             <div className="footer-heading">Company</div>
-            <Link to="/about">About</Link>
-            <Link to="/work">Work</Link>
-            <Link to="/clutchkart">ClutchKart</Link>
-            <Link to="/contact">Contact</Link>
+            <Link to="/about" className="footer-interactive-link">About</Link>
+            <Link to="/work" className="footer-interactive-link">Work</Link>
+            <Link to="/clutchkart" className="footer-interactive-link">ClutchKart</Link>
+            <Link to="/contact" className="footer-interactive-link">Contact</Link>
           </div>
           <div className="footer-col">
             <div className="footer-heading">Connect</div>
-            <a href="mailto:hello@clutchcode.com">hello@clutchcode.com</a>
+            <a href="mailto:hello@clutchcode.com" className="footer-interactive-link">hello@clutchcode.com</a>
             <span style={{ color: "var(--grey-dim)", fontSize: "14px", display: "block", marginTop: "8px" }}>Bangalore, India</span>
           </div>
         </div>
@@ -51,6 +54,15 @@ export default function Footer() {
           <div>One team &middot; three practices &middot; Bangalore</div>
         </div>
       </div>
+
+      <button
+        type="button"
+        className={`back-to-top-btn ${showBackToTop ? "is-visible" : ""}`}
+        onClick={scrollToTop}
+        aria-label="Back to top"
+      >
+        <span>&uarr;</span>
+      </button>
     </footer>
   );
 }
