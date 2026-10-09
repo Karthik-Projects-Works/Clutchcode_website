@@ -489,4 +489,46 @@
       }
     });
   }
+
+  /* ==========================================================================
+     9. INTERACTIVE MOUSE SPOTLIGHT (Cards & Spec Plates)
+     ========================================================================== */
+  var spotlightCards = document.querySelectorAll('.card, .spec-plate, .cta-banner');
+  if (spotlightCards.length > 0 && window.matchMedia('(hover: hover)').matches) {
+    spotlightCards.forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', x + 'px');
+        card.style.setProperty('--mouse-y', y + 'px');
+      });
+    });
+  }
+
+  /* ==========================================================================
+     10. SCROLL REVEAL OBSERVER
+     ========================================================================== */
+  if ('IntersectionObserver' in window && !prefersReducedMotion) {
+    var revealTargets = document.querySelectorAll('.grid, .cards, .steps, .faq, .cta-banner, .spec-plate');
+    revealTargets.forEach(function(el) {
+      el.classList.add('reveal-on-scroll');
+    });
+
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.1
+    });
+
+    revealTargets.forEach(function(el) {
+      revealObserver.observe(el);
+    });
+  }
 })();

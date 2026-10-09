@@ -1548,7 +1548,12 @@ a.cell:hover .more {
 
 .step {
   position: relative;
-  padding-top: 28px;
+  padding-top: 36px;
+  transition: transform var(--trans-snap);
+}
+
+.step:hover {
+  transform: translateY(-4px);
 }
 
 .step-num {
@@ -1559,6 +1564,12 @@ a.cell:hover .more {
   line-height: 1;
   margin-bottom: 16px;
   font-variant-numeric: tabular-nums;
+  transition: color var(--trans-fast), transform var(--trans-snap);
+}
+
+.step:hover .step-num {
+  color: var(--brand-lt);
+  transform: scale(1.05);
 }
 
 .step::before {
@@ -1566,9 +1577,26 @@ a.cell:hover .more {
   position: absolute;
   top: 0;
   left: 0;
-  width: 40px;
+  right: 0;
   height: 2px;
+  background: var(--line-bright);
+}
+
+.step::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
   background: var(--signal-lime);
+  box-shadow: 0 0 10px var(--signal-lime);
+  transition: transform var(--trans-snap);
+}
+
+.step:hover::after {
+  transform: scale(1.4);
 }
 
 /* ==========================================================================
@@ -1598,17 +1626,36 @@ a.cell:hover .more {
 
 .card {
   border: 1px solid var(--line-bright);
-  border-radius: 6px;
+  border-radius: 8px;
   background: var(--panel);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: border-color var(--trans-fast), transform var(--trans-snap);
+  position: relative;
+  transition: border-color var(--trans-fast), transform var(--trans-snap), box-shadow var(--trans-fast);
+}
+
+/* Dynamic mouse spotlight highlight */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(94, 93, 229, 0.12), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card:hover {
-  border-color: var(--brand-lt);
-  transform: translateY(-3px);
+  border-color: rgba(140, 139, 240, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 24px -6px rgba(94, 93, 229, 0.25);
 }
 
 .thumb {
@@ -2307,15 +2354,31 @@ blockquote {
 }
 
 details.q {
-  border-bottom: 1px solid var(--line-soft);
+  border: 1px solid var(--line-bright);
+  border-radius: 8px;
+  background: var(--panel);
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: border-color var(--trans-fast), background var(--trans-fast), transform var(--trans-snap), box-shadow var(--trans-fast);
+}
+
+details.q:hover {
+  border-color: rgba(140, 139, 240, 0.4);
+  background: var(--ink-2);
+}
+
+details.q[open] {
+  border-color: var(--brand);
+  background: rgba(13, 14, 23, 0.85);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 0 20px -5px rgba(94, 93, 229, 0.2);
 }
 
 details.q summary {
   list-style: none;
   cursor: pointer;
-  padding: 22px 0;
+  padding: 20px 24px;
   font-family: var(--font-display);
-  font-size: 1.15rem;
+  font-size: 1.12rem;
   font-weight: 600;
   display: flex;
   justify-content: space-between;
@@ -2325,7 +2388,7 @@ details.q summary {
 }
 
 details.q summary:hover {
-  color: var(--brand-lt);
+  color: var(--white);
 }
 
 details.q summary::-webkit-details-marker {
@@ -2333,22 +2396,36 @@ details.q summary::-webkit-details-marker {
 }
 
 details.q summary::after {
-  content: '+';
-  font-family: var(--font-mono);
-  color: var(--signal-lime);
-  font-size: 20px;
-  transition: transform var(--trans-fast);
+  content: '';
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23C8FF3D' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='5' x2='12' y2='19'%3E%3C/line%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.25s var(--ease-snap), background-color var(--trans-fast);
 }
 
 details.q[open] summary::after {
-  content: '−';
+  transform: rotate(45deg);
+  background-color: rgba(94, 93, 229, 0.25);
+  border-color: var(--brand-lt);
 }
 
 details.q p {
   color: var(--grey);
-  font-size: 0.96rem;
+  font-size: 0.95rem;
   line-height: 1.7;
-  padding: 0 40px 24px 0;
+  padding: 0 24px 22px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 2px;
+  padding-top: 16px;
 }
 
 /* ==========================================================================
@@ -2516,6 +2593,31 @@ footer {
   100% {
     transform: scale(1);
   }
+}
+
+/* ==========================================================================
+   18C. HARDWARE-ACCELERATED SCROLL REVEALS & SPOTLIGHT UTILITIES
+   ========================================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.panel-box, .spec-plate {
+  position: relative;
+  transition: border-color var(--trans-fast), transform var(--trans-snap), box-shadow var(--trans-fast);
+}
+
+.panel-box:hover, .spec-plate:hover {
+  border-color: rgba(140, 139, 240, 0.45);
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6), 0 0 20px -8px rgba(94, 93, 229, 0.2);
 }
 
 /* ==========================================================================
