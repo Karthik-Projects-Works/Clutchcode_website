@@ -101,12 +101,38 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section>
+        <div className="wrap">
+          <div className="section-head">
+            <div className="kicker">// the team</div>
+            <h2>The people behind the work.</h2>
+          </div>
+          <div className="team-ledger">
+            <div className="team-row">
+              <div className="t-name">[Name]</div>
+              <div className="t-role">Founder &middot; Software Lead</div>
+              <div className="t-bio">Leads engineering and keeps every project grounded in how the business actually runs.</div>
+            </div>
+            <div className="team-row">
+              <div className="t-name">[Name]</div>
+              <div className="t-role">Head of Marketing</div>
+              <div className="t-bio">Plans and runs campaigns, and makes sure every rupee spent is tied to a result.</div>
+            </div>
+            <div className="team-row">
+              <div className="t-name">[Name]</div>
+              <div className="t-role">Brand &amp; Design Director</div>
+              <div className="t-bio">Shapes identities and keeps the look and voice consistent across every channel.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA BANNER */}
       <section style={{ paddingBottom: "110px" }}>
         <div className="wrap">
           <div className="cta-banner">
             <h2>Ready to talk?</h2>
-            <p>Tell us what you're working on. We'll tell you honestly what we can do and what it will take.</p>
+            <p>Tell us what you’re working on. We’ll tell you honestly what we can do and what it will take.</p>
             <Link to="/contact" className="btn btn-primary btn-lg">
               Talk to our team
             </Link>

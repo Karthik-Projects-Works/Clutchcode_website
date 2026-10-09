@@ -25,6 +25,7 @@ lh-*.json
 scratch/
 tmp/
 *.tmp
+dist/
 
 # Raw unoptimized source media (assets/ contains the compressed web versions)
 source/hero.mp4

@@ -48,6 +48,11 @@ export default function WorkPage() {
 
       <section style={{ paddingBottom: "110px" }}>
         <div className="wrap">
+          <div className="section-head" style={{ marginBottom: "40px" }}>
+            <div className="kicker">// selected work</div>
+            <h2>Four projects worth showing.</h2>
+            <p className="section-sub">Filter by practice — every one shipped for a real business.</p>
+          </div>
           <div className="grid bento-layout work-deck-layout">
             {/* Project 1: ClutchKart */}
             {(filter === "all" || filter === "software") && (
@@ -140,7 +145,7 @@ export default function WorkPage() {
         <div className="wrap">
           <div className="cta-banner">
             <h2>Have a project in mind?</h2>
-            <p>Tell us what you're working on. We'll tell you honestly what we can do and what it will take.</p>
+            <p>Tell us what you’re working on. We’ll tell you honestly what we can do and what it will take.</p>
             <Link to="/contact" className="btn btn-primary btn-lg">
               Talk to our team
             </Link>

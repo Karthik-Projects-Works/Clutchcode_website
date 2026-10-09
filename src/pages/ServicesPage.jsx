@@ -30,6 +30,9 @@ export default function ServicesPage() {
               <p className="lede">
                 Custom applications and business systems designed around how your company actually works — not the other way round.
               </p>
+              <div className="tag-bracket" style={{ marginBottom: "20px" }}>
+                [ WEB &middot; MOBILE &middot; INTERNAL SYSTEMS ]
+              </div>
               <Link className="btn btn-primary" to="/contact?interest=software">
                 Talk to us about software
               </Link>
@@ -38,6 +41,10 @@ export default function ServicesPage() {
               </div>
             </div>
             <div>
+              <div className="spec-header">
+                <span>DELIVERABLES</span>
+                <span className="spec-tag">SCOPE 01</span>
+              </div>
               <div className="panel-box">
                 <h4>What we deliver</h4>
                 <ul className="ticks">
@@ -65,13 +72,16 @@ export default function ServicesPage() {
       {/* 02 MARKETING */}
       <section id="marketing" className="paper-substrate">
         <div className="wrap">
-          <div className="split">
+          <div className="split rev">
             <div>
               <div className="kicker">// 02 &middot; marketing</div>
               <h2>Digital Marketing</h2>
               <p className="lede">
                 Marketing that’s tied to enquiries and sales — planned, run, and reported on in plain numbers.
               </p>
+              <div className="tag-bracket" style={{ marginBottom: "20px" }}>
+                [ SEO &middot; ADS &middot; SOCIAL &middot; EMAIL ]
+              </div>
               <Link className="btn btn-primary" to="/contact?interest=marketing">
                 Talk to us about marketing
               </Link>
@@ -111,11 +121,32 @@ export default function ServicesPage() {
               <p className="lede">
                 A brand that looks and sounds like one business everywhere — signage, packaging, social, and screen.
               </p>
+              <div className="tag-bracket" style={{ marginBottom: "20px" }}>
+                [ STRATEGY &middot; IDENTITY &middot; COLLATERAL ]
+              </div>
               <Link className="btn btn-primary" to="/contact?interest=branding">
                 Talk to us about branding
               </Link>
             </div>
             <div>
+              <div className="branding-card" style={{ padding: "22px", marginBottom: "20px" }}>
+                <div className="swatch-strip" style={{ marginBottom: 0 }}>
+                  <div className="swatch" style={{ background: "var(--brand)" }}><span>#5E5DE5</span></div>
+                  <div className="swatch" style={{ background: "var(--ink)" }}><span>#05060A</span></div>
+                  <div className="swatch" style={{ background: "var(--paper)" }}><span style={{ color: "#05060A" }}>#EDEBE4</span></div>
+                  <div className="swatch" style={{ background: "var(--signal-lime)" }}><span style={{ color: "#05060A" }}>#C8FF3D</span></div>
+                </div>
+                <div className="type-sample">
+                  <div>
+                    <div className="aa">Aa</div>
+                    <div className="meta">DISPLAY &middot; SPACE GROTESK</div>
+                  </div>
+                  <div style={{ textAlign: "right" }}>
+                    <div className="aa3">Aa</div>
+                    <div className="meta">MONO &middot; JETBRAINS</div>
+                  </div>
+                </div>
+              </div>
               <div className="panel-box">
                 <h4>What we deliver</h4>
                 <ul className="ticks">
@@ -150,17 +181,26 @@ export default function ServicesPage() {
           </div>
           <div className="grid c3">
             <div className="cell">
-              <div className="num">A</div>
+              <div className="bento-cell-header">
+                <span className="num">A</span>
+                <span className="tag-bracket">[ FIXED SCOPE ]</span>
+              </div>
               <h3>Fixed-scope project</h3>
               <p>A defined deliverable with a clear timeline and price — a brand identity, a website, an app, a campaign launch.</p>
             </div>
             <div className="cell">
-              <div className="num">B</div>
+              <div className="bento-cell-header">
+                <span className="num">B</span>
+                <span className="tag-bracket">[ MONTHLY ]</span>
+              </div>
               <h3>Monthly retainer</h3>
               <p>Ongoing marketing, content, or software support for a steady monthly fee, with a report every month.</p>
             </div>
             <div className="cell">
-              <div className="num">C</div>
+              <div className="bento-cell-header">
+                <span className="num">C</span>
+                <span className="tag-bracket">[ EMBEDDED ]</span>
+              </div>
               <h3>Embedded team</h3>
               <p>A dedicated group working alongside your people for larger, longer programmes of work.</p>
             </div>
