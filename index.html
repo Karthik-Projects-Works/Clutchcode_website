@@ -52,79 +52,76 @@
   <a href="index.html" class="mlink">Home</a><a href="services.html" class="mlink">Services</a><a href="work.html" class="mlink">Work</a><a href="about.html" class="mlink">About</a><a href="contact.html" class="mlink">Contact</a>
   <div class="mfoot"><a href="contact.html" class="btn btn-primary btn-lg">Talk to our team</a></div>
 </div>
-<section class="hero" style="border-top:none;">
-  <div class="hero-video-wrap" aria-hidden="true">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto">
+<section class="hero-master" style="border-top:none;">
+  <div class="hero-master-video-wrap" id="seamlessVideoWrap" aria-hidden="true">
+    <video class="hero-master-video v-layer active" id="heroVidA" autoplay muted playsinline preload="auto" poster="assets/hero-poster.jpg">
       <source src="assets/hero.mp4" type="video/mp4">
     </video>
-    <div class="hero-video-overlay"></div>
+    <video class="hero-master-video v-layer" id="heroVidB" muted playsinline preload="auto" poster="assets/hero-poster.jpg">
+      <source src="assets/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-master-video-overlay"></div>
   </div>
-  <div class="hero-mechanism-bg" aria-hidden="true">
-    <div class="blade blade-left" id="bladeLeft">
-      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M200 40 C280 40 360 120 360 200 C360 240 340 280 300 310 L200 200 Z" fill="rgba(94,93,229,0.06)" stroke="rgba(94,93,229,0.2)" stroke-width="1.5" stroke-dasharray="4 4" />
-      </svg>
-    </div>
-    <div class="blade blade-right" id="bladeRight">
-      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M200 360 C120 360 40 280 40 200 C40 160 60 120 100 90 L200 200 Z" fill="rgba(200,255,61,0.03)" stroke="rgba(200,255,61,0.15)" stroke-width="1.5" />
-      </svg>
-    </div>
-  </div>
-  <div class="wrap hero-grid">
-  <div>
-    <div class="eyebrow">// software &middot; marketing &middot; branding</div>
-    <h1>Everything<br>clicks into <span class="accent">place</span>.</h1>
-    <p class="lede">Clutch Code builds the systems growing businesses run on — custom software, the marketing that brings people to it, and the brand that makes them stay. One team, three practices, built to work together from day one.</p>
-    <div class="hero-ctas">
-      <a href="contact.html" class="btn btn-primary btn-lg">Talk to our team</a>
-      <a href="services.html" class="btn btn-ghost btn-lg">See what we do</a>
-    </div>
-    <div class="trust">one team for the software, the marketing, and the brand</div>
-  </div>
-  <div class="console" id="console">
-    <div class="console-bar" role="tablist" aria-label="Services console tabs">
-      <button class="tab-btn active" data-tab="0"><span class="tdot"></span>Software</button>
-      <button class="tab-btn" role="tab" data-tab="1"><span class="tdot"></span>Marketing</button>
-      <button class="tab-btn" role="tab" data-tab="2"><span class="tdot"></span>Branding</button>
-    </div>
-    <div class="console-body">
-      <div class="panel active" data-panel="0">
-        <div class="panel-kicker">// software</div><div class="panel-title">Internal dashboard — Horizon Retail</div>
-        <div class="mock-window"><div class="mock-window-bar"><span></span><span></span><span></span></div>
-          <div class="mock-window-body">
-            <div class="stat-row"><div class="stat-chip"><div class="n">1,204</div><div class="l">ACTIVE USERS</div></div><div class="stat-chip"><div class="n">99.98%</div><div class="l">UPTIME</div></div></div>
-            <svg class="sparkline" viewBox="0 0 280 40" preserveAspectRatio="none"><polyline points="0,32 35,28 70,30 105,18 140,22 175,10 210,14 245,6 280,8" fill="none" stroke="#8C8BF0" stroke-width="2"/></svg>
-          </div></div>
+
+  <div class="hero-content">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">// software &middot; marketing &middot; branding</div>
+        <h1>Everything<br>clicks into <span class="accent">place</span>.</h1>
+        <p class="lede">Clutch Code builds the systems growing businesses run on — custom software, the marketing that brings people to it, and the brand that makes them stay. One team, three practices, built to work together from day one.</p>
+        <div class="hero-ctas">
+          <a href="contact.html" class="btn btn-primary btn-lg">Talk to our team</a>
+          <a href="services.html" class="btn btn-ghost btn-lg">See what we do</a>
+        </div>
+        <div class="trust">one team for the software, the marketing, and the brand</div>
       </div>
-      <div class="panel" role="tabpanel" data-panel="1">
-        <div class="panel-kicker">// marketing</div><div class="panel-title">Campaign performance — 3 channels live</div>
-        <div class="social-card">
-          <div class="social-head"><div class="social-avatar"><img src="assets/logo.png" alt="" width="22" height="23"></div>
-            <div><div class="social-name">Horizon Retail</div><div class="social-sub">sponsored &middot; reach growing</div></div></div>
-          <div class="bar-row" id="barRow"></div>
-          <div class="engage-row"><span><b>8.2k</b> reach</span><span><b>412</b> clicks</span><span><b>5.0%</b> CTR</span></div>
+      <div class="console" id="console">
+        <div class="console-bar" role="tablist" aria-label="Services console tabs">
+          <button class="tab-btn active" data-tab="0"><span class="tdot"></span>Software</button>
+          <button class="tab-btn" role="tab" data-tab="1"><span class="tdot"></span>Marketing</button>
+          <button class="tab-btn" role="tab" data-tab="2"><span class="tdot"></span>Branding</button>
+        </div>
+        <div class="console-body">
+          <div class="panel active" data-panel="0">
+            <div class="panel-kicker">// software</div><div class="panel-title">Internal dashboard — Horizon Retail</div>
+            <div class="mock-window"><div class="mock-window-bar"><span></span><span></span><span></span></div>
+              <div class="mock-window-body">
+                <div class="stat-row"><div class="stat-chip"><div class="n">1,204</div><div class="l">ACTIVE USERS</div></div><div class="stat-chip"><div class="n">99.98%</div><div class="l">UPTIME</div></div></div>
+                <svg class="sparkline" viewBox="0 0 280 40" preserveAspectRatio="none"><polyline points="0,32 35,28 70,30 105,18 140,22 175,10 210,14 245,6 280,8" fill="none" stroke="#8C8BF0" stroke-width="2"/></svg>
+              </div></div>
+          </div>
+          <div class="panel" role="tabpanel" data-panel="1">
+            <div class="panel-kicker">// marketing</div><div class="panel-title">Campaign performance — 3 channels live</div>
+            <div class="social-card">
+              <div class="social-head"><div class="social-avatar"><img src="assets/logo.png" alt="" width="22" height="23"></div>
+                <div><div class="social-name">Horizon Retail</div><div class="social-sub">sponsored &middot; reach growing</div></div></div>
+              <div class="bar-row" id="barRow"></div>
+              <div class="engage-row"><span><b>8.2k</b> reach</span><span><b>412</b> clicks</span><span><b>5.0%</b> CTR</span></div>
+            </div>
+          </div>
+          <div class="panel" role="tabpanel" data-panel="2">
+            <div class="panel-kicker">// branding</div><div class="panel-title">Identity delivered — Horizon Retail</div>
+            <div class="brand-row"><img src="assets/logo.png" alt="" width="22" height="23"><span>HORIZON RETAIL</span></div>
+            <div class="swatch-row"><div class="swatch" style="background:#5E5DE5;"></div><div class="swatch" style="background:#05060A;border-color:rgba(255,255,255,0.15);"></div><div class="swatch" style="background:#FFFFFF;"></div><div class="swatch" style="background:#8C8BF0;"></div></div>
+            <div class="type-sample"><div><div class="aa">Aa</div><div class="meta">BOLD</div></div><div><div class="aa2">Aa</div><div class="meta">REGULAR</div></div></div>
+          </div>
         </div>
       </div>
-      <div class="panel" role="tabpanel" data-panel="2">
-        <div class="panel-kicker">// branding</div><div class="panel-title">Identity delivered — Horizon Retail</div>
-        <div class="brand-row"><img src="assets/logo.png" alt="" width="22" height="23"><span>HORIZON RETAIL</span></div>
-        <div class="swatch-row"><div class="swatch" style="background:#5E5DE5;"></div><div class="swatch" style="background:#05060A;border-color:rgba(255,255,255,0.15);"></div><div class="swatch" style="background:#FFFFFF;"></div><div class="swatch" style="background:#8C8BF0;"></div></div>
-        <div class="type-sample"><div><div class="aa">Aa</div><div class="meta">BOLD</div></div><div><div class="aa2">Aa</div><div class="meta">REGULAR</div></div></div>
+    </div>
+  </div>
+
+  <div class="industries-strip">
+    <div class="wrap">
+      <div class="kicker">// who we work with</div>
+      <div class="chips">
+        <span class="chip chip-static">Supermarkets &amp; retail</span><span class="chip chip-static">Cafés &amp; restaurants</span>
+        <span class="chip chip-static">Clinics &amp; healthcare</span><span class="chip chip-static">Education</span>
+        <span class="chip chip-static">Real estate</span><span class="chip chip-static">Trade &amp; manufacturing</span>
+        <span class="chip chip-static">Start-ups</span>
       </div>
     </div>
   </div>
-</div></section>
-
-<section class="industries"><div class="wrap">
-  <div class="kicker">// who we work with</div>
-  <div class="chips">
-    <span class="chip chip-static">Supermarkets &amp; retail</span><span class="chip chip-static">Cafés &amp; restaurants</span>
-    <span class="chip chip-static">Clinics &amp; healthcare</span><span class="chip chip-static">Education</span>
-    <span class="chip chip-static">Real estate</span><span class="chip chip-static">Trade &amp; manufacturing</span>
-    <span class="chip chip-static">Start-ups</span>
-  </div>
-</div></section>
+</section>
 
 <section id="services"><div class="wrap">
   <div class="section-head"><div class="kicker">// what we do</div><h2>Three practices, one team.</h2>
@@ -139,13 +136,98 @@
 <section id="why"><div class="wrap">
   <div class="section-head"><div class="kicker">// why clutch code</div><h2>Fewer handoffs. Fewer surprises.</h2>
     <p class="section-sub">Most projects go wrong in the gaps between people. We’re set up to close them.</p></div>
-  <div class="grid c2">
-    <div class="cell"><div class="num">01</div><h3>One team, one brief</h3><p>Tell us your goals once. The people building the software, running the campaign, and designing the brand all work from the same page.</p></div>
-    <div class="cell"><div class="num">02</div><h3>Plain-language everything</h3><p>No jargon in proposals, reports, or meetings. If we can’t explain a decision simply, we haven’t finished thinking about it.</p></div>
-    <div class="cell"><div class="num">03</div><h3>Built to be measured</h3><p>Every piece of work has a number attached — enquiries, hours saved, sales, footfall — so you can see what’s earning its keep.</p></div>
-    <div class="cell"><div class="num">04</div><h3>We stay after launch</h3><p>Software needs maintenance, campaigns need tuning, brands need looking after. We’re still here when the launch party ends.</p></div>
+  <div class="grid c2 bento-grid" id="whyGrid">
+    <div class="cell bento-cell" tabindex="0" role="button" aria-haspopup="dialog" data-bento-id="1">
+      <div class="bento-cell-header">
+        <div class="bento-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        </div>
+        <div class="num">01</div>
+      </div>
+      <h3>One team, one brief</h3>
+      <p>Tell us your goals once. The people building the software, running the campaign, and designing the brand all work from the same page.</p>
+      <div class="bento-expand-cue"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <template class="bento-detail-content">
+        <p>When software engineers, marketers, and brand designers sit under separate roofs, things inevitably get lost in translation. Technical constraints surprise the creative team, campaigns push features that haven't shipped, and the brand identity looks disjointed across web and ads.</p>
+        <p>At Clutch Code, every project shares a single technical roadmap, a unified repository, and an aligned creative direction from kickoff through launch.</p>
+      </template>
+    </div>
+
+    <div class="cell bento-cell" tabindex="0" role="button" aria-haspopup="dialog" data-bento-id="2">
+      <div class="bento-cell-header">
+        <div class="bento-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        </div>
+        <div class="num">02</div>
+      </div>
+      <h3>Plain-language everything</h3>
+      <p>No jargon in proposals, reports, or meetings. If we can’t explain a decision simply, we haven’t finished thinking about it.</p>
+      <div class="bento-expand-cue"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <template class="bento-detail-content">
+        <p>We reject consulting buzzwords and vanity jargon. Our specifications, progress memos, and architectural decisions are presented in transparent, executive-level language.</p>
+        <p>You always know precisely what is being built, why technical trade-offs were chosen, and how every dollar is being allocated.</p>
+      </template>
+    </div>
+
+    <div class="cell bento-cell" tabindex="0" role="button" aria-haspopup="dialog" data-bento-id="3">
+      <div class="bento-cell-header">
+        <div class="bento-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+        </div>
+        <div class="num">03</div>
+      </div>
+      <h3>Built to be measured</h3>
+      <p>Every piece of work has a number attached — enquiries, hours saved, sales, footfall — so you can see what’s earning its keep.</p>
+      <div class="bento-expand-cue"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <template class="bento-detail-content">
+        <p>We don't build software or launch marketing campaigns based on abstract feelings. We define hard key performance indicators from week one.</p>
+        <p>Whether tracking server query latency, cart checkout conversions, customer acquisition cost, or manual hours eliminated by internal automation, work is judged strictly by tangible commercial impact.</p>
+      </template>
+    </div>
+
+    <div class="cell bento-cell" tabindex="0" role="button" aria-haspopup="dialog" data-bento-id="4">
+      <div class="bento-cell-header">
+        <div class="bento-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <div class="num">04</div>
+      </div>
+      <h3>We stay after launch</h3>
+      <p>Software needs maintenance, campaigns need tuning, brands need looking after. We’re still here when the launch party ends.</p>
+      <div class="bento-expand-cue"><span>Details</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <template class="bento-detail-content">
+        <p>Traditional agencies deliver zip files and disappear. Real digital operations begin the day users arrive.</p>
+        <p>We provide ongoing infrastructure management, security patching, campaign creative rotation, and brand stewardship so your systems remain modern and resilient as your company grows.</p>
+      </template>
+    </div>
   </div>
 </div></section>
+
+<!-- Expandable Bento Modal Dialog -->
+<div class="bento-modal-overlay" id="bentoModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="bento-modal-backdrop" id="bentoBackdrop"></div>
+  <div class="bento-modal-container">
+    <div class="bento-modal-card" id="bentoModalCard">
+      <button class="bento-modal-close" id="bentoModalClose" aria-label="Close dialog">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="bento-modal-banner" id="bentoModalBanner">
+        <div class="bento-modal-icon" id="bentoModalIcon"></div>
+      </div>
+      <div class="bento-modal-body">
+        <div class="bento-modal-head">
+          <div>
+            <div class="bento-modal-num" id="bentoModalNum"></div>
+            <h3 class="bento-modal-title" id="bentoModalTitle"></h3>
+          </div>
+          <a href="contact.html" class="btn btn-primary btn-sm bento-modal-action">Talk to team</a>
+        </div>
+        <p class="bento-modal-sub" id="bentoModalSub"></p>
+        <div class="bento-modal-content" id="bentoModalContent"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <section id="process" class="paper-substrate"><div class="wrap">
   <div class="section-head"><div class="kicker">// how we work</div><h2>We learn the business first.</h2><p class="section-sub">Most proposals skip straight to the pitch. We don’t.</p></div>

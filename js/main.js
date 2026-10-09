@@ -58,6 +58,57 @@
     });
   }
 
+  /* ==========================================================================
+     1.B SEAMLESS GAPLESS DUAL-VIDEO CROSSFADER
+     ========================================================================== */
+  var vidA = document.getElementById('heroVidA');
+  var vidB = document.getElementById('heroVidB');
+
+  if (vidA && vidB) {
+    var activeVid = vidA;
+    var inactiveVid = vidB;
+    var crossfadeThreshold = 0.6; // Start crossfading 600ms before current clip ends
+    var isFading = false;
+
+    function handleTimeUpdate() {
+      if (!activeVid.duration || isFading) return;
+      var remaining = activeVid.duration - activeVid.currentTime;
+
+      if (remaining <= crossfadeThreshold) {
+        isFading = true;
+        inactiveVid.currentTime = 0;
+        var playPromise = inactiveVid.play();
+        if (playPromise !== undefined) {
+          playPromise.then(function() {
+            // Swap active visibility layers seamlessly
+            inactiveVid.classList.add('active');
+            activeVid.classList.remove('active');
+
+            setTimeout(function() {
+              activeVid.pause();
+              activeVid.currentTime = 0;
+              // Swap references
+              var temp = activeVid;
+              activeVid = inactiveVid;
+              inactiveVid = temp;
+              isFading = false;
+            }, 550);
+          }).catch(function() {
+            isFading = false;
+          });
+        }
+      }
+    }
+
+    vidA.addEventListener('timeupdate', function() {
+      if (activeVid === vidA) handleTimeUpdate();
+    });
+
+    vidB.addEventListener('timeupdate', function() {
+      if (activeVid === vidB) handleTimeUpdate();
+    });
+  }
+
   /* Audio detent synthesizer via Web Audio API */
   var audioCtx = null;
   function playDetentSound(pitch) {
@@ -96,8 +147,6 @@
   var consoleEl = document.querySelector('.console');
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
   var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
-  var bladeLeft = document.getElementById('bladeLeft');
-  var bladeRight = document.getElementById('bladeRight');
 
   if (tabs.length && panels.length) {
     var cur = 0;
@@ -117,13 +166,6 @@
         p.setAttribute('aria-hidden', match ? 'false' : 'true');
       });
 
-      // Rotate background interlocking mechanism blades on tab switch
-      if (bladeLeft && bladeRight) {
-        var rotL = (index * 45) - 20;
-        var rotR = -(index * 45) + 20;
-        bladeLeft.style.transform = 'rotate(' + rotL + 'deg)';
-        bladeRight.style.transform = 'rotate(' + rotR + 'deg)';
-      }
       playDetentSound(580 + (index * 80));
     };
 
@@ -363,6 +405,87 @@
       if (formSuccess) {
         formSuccess.classList.add('show');
         formSuccess.focus();
+      }
+    });
+  }
+
+  /* ==========================================================================
+     8. EXPANDABLE BENTO GRID CONTROLLER (#whyGrid)
+     ========================================================================== */
+  var bentoModal = document.getElementById('bentoModal');
+  var bentoBackdrop = document.getElementById('bentoBackdrop');
+  var bentoCloseBtn = document.getElementById('bentoModalClose');
+  var bentoCells = document.querySelectorAll('#whyGrid .bento-cell');
+
+  var modalNum = document.getElementById('bentoModalNum');
+  var modalTitle = document.getElementById('bentoModalTitle');
+  var modalSub = document.getElementById('bentoModalSub');
+  var modalContent = document.getElementById('bentoModalContent');
+  var modalIcon = document.getElementById('bentoModalIcon');
+  var lastFocusedCell = null;
+
+  function openBentoModal(cell) {
+    if (!bentoModal || !cell) return;
+    lastFocusedCell = cell;
+
+    var numEl = cell.querySelector('.num');
+    var titleEl = cell.querySelector('h3');
+    var pEl = cell.querySelector('p');
+    var iconEl = cell.querySelector('.bento-icon-box');
+    var tpl = cell.querySelector('.bento-detail-content');
+
+    if (modalNum) modalNum.textContent = numEl ? numEl.textContent.trim() : '';
+    if (modalTitle) modalTitle.textContent = titleEl ? titleEl.textContent.trim() : '';
+    if (modalSub) modalSub.textContent = pEl ? pEl.textContent.trim() : '';
+    if (modalIcon && iconEl) modalIcon.innerHTML = iconEl.innerHTML;
+    if (modalContent) {
+      modalContent.innerHTML = tpl ? tpl.innerHTML : (pEl ? '<p>' + pEl.textContent + '</p>' : '');
+    }
+
+    bentoModal.classList.add('is-active');
+    bentoModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    playDetentSound();
+    if (bentoCloseBtn) bentoCloseBtn.focus();
+  }
+
+  function closeBentoModal() {
+    if (!bentoModal || !bentoModal.classList.contains('is-active')) return;
+    bentoModal.classList.remove('is-active');
+    bentoModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+
+    if (lastFocusedCell) {
+      lastFocusedCell.focus();
+      lastFocusedCell = null;
+    }
+  }
+
+  if (bentoCells.length > 0 && bentoModal) {
+    bentoCells.forEach(function(cell) {
+      cell.addEventListener('click', function() {
+        openBentoModal(cell);
+      });
+
+      cell.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openBentoModal(cell);
+        }
+      });
+    });
+
+    if (bentoBackdrop) {
+      bentoBackdrop.addEventListener('click', closeBentoModal);
+    }
+    if (bentoCloseBtn) {
+      bentoCloseBtn.addEventListener('click', closeBentoModal);
+    }
+
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && bentoModal.classList.contains('is-active')) {
+        closeBentoModal();
       }
     });
   }

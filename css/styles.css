@@ -529,13 +529,13 @@ h3 {
 /* ==========================================================================
    7. PAGE HERO & SIGNATURE "CLICK-LOCK" PINNED CONSOLE
    ========================================================================== */
-.hero {
-  padding: clamp(70px, 10vw, 120px) 0 80px;
+.hero-master {
   position: relative;
   overflow: hidden;
+  border-bottom: 1px solid var(--line-soft);
 }
 
-.hero-video-wrap {
+.hero-master-video-wrap {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -545,50 +545,54 @@ h3 {
   z-index: 0;
 }
 
-.hero-video {
+.hero-master-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.14;
-  filter: contrast(1.2) brightness(0.75) saturate(0.85);
-  transform: scale(1.02);
+  filter: contrast(1.1) brightness(0.95);
+  transform: scale(1.01);
 }
 
-.hero-video-overlay {
+.hero-master-video.v-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+.hero-master-video.v-layer.active {
+  opacity: 0.72;
+}
+
+.hero-master-video-overlay {
   position: absolute;
   inset: 0;
   background: 
-    radial-gradient(ellipse 75% 65% at 75% 40%, rgba(94, 93, 229, 0.18), transparent 70%),
-    linear-gradient(180deg, rgba(5, 6, 10, 0.6) 0%, rgba(5, 6, 10, 0.9) 70%, var(--ink) 100%),
-    linear-gradient(90deg, var(--ink) 0%, rgba(5, 6, 10, 0.75) 45%, transparent 100%);
+    linear-gradient(180deg, rgba(5, 6, 10, 0.15) 0%, rgba(5, 6, 10, 0.45) 65%, rgba(5, 6, 10, 0.9) 100%),
+    linear-gradient(90deg, rgba(5, 6, 10, 0.75) 0%, rgba(5, 6, 10, 0.25) 50%, rgba(5, 6, 10, 0.1) 100%);
 }
 
-.hero-mechanism-bg {
-  position: absolute;
-  top: 50%;
-  right: -5%;
-  transform: translateY(-50%);
-  width: clamp(380px, 45vw, 680px);
-  height: clamp(380px, 45vw, 680px);
-  pointer-events: none;
-  z-index: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: clamp(40px, 5.5vw, 68px) 0 24px;
 }
 
-.blade {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.65s var(--ease-snap);
+.industries-strip {
+  position: relative;
+  z-index: 1;
+  padding: 18px 0 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(5, 6, 10, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.blade svg {
-  width: 100%;
-  height: 100%;
+.hero {
+  padding: clamp(70px, 10vw, 120px) 0 80px;
+  position: relative;
 }
 
 .hero-grid {
@@ -605,12 +609,16 @@ h3 {
   }
 }
 
-.hero-ctas {
+.hero-content .hero-ctas {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 36px;
+  margin-bottom: 24px;
   flex-wrap: wrap;
+}
+
+.hero-content .lede {
+  margin-bottom: 24px;
 }
 
 .trust {
@@ -624,11 +632,13 @@ h3 {
 
 /* Mechanical Console */
 .console {
-  background: var(--panel);
-  border: 1px solid var(--line-bright);
+  background: rgba(13, 14, 23, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 32px 80px -24px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 32px 80px -24px rgba(0, 0, 0, 0.7);
   position: relative;
   transition: transform var(--trans-snap);
 }
@@ -641,16 +651,16 @@ h3 {
   color: var(--grey-dim);
   letter-spacing: 0.12em;
   padding: 8px 16px;
-  background: #090a10;
-  border-bottom: 1px solid var(--line-soft);
+  background: rgba(9, 10, 16, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .console-bar {
   display: flex;
   padding: 6px;
   gap: 4px;
-  background: var(--ink-2);
-  border-bottom: 1px solid var(--line-soft);
+  background: rgba(11, 12, 20, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .tab-btn {
@@ -685,8 +695,8 @@ h3 {
 
 .tab-btn.active {
   color: var(--white);
-  background: var(--panel-elevated);
-  border-color: var(--brand);
+  background: rgba(94, 93, 229, 0.22);
+  border-color: rgba(140, 139, 240, 0.5);
 }
 
 .tab-btn.active .tdot {
@@ -733,17 +743,20 @@ h3 {
 }
 
 .mock-window {
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
   overflow: hidden;
-  background: var(--ink-2);
+  background: rgba(11, 12, 20, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .mock-window-bar {
   display: flex;
   gap: 6px;
   padding: 8px 12px;
-  border-bottom: 1px solid var(--line-soft);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .mock-window-bar span {
@@ -765,8 +778,8 @@ h3 {
 
 .stat-chip {
   flex: 1;
-  background: var(--panel);
-  border: 1px solid var(--line-soft);
+  background: rgba(20, 21, 34, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 4px;
   padding: 10px 12px;
 }
@@ -794,9 +807,11 @@ h3 {
 }
 
 .social-card {
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
-  background: var(--ink-2);
+  background: rgba(11, 12, 20, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 14px;
 }
 
@@ -1079,6 +1094,249 @@ a.cell:hover .more {
 }
 
 /* ==========================================================================
+   9B. EXPANDABLE BENTO GRID STYLES (.grid.c2 #why)
+   ========================================================================== */
+.bento-cell {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: background var(--trans-fast), transform var(--trans-snap), border-color var(--trans-fast), box-shadow var(--trans-fast);
+  outline: none;
+}
+
+.bento-cell:hover,
+.bento-cell:focus-visible {
+  background: var(--ink-2);
+}
+
+.bento-cell-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.bento-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: rgba(94, 93, 229, 0.14);
+  border: 1px solid rgba(140, 139, 240, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-lt);
+  transition: transform var(--trans-snap), background var(--trans-fast), color var(--trans-fast), border-color var(--trans-fast);
+}
+
+.bento-cell:hover .bento-icon-box,
+.bento-cell:focus-visible .bento-icon-box {
+  background: rgba(94, 93, 229, 0.28);
+  border-color: var(--brand-lt);
+  color: var(--white);
+  transform: scale(1.08);
+}
+
+.bento-cell .num {
+  margin-bottom: 0;
+}
+
+.bento-cell h3 {
+  margin-bottom: 10px;
+  transition: color var(--trans-fast);
+}
+
+.bento-cell:hover h3 {
+  color: var(--white);
+}
+
+.bento-expand-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--grey-dim);
+  letter-spacing: 0.04em;
+  transition: color var(--trans-fast), transform var(--trans-fast);
+}
+
+.bento-cell:hover .bento-expand-cue,
+.bento-cell:focus-visible .bento-expand-cue {
+  color: var(--signal-lime);
+  transform: translateX(3px);
+}
+
+/* Bento Modal Overlay */
+.bento-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.bento-modal-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.bento-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 6, 10, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.bento-modal-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 540px;
+  max-height: 90vh;
+  display: flex;
+}
+
+.bento-modal-card {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--line-bright);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 32px 80px -16px rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transform: scale(0.94) translateY(12px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  max-height: 90vh;
+}
+
+.bento-modal-overlay.is-active .bento-modal-card {
+  transform: scale(1) translateY(0);
+}
+
+.bento-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(13, 14, 23, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--trans-fast), transform var(--trans-snap), border-color var(--trans-fast);
+}
+
+.bento-modal-close:hover {
+  background: var(--brand);
+  border-color: var(--brand-lt);
+  transform: scale(1.08);
+}
+
+.bento-modal-banner {
+  width: 100%;
+  height: 160px;
+  background: radial-gradient(circle at 50% 50%, rgba(94, 93, 229, 0.25) 0%, rgba(11, 12, 20, 0.95) 100%);
+  border-bottom: 1px solid var(--line-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-modal-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.7;
+}
+
+.bento-modal-icon {
+  position: relative;
+  z-index: 2;
+  transform: scale(2.4);
+  color: var(--brand-lt);
+  filter: drop-shadow(0 0 16px rgba(94, 93, 229, 0.5));
+}
+
+.bento-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: calc(90vh - 160px);
+}
+
+.bento-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.bento-modal-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--signal-lime);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.bento-modal-title {
+  font-size: 1.25rem;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.bento-modal-action {
+  flex-shrink: 0;
+}
+
+.bento-modal-sub {
+  font-size: 0.95rem;
+  color: var(--grey);
+  line-height: 1.6;
+  border-bottom: 1px solid var(--line-soft);
+  padding-bottom: 14px;
+}
+
+.bento-modal-content {
+  font-size: 0.92rem;
+  color: var(--grey-dim);
+  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bento-modal-content p {
+  margin: 0;
+}
+
+/* ==========================================================================
    10. CHIPS, RAILS & FILTER TOGGLES
    ========================================================================== */
 .subnav {
@@ -1131,10 +1389,39 @@ a.cell:hover .more {
 }
 
 .industries {
-  padding: 48px 0;
+  padding: 56px 0;
   border-top: 1px solid var(--line-soft);
   border-bottom: 1px solid var(--line-soft);
+  position: relative;
+  overflow: hidden;
   background: #07080e;
+}
+
+.industries-video-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.industries-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  opacity: 0.38;
+  filter: contrast(1.15) brightness(0.85);
+}
+
+.industries-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(180deg, rgba(7, 8, 14, 0.7) 0%, rgba(7, 8, 14, 0.4) 50%, rgba(7, 8, 14, 0.7) 100%),
+    linear-gradient(90deg, rgba(7, 8, 14, 0.9) 0%, rgba(7, 8, 14, 0.4) 30%, rgba(7, 8, 14, 0.4) 70%, rgba(7, 8, 14, 0.9) 100%);
 }
 
 .tag {
