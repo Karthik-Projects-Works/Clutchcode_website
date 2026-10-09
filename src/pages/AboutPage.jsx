@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import FadeWords from "../components/common/FadeWords";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 export default function AboutPage() {
+  const rootRef = useRef(null);
+  useScrollReveal(rootRef);
+
   return (
-    <main>
+    <main className="ab" ref={rootRef}>
       <section className="page-hero">
         <div className="wrap">
           <div className="eyebrow">// about</div>
@@ -16,36 +21,36 @@ export default function AboutPage() {
 
       <section>
         <div className="wrap">
-          <div className="broadsheet-layout">
+          <div className="broadsheet-layout" data-reveal>
             <div className="prose">
               <div className="kicker">// our story</div>
-              <h2>Why one team?</h2>
-              <p>
+              <h2><FadeWords>Why one team?</FadeWords></h2>
+              <p data-reveal>
                 Most businesses end up hiring a developer, a marketer, and a designer — separately. Then they spend months playing messenger between them, repeating the same brief and fixing things that fell into the gaps.
               </p>
-              <p>
+              <p data-reveal style={{ "--d": "80ms" }}>
                 <b>We built Clutch Code to close those gaps.</b> The people building your software, running your campaigns, and designing your brand sit in the same team and work from the same plan.
               </p>
-              <p>
+              <p data-reveal style={{ "--d": "160ms" }}>
                 We also build our own product, ClutchKart, a management platform for supermarkets. It keeps us honest: we know what it takes to ship, support, and improve something real, not just advise on it.
               </p>
             </div>
             <aside className="margin-rail" aria-label="Manifesto Margin Notes">
-              <div className="spec-item">
+              <div className="spec-item" data-reveal>
                 <b>// MANIFESTO NOTE 01</b>
                 Software and branding built apart always produce friction at the seam.
               </div>
-              <div className="spec-item">
+              <div className="spec-item" data-reveal style={{ "--d": "80ms" }}>
                 <b>// TOLERANCE</b>
                 Zero handoffs between agency and development shop. Single responsible lead.
               </div>
-              <div className="spec-item">
+              <div className="spec-item" data-reveal style={{ "--d": "160ms" }}>
                 <b>// PRODUCTION</b>
                 Headquarters: Bangalore, India &middot; Built for Indian retail, clinical, and enterprise operations.
               </div>
             </aside>
           </div>
-          <div className="big-mark" style={{ marginTop: "48px" }}>
+          <div className="big-mark" data-reveal style={{ marginTop: "48px" }}>
             <img src="/assets/logo.png" alt="Clutch Code mark" />
           </div>
         </div>
@@ -53,22 +58,22 @@ export default function AboutPage() {
 
       <section>
         <div className="wrap">
-          <div className="section-head">
+          <div className="section-head" data-reveal>
             <div className="kicker">// what guides us</div>
-            <h2>Three ideas we work by.</h2>
+            <h2><FadeWords>Three ideas we work by.</FadeWords></h2>
           </div>
           <div className="grid c3">
-            <div className="cell">
+            <div className="cell" data-reveal>
               <div className="num">01</div>
               <h3>Precision</h3>
               <p>Clean geometry, sharp details, no ornament for its own sake. The small things are the job.</p>
             </div>
-            <div className="cell">
+            <div className="cell" data-reveal style={{ "--d": "80ms" }}>
               <div className="num">02</div>
               <h3>Momentum</h3>
               <p>We ship in steps you can see. Progress you can point at beats a big reveal at the end.</p>
             </div>
-            <div className="cell">
+            <div className="cell" data-reveal style={{ "--d": "160ms" }}>
               <div className="num">03</div>
               <h3>Confidence</h3>
               <p>We’ll tell you honestly what will work, what won’t, and what isn’t worth doing yet.</p>
@@ -79,10 +84,10 @@ export default function AboutPage() {
 
       <section>
         <div className="wrap">
-          <div className="split">
+          <div className="split" data-reveal>
             <div>
               <div className="kicker">// the mark</div>
-              <h2>Why the logo looks like that.</h2>
+              <h2><FadeWords>Why the logo looks like that.</FadeWords></h2>
               <p className="lede">
                 Two interlocking blades turn around a single point. It’s the moment separate pieces lock together — software, marketing, and brand, all clicking into place.
               </p>
@@ -103,11 +108,11 @@ export default function AboutPage() {
 
       <section>
         <div className="wrap">
-          <div className="section-head">
+          <div className="section-head" data-reveal>
             <div className="kicker">// the team</div>
-            <h2>The people behind the work.</h2>
+            <h2><FadeWords>The people behind the work.</FadeWords></h2>
           </div>
-          <div className="team-ledger">
+          <div className="team-ledger" data-reveal>
             <div className="team-row">
               <div className="t-name">[Name]</div>
               <div className="t-role">Founder &middot; Software Lead</div>
@@ -130,7 +135,7 @@ export default function AboutPage() {
       {/* CTA BANNER */}
       <section style={{ paddingBottom: "110px" }}>
         <div className="wrap">
-          <div className="cta-banner">
+          <div className="cta-banner" data-reveal>
             <h2>Ready to talk?</h2>
             <p>Tell us what you’re working on. We’ll tell you honestly what we can do and what it will take.</p>
             <Link to="/contact" className="btn btn-primary btn-lg">

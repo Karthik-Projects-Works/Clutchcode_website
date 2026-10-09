@@ -523,9 +523,20 @@ export default function ClutchKartPage() {
             {FAQS.map((f, i) => (
               <div
                 key={i}
-                className={`panel-box ${openFaq === i ? "active" : ""}`}
-                style={{ marginBottom: "16px", cursor: "pointer" }}
+                className="panel-box"
+                style={{ marginBottom: "16px", cursor: "pointer", "--d": `${i * 70}ms` }}
                 onClick={() => toggleFaq(i)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    toggleFaq(i);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-expanded={openFaq === i ? "true" : "false"}
+                data-open={openFaq === i ? "true" : undefined}
+                data-reveal
               >
                 <h4 style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: openFaq === i ? "12px" : "0" }}>
                   <span>{f.q}</span>

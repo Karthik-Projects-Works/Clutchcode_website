@@ -3467,7 +3467,7 @@ footer {
   border-color: rgba(140, 139, 240, 0.45);
 }
 
-.faq-list .panel-box.active {
+.faq-list .panel-box[data-open] {
   border-color: var(--brand);
   background: rgba(13, 14, 23, 0.85);
   box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 0 20px -5px rgba(94, 93, 229, 0.2);
@@ -3780,9 +3780,30 @@ footer {
   transition: transform 0.3s var(--ease-snap);
 }
 
-.faq-list .panel-box.active .faq-plus { transform: rotate(45deg); }
+.faq-list .panel-box[data-open] .faq-plus { transform: rotate(45deg); }
 
 .ck-faq-a { animation: fadeUp 0.45s var(--ease-snap); }
+
+/* --- FAQ: centered column + staggered items + hover lift (.ck) --- */
+.ck #faq .section-head { text-align: center; }
+
+.ck #faq .faq-list {
+  max-width: 840px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ck .faq-list .panel-box {
+  transition: border-color var(--trans-fast), background var(--trans-fast), box-shadow var(--trans-fast), transform var(--trans-snap);
+}
+
+.ck .faq-list .panel-box:hover {
+  transform: translateY(-2px);
+  border-color: rgba(140, 139, 240, 0.55);
+  box-shadow: 0 14px 30px -16px rgba(0, 0, 0, 0.85);
+}
+
+.ck .faq-list .panel-box[data-open] { transform: none; }
 
 @media (max-width: 980px) {
   .ck-grid { grid-template-columns: repeat(2, 1fr); }
@@ -4146,6 +4167,58 @@ details.q[open] { transform: translateY(0); }
 
 details.q[open] p { animation: fadeIn 0.35s ease both; }
 
+/* ==========================================================================
+    20B. ABOUT PAGE — ENTRANCE, REVEAL & MICRO-INTERACTIONS (.ab)
+   Scoped to the About page; does not affect any other route.
+   ========================================================================== */
+.ab .page-hero .eyebrow { animation: riseIn 0.75s var(--ease-snap) both; }
+.ab .page-hero h1 { animation: riseIn 0.85s var(--ease-snap) 0.08s both; }
+.ab .page-hero .lede { animation: riseIn 0.85s var(--ease-snap) 0.18s both; }
+
+.ab .big-mark::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  z-index: 1;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(200, 255, 61, 0.16) 45deg, transparent 120deg, rgba(94, 93, 229, 0.18) 300deg, transparent 345deg);
+  animation: abSpin 16s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes abSpin { to { transform: rotate(1turn); } }
+
+.ab .grid.c3 .cell {
+  transition: transform var(--trans-snap), border-color var(--trans-fast), box-shadow var(--trans-snap), background var(--trans-fast);
+}
+
+.ab .grid.c3 .cell:hover {
+  transform: translateY(-5px);
+  border-color: rgba(200, 255, 61, 0.35);
+  box-shadow: 0 28px 60px -36px rgba(94, 93, 229, 0.9);
+}
+
+.ab .margin-rail .spec-item {
+  padding-left: 2px;
+  transition: transform var(--trans-fast);
+}
+
+.ab .margin-rail .spec-item:hover {
+  transform: translateX(6px);
+}
+
+.ab .margin-rail .spec-item:hover b {
+  color: var(--signal-lime);
+}
+
+.ab .team-row {
+  transition: background var(--trans-fast), box-shadow var(--trans-snap);
+}
+
+.ab .team-row:hover {
+  background: rgba(94, 93, 229, 0.07);
+  box-shadow: inset 2px 0 0 var(--signal-lime);
+}
+
 /* --- CTA animated gradient border --- */
 .cta-banner::after {
   content: "";
@@ -4190,7 +4263,11 @@ details.q[open] p { animation: fadeIn 0.35s ease both; }
   .ck .page-hero .hero-ctas,
   .ck .page-hero .trust,
   .ck .page-hero .subnav,
-  .ck-faq-a { animation: none; }
+  .ck-faq-a,
+  .ab .page-hero .eyebrow,
+  .ab .page-hero h1,
+  .ab .page-hero .lede,
+  .ab .big-mark::before { animation: none; }
   .hero-content .eyebrow,
   .hero-content h1 .line,
   .hero-content .lede,
