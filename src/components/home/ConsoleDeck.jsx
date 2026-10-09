@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 
 const PROJECTS = [
   {
-    name: "Operations Portal — Horizon Retail",
-    kicker: "// practice 01 — core software",
+    name: "Operations Portal � Horizon Retail",
+    kicker: "// practice 01 � core software",
     pill: "RELEASE ACTIVE",
     pillClass: "",
     windowId: "terminal: node-03.us-east.horizon",
@@ -12,9 +12,9 @@ const PROJECTS = [
     winOk: false,
     kind: "software",
     chips: [
-      { icon: "⚡", l: "CONCURRENT USERS", n: "1,204" },
-      { icon: "🛡", l: "UPTIME SLA", n: "99.98%", ok: true },
-      { icon: "⏱", l: "QUERY LATENCY", n: "48ms" },
+      { icon: "?", l: "CONCURRENT USERS", n: "1,204" },
+      { icon: "??", l: "UPTIME SLA", n: "99.98%", ok: true },
+      { icon: "?", l: "QUERY LATENCY", n: "48ms" },
     ],
     plan: [
       { phase: "Discover", pct: 100, done: true },
@@ -26,7 +26,7 @@ const PROJECTS = [
   },
   {
     name: "Q3 Customer Acquisition Campaign",
-    kicker: "// practice 02 — growth marketing",
+    kicker: "// practice 02 � growth marketing",
     pill: "CAMPAIGN RUNNING",
     pillClass: "pill-lime",
     windowId: "analytics: pipeline-meta-v2",
@@ -37,9 +37,9 @@ const PROJECTS = [
     bars: [21, 29, 25, 36, 32, 44, 52],
     chipNote: "+34% vs last week",
     chips: [
-      { icon: "👥", l: "REACH", n: "8.2k" },
-      { icon: "📞", l: "BOOKED CALLS", n: "412", ok: true },
-      { icon: "🎯", l: "CTR", n: "5.0%" },
+      { icon: "??", l: "REACH", n: "8.2k" },
+      { icon: "??", l: "BOOKED CALLS", n: "412", ok: true },
+      { icon: "??", l: "CTR", n: "5.0%" },
     ],
     plan: [
       { phase: "Discover", pct: 100, done: true },
@@ -50,8 +50,8 @@ const PROJECTS = [
     foot: "Funnel tracked weekly to booked calls and revenue.",
   },
   {
-    name: "Kairali Organics — Brand System",
-    kicker: "// practice 03 — brand identity",
+    name: "Kairali Organics � Brand System",
+    kicker: "// practice 03 � brand identity",
     pill: "GUIDELINES DELIVERED",
     pillClass: "pill-brand",
     windowId: "tokens: figma.tokens.export",
@@ -60,9 +60,9 @@ const PROJECTS = [
     winOk: false,
     kind: "brand",
     chips: [
-      { icon: "🎨", l: "TOKENS", n: "120" },
-      { icon: "🖋", l: "TYPE PAIRINGS", n: "3" },
-      { icon: "🌿", l: "SWATCHES", n: "24" },
+      { icon: "??", l: "TOKENS", n: "120" },
+      { icon: "??", l: "TYPE PAIRINGS", n: "3" },
+      { icon: "??", l: "SWATCHES", n: "24" },
     ],
     plan: [
       { phase: "Discover", pct: 100, done: true },
@@ -92,14 +92,41 @@ function ProjectChips({ chips }) {
 
 export default function ConsoleDeck() {
   const [activeTab, setActiveTab] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [tabProgress, setTabProgress] = useState(0);
   const consoleRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTab((prev) => (prev + 1) % PROJECTS.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
+    if (isPaused) return;
+    const step = 50;
+    const duration = 4000;
+    const timer = setInterval(() => {
+      setTabProgress((prev) => {
+        if (prev >= 100) {
+          setActiveTab((t) => (t + 1) % PROJECTS.length);
+          return 0;
+        }
+        return prev + (step / duration) * 100;
+      });
+    }, step);
+
+    return () => clearInterval(timer);
+  }, [isPaused, activeTab]);
+
+  const selectTab = (index) => {
+    setActiveTab(index);
+    setTabProgress(0);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      selectTab((activeTab + 1) % PROJECTS.length);
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      selectTab((activeTab - 1 + PROJECTS.length) % PROJECTS.length);
+    }
+  };
 
   const handleMouseMove = (e) => {
     if (!consoleRef.current || window.innerWidth < 800) return;
@@ -112,6 +139,7 @@ export default function ConsoleDeck() {
   const handleMouseLeave = () => {
     if (!consoleRef.current) return;
     consoleRef.current.style.transform = "perspective(1200px) rotateY(0deg) rotateX(0deg) translateZ(0px)";
+    setIsPaused(false);
   };
 
   const active = PROJECTS[activeTab];
@@ -122,7 +150,14 @@ export default function ConsoleDeck() {
       id="console"
       ref={consoleRef}
       onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={handleMouseLeave}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
+      tabIndex="0"
+      onKeyDown={handleKeyDown}
+      role="region"
+      aria-label="Interactive Disciplines Console"
     >
       <span className="hud-bracket hb-tl"></span>
       <span className="hud-bracket hb-tr"></span>
@@ -149,17 +184,24 @@ export default function ConsoleDeck() {
             type="button"
             role="tab"
             aria-selected={activeTab === i}
-            onClick={() => setActiveTab(i)}
+            onClick={() => selectTab(i)}
           >
             <span className="tdot"></span>
             {i === 0 ? "Software Engineering" : i === 1 ? "Digital Marketing" : "Brand Identity"}
+            {activeTab === i && (
+              <span
+                className="tab-progress-line"
+                style={{ width: `${tabProgress}%` }}
+                aria-hidden="true"
+              ></span>
+            )}
           </button>
         ))}
       </div>
 
       <div className="console-body">
         {PROJECTS.map((p, i) => (
-          <div key={p.name} className={`panel ${activeTab === i ? "active" : ""}`} data-panel={i}>
+          <div key={p.name} className={`panel ${activeTab === i ? "active" : ""}`} data-panel={i} role="tabpanel">
             <div className="panel-meta-row">
               <span className="panel-kicker">{p.kicker}</span>
               <span className={`panel-pill ${p.pillClass}`}>{p.pill}</span>
@@ -192,7 +234,7 @@ export default function ConsoleDeck() {
                             </linearGradient>
                           </defs>
                           <path d="M0,40 Q60,10 120,28 T240,15 T340,32 T400,8 L400,50 L0,50 Z" fill="url(#sparkGrad)" />
-                          <path d="M0,40 Q60,10 120,28 T240,15 T340,32 T400,8" fill="none" stroke="#C8FF3D" strokeWidth="2" />
+                          <path className="animated-spark-path" d="M0,40 Q60,10 120,28 T240,15 T340,32 T400,8" fill="none" stroke="#C8FF3D" strokeWidth="2" />
                         </svg>
                       </div>
                     </div>
@@ -205,14 +247,18 @@ export default function ConsoleDeck() {
                       <span>CONVERSION PACING</span>
                       <span className="spark-tag">{p.chipNote}</span>
                     </div>
-                    <div className="bars" aria-label="Marketing performance graph">
-                      {p.bars.map((h, i) => (
-                        <div key={i} className="bar" style={{ height: `${h}px` }} role="img" aria-label={`Bar ${h}px`}></div>
+                    <div className="bars" id="barRow" aria-label="Marketing performance graph">
+                      {p.bars.map((h, bi) => (
+                        <div
+                          key={bi}
+                          className="bar animated-grow-bar"
+                          style={{ "--h": `${h}px`, height: `${h}px`, "--stagger-i": bi }}
+                          role="img"
+                          aria-label={`Bar ${h}px`}
+                        />
                       ))}
                     </div>
-                    <div style={{ marginTop: "14px" }}>
-                      <ProjectChips chips={p.chips} />
-                    </div>
+                    <ProjectChips chips={p.chips} />
                   </>
                 )}
 
@@ -242,32 +288,32 @@ export default function ConsoleDeck() {
                 )}
               </div>
             </div>
-          </div>
-        ))}
-      </div>
 
-      <div className="plan" key={activeTab}>
-        <div className="plan-head">
-          <span className="plan-id">// project plan &middot; {active.name}</span>
-          <span className="plan-eta">ETA {active.eta}</span>
-        </div>
-        <div className="plan-rows">
-          {active.plan.map((ph) => (
-            <div className="plan-row" key={ph.phase}>
-              <div className="plan-label">
-                <span>Phase &middot; {ph.phase}</span>
-                <span className={`plan-pct${ph.done ? " glow-ok" : ""}`}>{ph.pct}%</span>
+            <div className="plan">
+              <div className="plan-head">
+                <span>PROJECT PLAN // 3 PHASES</span>
+                <span className="plan-eta">EST. {p.eta}</span>
               </div>
-              <div className="plan-track">
-                <span style={{ width: `${ph.pct}%` }}></span>
+              <div className="plan-rows">
+                {p.plan.map((pl) => (
+                  <div className="plan-row" key={pl.phase}>
+                    <div className="plan-label">
+                      <span>{pl.phase}</span>
+                      <span className={`plan-pct${pl.done ? " glow-ok" : ""}`}>{pl.pct}%</span>
+                    </div>
+                    <div className="plan-track">
+                      <span style={{ width: `${pl.pct}%` }}></span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="plan-foot">
+                <span className="hud-beacon"></span>
+                <span>{p.foot}</span>
               </div>
             </div>
-          ))}
-        </div>
-        <div className="plan-foot">
-          <span className="hud-beacon"></span>
-          <span>{active.foot}</span>
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );

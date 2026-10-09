@@ -4472,3 +4472,85 @@ header.is-scrolled nav {
     transform: none !important;
   }
 }
+
+/* ==========================================================================
+   23. PHASE 3 HOME & SERVICES MOTION (THEME-LOCKED)
+   ========================================================================== */
+
+/* 1. Tab Progress Indicator */
+.tab-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-progress-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--brand);
+  transition: width 50ms linear;
+  pointer-events: none;
+}
+
+/* 2. Sparkline Animated Stroke */
+@keyframes sparkDraw {
+  from { stroke-dashoffset: 400; }
+  to { stroke-dashoffset: 0; }
+}
+
+.animated-spark-path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 0;
+  animation: sparkDraw 1.2s var(--ease-snap) both;
+}
+
+/* 3. Marketing Bars Staggered Growth */
+@keyframes barGrow {
+  from { height: 0; opacity: 0.3; }
+  to { height: var(--h); opacity: 1; }
+}
+
+.animated-grow-bar {
+  animation: barGrow 0.6s var(--ease-snap) both;
+  animation-delay: calc(var(--stagger-i, 0) * 60ms);
+}
+
+/* 4. Sticky Split Columns on Desktop */
+@media (min-width: 981px) {
+  .sticky-split-col {
+    position: sticky;
+    top: 110px;
+    align-self: flex-start;
+  }
+}
+
+/* 5. Sticky In-Page Services Subnav */
+.sticky-subnav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sticky-subnav .chip {
+  transition: background-color var(--dur-2) var(--ease-snap), color var(--dur-2) var(--ease-snap), border-color var(--dur-2) var(--ease-snap);
+}
+
+.sticky-subnav .chip.on {
+  background: var(--brand);
+  color: var(--white);
+  border-color: var(--brand-lt);
+}
+
+/* 6. Model Cells Letter Highlight */
+.model-cell:hover .num {
+  color: var(--brand-lt);
+  transition: color var(--dur-2) var(--ease-snap);
+}
+
+/* 7. Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .tab-progress-line { display: none !important; }
+  .animated-spark-path { animation: none !important; stroke-dashoffset: 0 !important; }
+  .animated-grow-bar { animation: none !important; height: var(--h) !important; }
+}

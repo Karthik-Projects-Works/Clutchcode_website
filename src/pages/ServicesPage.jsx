@@ -1,21 +1,73 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function ServicesPage() {
+  const [activeSection, setActiveSection] = useState("software");
+
+  useEffect(() => {
+    const sectionIds = ["software", "marketing", "branding", "models"];
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 180;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(sectionIds[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollTo = (e, id) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <main>
+    <main id="main">
       <section className="page-hero">
         <div className="wrap">
           <div className="eyebrow">// services</div>
           <h1>Software, marketing, and brand. Built together.</h1>
           <p className="lede">
-            Three practices that share one brief, one plan, and one team â€” so what we build, how we promote it, and how it looks all point the same way.
+            Three practices that share one brief, one plan, and one team — so what we build, how we promote it, and how it looks all point the same way.
           </p>
-          <div className="subnav">
-            <a className="chip" href="#software">Software Solutions</a>
-            <a className="chip" href="#marketing">Digital Marketing</a>
-            <a className="chip" href="#branding">Branding</a>
-            <a className="chip" href="#models">How we engage</a>
+          <div className="subnav sticky-subnav" role="navigation" aria-label="Services in-page navigation">
+            <a
+              className={`chip ${activeSection === "software" ? "on" : ""}`}
+              href="#software"
+              onClick={(e) => scrollTo(e, "software")}
+            >
+              Software Solutions
+            </a>
+            <a
+              className={`chip ${activeSection === "marketing" ? "on" : ""}`}
+              href="#marketing"
+              onClick={(e) => scrollTo(e, "marketing")}
+            >
+              Digital Marketing
+            </a>
+            <a
+              className={`chip ${activeSection === "branding" ? "on" : ""}`}
+              href="#branding"
+              onClick={(e) => scrollTo(e, "branding")}
+            >
+              Branding
+            </a>
+            <a
+              className={`chip ${activeSection === "models" ? "on" : ""}`}
+              href="#models"
+              onClick={(e) => scrollTo(e, "models")}
+            >
+              How we engage
+            </a>
           </div>
         </div>
       </section>
@@ -24,11 +76,11 @@ export default function ServicesPage() {
       <section id="software">
         <div className="wrap">
           <div className="split">
-            <div>
+            <div className="sticky-split-col">
               <div className="kicker">// 01 &middot; software</div>
               <h2>Software Solutions</h2>
               <p className="lede">
-                Custom applications and business systems designed around how your company actually works â€” not the other way round.
+                Custom applications and business systems designed around how your company actually works — not the other way round.
               </p>
               <div className="tag-bracket" style={{ marginBottom: "20px" }}>
                 [ WEB &middot; MOBILE &middot; INTERNAL SYSTEMS ]
@@ -48,12 +100,12 @@ export default function ServicesPage() {
               <div className="panel-box">
                 <h4>What we deliver</h4>
                 <ul className="ticks">
-                  <li><b>Web applications</b> â€” portals, booking systems, dashboards, customer-facing products</li>
-                  <li><b>Mobile apps</b> â€” iOS and Android, from first prototype to store release</li>
-                  <li><b>Internal tools</b> â€” replace the spreadsheets and WhatsApp threads running your operations</li>
-                  <li><b>Business systems</b> â€” billing, inventory, CRM, and reporting that talk to each other</li>
-                  <li><b>Integrations &amp; APIs</b> â€” connect payment gateways, accounting tools, and the software you already use</li>
-                  <li><b>Maintenance &amp; support</b> â€” updates, monitoring, and fixes after launch</li>
+                  <li><b>Web applications</b> — portals, booking systems, dashboards, customer-facing products</li>
+                  <li><b>Mobile apps</b> — iOS and Android, from first prototype to store release</li>
+                  <li><b>Internal tools</b> — replace the spreadsheets and WhatsApp threads running your operations</li>
+                  <li><b>Business systems</b> — billing, inventory, CRM, and reporting that talk to each other</li>
+                  <li><b>Integrations &amp; APIs</b> — connect payment gateways, accounting tools, and the software you already use</li>
+                  <li><b>Maintenance &amp; support</b> — updates, monitoring, and fixes after launch</li>
                 </ul>
               </div>
               <div className="panel-box">
@@ -73,36 +125,40 @@ export default function ServicesPage() {
       <section id="marketing" className="paper-substrate">
         <div className="wrap">
           <div className="split rev">
-            <div>
+            <div className="sticky-split-col">
               <div className="kicker">// 02 &middot; marketing</div>
               <h2>Digital Marketing</h2>
               <p className="lede">
-                Marketing thatâ€™s tied to enquiries and sales â€” planned, run, and reported on in plain numbers.
+                Marketing that’s tied to enquiries and sales — planned, run, and reported on in plain numbers.
               </p>
               <div className="tag-bracket" style={{ marginBottom: "20px" }}>
-                [ SEO &middot; ADS &middot; SOCIAL &middot; EMAIL ]
+                [ SEO &middot; PERFORMANCE &middot; CONTENT ]
               </div>
               <Link className="btn btn-primary" to="/contact?interest=marketing">
                 Talk to us about marketing
               </Link>
             </div>
             <div>
+              <div className="spec-header">
+                <span>DELIVERABLES</span>
+                <span className="spec-tag">SCOPE 02</span>
+              </div>
               <div className="panel-box">
                 <h4>What we deliver</h4>
                 <ul className="ticks">
-                  <li><b>SEO &amp; content</b> â€” be found by people already searching for what you do</li>
-                  <li><b>Paid advertising</b> â€” Google and Meta campaigns with budgets that are tracked to the rupee</li>
-                  <li><b>Social media management</b> â€” consistent, on-brand posting and community replies</li>
-                  <li><b>Email &amp; WhatsApp campaigns</b> â€” keep existing customers coming back</li>
-                  <li><b>Landing pages &amp; conversion</b> â€” turn visits into enquiries</li>
-                  <li><b>Analytics &amp; reporting</b> â€” a monthly report you can read in five minutes</li>
+                  <li><b>SEO &amp; content</b> — be found by people already searching for what you do</li>
+                  <li><b>Paid advertising</b> — Google and Meta campaigns with budgets that are tracked to the rupee</li>
+                  <li><b>Social media management</b> — consistent, on-brand posting and community replies</li>
+                  <li><b>Email &amp; WhatsApp campaigns</b> — keep existing customers coming back</li>
+                  <li><b>Landing pages &amp; conversion</b> — turn visits into enquiries</li>
+                  <li><b>Analytics &amp; reporting</b> — a monthly report you can read in five minutes</li>
                 </ul>
               </div>
               <div className="panel-box">
                 <h4>A good fit if</h4>
                 <ul className="ticks">
                   <li>You have a good product or service, but not enough people know about it</li>
-                  <li>Youâ€™re spending on ads without knowing whatâ€™s working</li>
+                  <li>You’re spending on ads without knowing what’s working</li>
                   <li>Your social channels are active but not bringing in business</li>
                 </ul>
               </div>
@@ -115,54 +171,40 @@ export default function ServicesPage() {
       <section id="branding">
         <div className="wrap">
           <div className="split">
-            <div>
+            <div className="sticky-split-col">
               <div className="kicker">// 03 &middot; branding</div>
               <h2>Branding</h2>
               <p className="lede">
-                A brand that looks and sounds like one business everywhere â€” signage, packaging, social, and screen.
+                A brand that looks and sounds like one business everywhere — signage, packaging, social, and screen.
               </p>
               <div className="tag-bracket" style={{ marginBottom: "20px" }}>
-                [ STRATEGY &middot; IDENTITY &middot; COLLATERAL ]
+                [ IDENTITY &middot; SYSTEMS &middot; GUIDELINES ]
               </div>
               <Link className="btn btn-primary" to="/contact?interest=branding">
                 Talk to us about branding
               </Link>
             </div>
             <div>
-              <div className="branding-card" style={{ padding: "22px", marginBottom: "20px" }}>
-                <div className="swatch-strip" style={{ marginBottom: 0 }}>
-                  <div className="swatch" style={{ background: "var(--brand)" }}><span>#5E5DE5</span></div>
-                  <div className="swatch" style={{ background: "var(--ink)" }}><span>#05060A</span></div>
-                  <div className="swatch" style={{ background: "var(--paper)" }}><span style={{ color: "#05060A" }}>#EDEBE4</span></div>
-                  <div className="swatch" style={{ background: "var(--signal-lime)" }}><span style={{ color: "#05060A" }}>#C8FF3D</span></div>
-                </div>
-                <div className="type-sample">
-                  <div>
-                    <div className="aa">Aa</div>
-                    <div className="meta">DISPLAY &middot; SPACE GROTESK</div>
-                  </div>
-                  <div style={{ textAlign: "right" }}>
-                    <div className="aa3">Aa</div>
-                    <div className="meta">MONO &middot; JETBRAINS</div>
-                  </div>
-                </div>
+              <div className="spec-header">
+                <span>DELIVERABLES</span>
+                <span className="spec-tag">SCOPE 03</span>
               </div>
               <div className="panel-box">
                 <h4>What we deliver</h4>
                 <ul className="ticks">
-                  <li><b>Brand strategy</b> â€” positioning, audience, and the voice youâ€™ll speak in</li>
-                  <li><b>Logo &amp; visual identity</b> â€” mark, colours, typography, and usage rules</li>
-                  <li><b>Brand guidelines</b> â€” a proper brand book, not a three-page PDF</li>
-                  <li><b>Packaging &amp; print</b> â€” cards, letterheads, labels, and signage artwork</li>
-                  <li><b>Digital templates</b> â€” social posts, presentations, and email signatures</li>
-                  <li><b>Website look &amp; feel</b> â€” the identity carried through to your online presence</li>
+                  <li><b>Brand strategy</b> — positioning, audience, and the voice you’ll speak in</li>
+                  <li><b>Logo &amp; visual identity</b> — mark, colours, typography, and usage rules</li>
+                  <li><b>Brand guidelines</b> — a proper brand book, not a three-page PDF</li>
+                  <li><b>Packaging &amp; print</b> — cards, letterheads, labels, and signage artwork</li>
+                  <li><b>Digital templates</b> — social posts, presentations, and email signatures</li>
+                  <li><b>Website look &amp; feel</b> — the identity carried through to your online presence</li>
                 </ul>
               </div>
               <div className="panel-box">
                 <h4>A good fit if</h4>
                 <ul className="ticks">
-                  <li>Youâ€™re launching a new business and want to start with a strong identity</li>
-                  <li>Youâ€™ve outgrown your first logo or your name has changed</li>
+                  <li>You’re launching a new business and want to start with a strong identity</li>
+                  <li>You’ve outgrown your first logo or your name has changed</li>
                   <li>Your brand looks different on every channel</li>
                 </ul>
               </div>
@@ -180,27 +222,18 @@ export default function ServicesPage() {
             <p className="section-sub">Every engagement starts with a conversation and a written plan.</p>
           </div>
           <div className="grid c3">
-            <div className="cell">
-              <div className="bento-cell-header">
-                <span className="num">A</span>
-                <span className="tag-bracket">[ FIXED SCOPE ]</span>
-              </div>
+            <div className="cell model-cell">
+              <div className="num">A</div>
               <h3>Fixed-scope project</h3>
-              <p>A defined deliverable with a clear timeline and price â€” a brand identity, a website, an app, a campaign launch.</p>
+              <p>A defined deliverable with a clear timeline and price — a brand identity, a website, an app, a campaign launch.</p>
             </div>
-            <div className="cell">
-              <div className="bento-cell-header">
-                <span className="num">B</span>
-                <span className="tag-bracket">[ MONTHLY ]</span>
-              </div>
+            <div className="cell model-cell">
+              <div className="num">B</div>
               <h3>Monthly retainer</h3>
               <p>Ongoing marketing, content, or software support for a steady monthly fee, with a report every month.</p>
             </div>
-            <div className="cell">
-              <div className="bento-cell-header">
-                <span className="num">C</span>
-                <span className="tag-bracket">[ EMBEDDED ]</span>
-              </div>
+            <div className="cell model-cell">
+              <div className="num">C</div>
               <h3>Embedded team</h3>
               <p>A dedicated group working alongside your people for larger, longer programmes of work.</p>
             </div>
@@ -212,8 +245,8 @@ export default function ServicesPage() {
       <section style={{ paddingBottom: "110px" }}>
         <div className="wrap">
           <div className="cta-banner">
-            <h2>Tell us what youâ€™re building.</h2>
-            <p>Software, a campaign, a brand, or all three â€” weâ€™ll tell you honestly what we can do and when.</p>
+            <h2>Tell us what you’re building.</h2>
+            <p>Software, a campaign, a brand, or all three — we’ll tell you honestly what we can do and when.</p>
             <Link to="/contact" className="btn btn-primary btn-lg">
               Talk to our team
             </Link>
