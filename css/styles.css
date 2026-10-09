@@ -1375,11 +1375,76 @@ a.cell:hover .more {
 
 .chip-static {
   cursor: default;
+  position: relative;
+  overflow: hidden;
+  background: rgba(11, 12, 20, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  transition: transform var(--trans-snap), border-color var(--trans-fast), color var(--trans-fast), box-shadow var(--trans-fast);
+  z-index: 1;
 }
 
+/* Border shine effect adapted from AnimatedButton */
+.chip-static::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    -75deg,
+    transparent 25%,
+    rgba(140, 139, 240, 0.75) 45%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(140, 139, 240, 0.75) 55%,
+    transparent 75%
+  );
+  background-size: 250% 100%;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  animation: chipBorderShine 2.8s linear infinite;
+  opacity: 0.85;
+}
+
+/* Interactive micro-bounce from AnimatedButton (scale: 1.02 on hover) */
 .chip-static:hover {
-  color: var(--grey);
-  border-color: var(--line-bright);
+  transform: scale(1.025);
+  border-color: rgba(140, 139, 240, 0.4);
+  color: var(--white);
+  box-shadow: 0 4px 16px -4px rgba(94, 93, 229, 0.35);
+}
+
+@keyframes chipBorderShine {
+  0% {
+    background-position: 120% 0;
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 0.95;
+  }
+  60% {
+    background-position: -20% 0;
+    opacity: 0.95;
+  }
+  80%, 100% {
+    background-position: -20% 0;
+    opacity: 0.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip-static::before {
+    animation: none;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .chip-static:hover {
+    transform: none;
+  }
 }
 
 .chips {
