@@ -76,34 +76,127 @@
         <div class="trust">one team for the software, the marketing, and the brand</div>
       </div>
       <div class="console" id="console">
-        <div class="console-bar" role="tablist" aria-label="Services console tabs">
-          <button class="tab-btn active" data-tab="0"><span class="tdot"></span>Software</button>
-          <button class="tab-btn" role="tab" data-tab="1"><span class="tdot"></span>Marketing</button>
-          <button class="tab-btn" role="tab" data-tab="2"><span class="tdot"></span>Branding</button>
+        <span class="hud-bracket hb-tl"></span>
+        <span class="hud-bracket hb-tr"></span>
+        <span class="hud-bracket hb-bl"></span>
+        <span class="hud-bracket hb-br"></span>
+        
+        <div class="console-hud-status">
+          <div class="hud-status-left">
+            <span class="hud-beacon"></span>
+            <span class="hud-label">LIVE SYSTEM</span>
+            <span class="hud-spec">HORIZON // ARCHITECTURE v2.4</span>
+          </div>
+          <div class="hud-status-right">
+            <span class="hud-telemetry">LATENCY <b class="glow-accent">14ms</b></span>
+            <span class="hud-telemetry">STATUS <b class="glow-ok">OPTIMAL</b></span>
+          </div>
         </div>
+
+        <div class="console-bar" role="tablist" aria-label="Services console tabs">
+          <button class="tab-btn active" data-tab="0"><span class="tdot"></span>Software Engineering</button>
+          <button class="tab-btn" role="tab" data-tab="1"><span class="tdot"></span>Digital Marketing</button>
+          <button class="tab-btn" role="tab" data-tab="2"><span class="tdot"></span>Brand Identity</button>
+        </div>
+
         <div class="console-body">
           <div class="panel active" data-panel="0">
-            <div class="panel-kicker">// software</div><div class="panel-title">Internal dashboard — Horizon Retail</div>
-            <div class="mock-window"><div class="mock-window-bar"><span></span><span></span><span></span></div>
+            <div class="panel-meta-row">
+              <span class="panel-kicker">// practice 01 · core software</span>
+              <span class="panel-pill">RELEASE ACTIVE</span>
+            </div>
+            <div class="panel-title">Operations Portal — Horizon Retail</div>
+            
+            <div class="mock-window">
+              <div class="mock-window-bar">
+                <div class="window-controls"><span></span><span></span><span></span></div>
+                <span class="window-id">terminal: node-03.us-east.horizon</span>
+                <span class="window-metric">MEMORY <b>42%</b></span>
+              </div>
               <div class="mock-window-body">
-                <div class="stat-row"><div class="stat-chip"><div class="n">1,204</div><div class="l">ACTIVE USERS</div></div><div class="stat-chip"><div class="n">99.98%</div><div class="l">UPTIME</div></div></div>
-                <svg class="sparkline" viewBox="0 0 280 40" preserveAspectRatio="none"><polyline points="0,32 35,28 70,30 105,18 140,22 175,10 210,14 245,6 280,8" fill="none" stroke="#8C8BF0" stroke-width="2"/></svg>
-              </div></div>
-          </div>
-          <div class="panel" role="tabpanel" data-panel="1">
-            <div class="panel-kicker">// marketing</div><div class="panel-title">Campaign performance — 3 channels live</div>
-            <div class="social-card">
-              <div class="social-head"><div class="social-avatar"><img src="assets/logo.png" alt="" width="22" height="23"></div>
-                <div><div class="social-name">Horizon Retail</div><div class="social-sub">sponsored &middot; reach growing</div></div></div>
-              <div class="bar-row" id="barRow"></div>
-              <div class="engage-row"><span><b>8.2k</b> reach</span><span><b>412</b> clicks</span><span><b>5.0%</b> CTR</span></div>
+                <div class="stat-row">
+                  <div class="stat-chip">
+                    <div class="stat-chip-top"><span class="stat-icon">⚡</span><span class="l">CONCURRENT USERS</span></div>
+                    <div class="n">1,204</div>
+                  </div>
+                  <div class="stat-chip">
+                    <div class="stat-chip-top"><span class="stat-icon">🛡</span><span class="l">UPTIME SLA</span></div>
+                    <div class="n glow-ok">99.98%</div>
+                  </div>
+                  <div class="stat-chip">
+                    <div class="stat-chip-top"><span class="stat-icon">⏱</span><span class="l">QUERY LATENCY</span></div>
+                    <div class="n">48ms</div>
+                  </div>
+                </div>
+                <div class="sparkline-wrapper">
+                  <div class="sparkline-label"><span>LIVE TRANSACTION VOLUME</span><span>PEAK LOAD</span></div>
+                  <svg class="sparkline" viewBox="0 0 280 40" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="sparkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#8C8BF0" stop-opacity="0.8"/>
+                        <stop offset="100%" stop-color="#5E5DE5" stop-opacity="0.1"/>
+                      </linearGradient>
+                    </defs>
+                    <polygon points="0,32 35,26 70,28 105,14 140,19 175,8 210,12 245,4 280,6 280,40 0,40" fill="url(#sparkGrad)"/>
+                    <polyline points="0,32 35,26 70,28 105,14 140,19 175,8 210,12 245,4 280,6" fill="none" stroke="#C8FF3D" stroke-width="2.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
+
+          <div class="panel" role="tabpanel" data-panel="1">
+            <div class="panel-meta-row">
+              <span class="panel-kicker">// practice 02 · performance marketing</span>
+              <span class="panel-pill pill-lime">CAMPAIGN RUNNING</span>
+            </div>
+            <div class="panel-title">Multi-Channel Acquisition — Horizon Retail</div>
+            
+            <div class="social-card">
+              <div class="social-head">
+                <div class="social-avatar"><img src="assets/logo.png" alt="" width="22" height="23"></div>
+                <div>
+                  <div class="social-name">Horizon Retail Global</div>
+                  <div class="social-sub">3 paid channels live &middot; high conversion intent</div>
+                </div>
+                <div class="social-roas">ROAS <b>4.8x</b></div>
+              </div>
+              <div class="bar-row" id="barRow"></div>
+              <div class="engage-row">
+                <span><b>8.2k</b> verified reach</span>
+                <span><b>412</b> booked calls</span>
+                <span class="glow-accent"><b>5.0%</b> CTR average</span>
+              </div>
+            </div>
+          </div>
+
           <div class="panel" role="tabpanel" data-panel="2">
-            <div class="panel-kicker">// branding</div><div class="panel-title">Identity delivered — Horizon Retail</div>
-            <div class="brand-row"><img src="assets/logo.png" alt="" width="22" height="23"><span>HORIZON RETAIL</span></div>
-            <div class="swatch-row"><div class="swatch" style="background:#5E5DE5;"></div><div class="swatch" style="background:#05060A;border-color:rgba(255,255,255,0.15);"></div><div class="swatch" style="background:#FFFFFF;"></div><div class="swatch" style="background:#8C8BF0;"></div></div>
-            <div class="type-sample"><div><div class="aa">Aa</div><div class="meta">BOLD</div></div><div><div class="aa2">Aa</div><div class="meta">REGULAR</div></div></div>
+            <div class="panel-meta-row">
+              <span class="panel-kicker">// practice 03 · brand system</span>
+              <span class="panel-pill pill-indigo">GUIDELINES DELIVERED</span>
+            </div>
+            <div class="panel-title">Identity System Delivered — Horizon Retail</div>
+            
+            <div class="branding-card">
+              <div class="brand-row">
+                <img src="assets/logo.png" alt="" width="28" height="29">
+                <div class="brand-title-wrap">
+                  <span class="b-name">HORIZON RETAIL</span>
+                  <span class="b-type">IDENTITY SPEC // PRIMARY LOCKUP</span>
+                </div>
+              </div>
+              <div class="swatch-row">
+                <div class="swatch" style="background:#5E5DE5;" title="Mechanical Indigo"><span>#5E5DE5</span></div>
+                <div class="swatch" style="background:#05060A;border-color:rgba(255,255,255,0.25);" title="Ink Substrate"><span>#05060A</span></div>
+                <div class="swatch" style="background:#FFFFFF;" title="Pure White"><span>#FFFFFF</span></div>
+                <div class="swatch" style="background:#C8FF3D;" title="Signal Lime"><span>#C8FF3D</span></div>
+              </div>
+              <div class="type-sample">
+                <div><div class="aa">Aa</div><div class="meta">SPACE GROTESK BOLD</div></div>
+                <div><div class="aa2">Aa</div><div class="meta">DM SANS REGULAR</div></div>
+                <div><div class="aa3">Aa</div><div class="meta">JETBRAINS MONO</div></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

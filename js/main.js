@@ -208,6 +208,19 @@
         row.appendChild(d);
       });
     }
+
+    // Interactive 3D Perspective Tilt for Console Deck
+    if (consoleEl && window.matchMedia('(hover: hover)').matches && !prefersReducedMotion) {
+      consoleEl.addEventListener('mousemove', function(e) {
+        var rect = consoleEl.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width - 0.5;
+        var y = (e.clientY - rect.top) / rect.height - 0.5;
+        consoleEl.style.transform = 'perspective(1200px) rotateY(' + (x * 6).toFixed(2) + 'deg) rotateX(' + (-y * 6).toFixed(2) + 'deg) translateZ(4px)';
+      });
+      consoleEl.addEventListener('mouseleave', function() {
+        consoleEl.style.transform = 'perspective(1200px) rotateY(0deg) rotateX(0deg) translateZ(0px)';
+      });
+    }
   }
 
   /* ==========================================================================
