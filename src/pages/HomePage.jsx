@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import ConsoleDeck from "../components/home/ConsoleDeck";
-import CountUp from "../components/common/CountUp";
+import HeroVideo from "../components/home/HeroVideo";
+import BentoShowcase from "../components/home/BentoShowcase";
+import FadeWords from "../components/common/FadeWords";
+import QuoteCard from "../components/common/QuoteCard";
 import useScrollReveal from "../hooks/useScrollReveal";
 
 const TICKER_ITEMS = [
@@ -10,13 +13,6 @@ const TICKER_ITEMS = [
   "Brands that last",
   "One team",
   "No handoffs",
-];
-
-const HERO_STATS = [
-  { to: 120, suffix: "+", label: "Projects shipped" },
-  { to: 3, suffix: "", label: "Practices, one team" },
-  { to: 40, suffix: "+", label: "Businesses supported" },
-  { to: 100, suffix: "%", label: "Work you own" },
 ];
 
 const INDUSTRIES = [
@@ -95,11 +91,50 @@ const WHY_CELLS = [
   },
 ];
 
+const QUOTES = [
+  {
+    quote:
+      "We had worked with a developer, a marketing freelancer, and a designer before — separately, and it showed. Clutch Code was the first team that built the software, ran the launch campaign, and kept the brand consistent across all of it.",
+    name: "Dana Okafor",
+    role: "Head of Operations",
+  },
+  {
+    quote:
+      "One brief, one team, one point of contact. Our new ordering system was live in eight weeks and our staff actually enjoyed the rollout.",
+    name: "Rahul Menon",
+    role: "Founder, Retail Group",
+  },
+  {
+    quote:
+      "They measured everything. Within a quarter our enquiries doubled and we finally knew which campaigns were worth the money.",
+    name: "Priya Nair",
+    role: "Marketing Lead",
+  },
+];
+
 const PROCESS_STEPS = [
   { num: "01", title: "Discover", text: "We learn how your store, team, and customers actually move before we write a line of code or copy." },
   { num: "02", title: "Plan", text: "A written plan with scope, timeline, and the numbers we'll track — in plain language you can sign off." },
   { num: "03", title: "Build & launch", text: "Software gets built, campaigns get planned, brands get designed — in steps you can see along the way." },
   { num: "04", title: "Grow", text: "We stay on to maintain, measure, and improve — so launch day is a starting line, not a finish line." },
+];
+
+const PROMISES = [
+  {
+    num: "01",
+    title: "Software that fits how you work.",
+    body: "We build around the way your business already runs, so the tools feel familiar from day one instead of forcing a new process on your team.",
+  },
+  {
+    num: "02",
+    title: "Marketing you can actually measure.",
+    body: "Every campaign is tracked to real enquiries, bookings, and sales, so you always know exactly what is working and what to change.",
+  },
+  {
+    num: "03",
+    title: "A brand that stays consistent.",
+    body: "One identity system carried across your signage, packaging, and social feeds, so customers recognise you everywhere they meet you.",
+  },
 ];
 
 const WORK_CARDS = [
@@ -290,20 +325,7 @@ export default function HomePage() {
   return (
     <main ref={rootRef}>
       <section className="hero-master" style={{ borderTop: "none" }}>
-        <div className="hero-master-video-wrap" id="seamlessVideoWrap" aria-hidden="true">
-          <video
-            className="hero-master-video v-layer active"
-            id="heroVidA"
-            autoPlay
-            muted
-            playsInline
-            preload="auto"
-            poster="/assets/hero-poster.jpg"
-          >
-            <source src="/assets/hero.mp4" type="video/mp4" />
-          </video>
-          <div className="hero-master-video-overlay"></div>
-        </div>
+        <HeroVideo />
 
         <div className="hero-orbs" aria-hidden="true">
           <span></span>
@@ -312,7 +334,7 @@ export default function HomePage() {
         </div>
 
         <div className="hero-content">
-          <div className="wrap hero-grid">
+          <div className="hero-grid">
             <div>
               <div className="eyebrow">// software &middot; marketing &middot; branding</div>
               <h1>
@@ -349,21 +371,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-
-        <div className="hero-stats-band">
-          <div className="wrap">
-            <div className="hero-stats" data-reveal>
-              {HERO_STATS.map((s) => (
-                <div className="hero-stat" key={s.label}>
-                  <div className="n grad-text">
-                    <CountUp to={s.to} suffix={s.suffix} />
-                  </div>
-                  <div className="l">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* TICKER */}
@@ -378,89 +385,29 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* THREE PRACTICES BENTO */}
-      <section>
+      {/* THREE PRACTICES BENTO — TAILWIND + FRAMER MOTION */}
+      <BentoShowcase />
+
+      {/* THREE PROMISES — WORD-BY-WORD FADE */}
+      <section id="promises">
         <div className="wrap">
           <div className="section-head" data-reveal>
-            <div className="kicker">// one team &middot; three practices</div>
-            <h2>Three things that work better together.</h2>
-            <p className="section-sub">
-              Most businesses hire three different vendors and spend their own time connecting them. We do all three under one roof.
-            </p>
+            <div className="kicker">// built around you</div>
+            <h2>Three promises we keep.</h2>
+            <p className="section-sub">The same three things, every single project.</p>
           </div>
-
-          <div className="grid bento-layout">
-            <div className="cell bento-hero" data-reveal>
-              <div className="bento-cell-header">
-                <span className="num">01</span>
-                <span className="tag-bracket">[ CORE ]</span>
+          <div className="grid c3 promise-grid">
+            {PROMISES.map((b) => (
+              <div className="cell promise-cell" key={b.num}>
+                <div className="num">{b.num}</div>
+                <h3>
+                  <FadeWords>{b.title}</FadeWords>
+                </h3>
+                <p>
+                  <FadeWords stagger={45}>{b.body}</FadeWords>
+                </p>
               </div>
-              <h3>Software Solutions</h3>
-              <p>
-                Custom applications, business systems, and tools built for how your business actually operates — not off-the-shelf software you have to work around.
-              </p>
-              <div className="micro-preview">
-                <span className="mono-badge">REACT &middot; NODE &middot; PYTHON &middot; POSTGRES</span>
-              </div>
-              <Link to="/services#software" className="inline-action">
-                Learn more &rarr;
-              </Link>
-            </div>
-
-            <div className="cell bento-accent" data-reveal style={{ "--d": "80ms" }}>
-              <div className="bento-cell-header">
-                <span className="num">02</span>
-                <span className="tag-bracket">[ GROWTH ]</span>
-              </div>
-              <h3>Digital Marketing</h3>
-              <p>
-                Campaigns, SEO, and content that bring the right people to your business — tracked to actual enquiries and sales, not vanity impressions.
-              </p>
-              <Link to="/services#marketing" className="inline-action">
-                Learn more &rarr;
-              </Link>
-            </div>
-
-            <div className="cell bento-light" data-reveal style={{ "--d": "160ms" }}>
-              <div className="bento-cell-header">
-                <span className="num">03</span>
-                <span className="tag-bracket">[ IDENTITY ]</span>
-              </div>
-              <h3>Branding</h3>
-              <p>
-                Visual identity, messaging, and brand guidelines that make your business look like one company everywhere customers see it.
-              </p>
-              <Link to="/services#branding" className="inline-action">
-                Learn more &rarr;
-              </Link>
-            </div>
-
-            <div className="cell bento-full" data-reveal>
-              <div className="spec-header">
-                <span>OUR OWN PRODUCT &middot; PROOF OF WORK</span>
-                <span className="spec-tag">v2.4 STABLE</span>
-              </div>
-              <div className="split">
-                <div>
-                  <div className="kicker">// built by clutch code</div>
-                  <h2>ClutchKart — for supermarkets.</h2>
-                  <p className="lede">
-                    We don't just build software for clients — we run our own. ClutchKart is a complete management system built specifically for supermarkets and grocery retail.
-                  </p>
-                  <Link to="/clutchkart" className="btn btn-primary">
-                    See ClutchKart &rarr;
-                  </Link>
-                </div>
-                <div className="panel-box">
-                  <h4>Key capabilities</h4>
-                  <ul className="ticks">
-                    <li><b>Point of sale &amp; billing</b> — fast checkout with barcode and weighing scale support</li>
-                    <li><b>Inventory management</b> — stock levels, expiry tracking, and purchase orders</li>
-                    <li><b>Reports &amp; analytics</b> — daily sales, margins, and fast-moving items</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -533,17 +480,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TESTIMONIAL */}
+      {/* TESTIMONIALS */}
       <section>
         <div className="wrap">
-          <div className="quote-wrap" data-reveal>
-            <div className="quote-mark">&ldquo;</div>
-            <blockquote>
-              We'd worked with a developer, a marketing freelancer, and a designer before — separately, and it showed. Clutch Code was the first team that built the software, ran the launch campaign, and kept the brand consistent across all of it.
-            </blockquote>
-            <div className="quote-attr">
-              <span className="name">Dana Okafor</span> &middot; Head of Operations
-            </div>
+          <div className="section-head" data-reveal>
+            <div className="kicker">// what clients say</div>
+            <h2>Trusted by teams who wanted one partner.</h2>
+          </div>
+          <div className="quotes-grid">
+            {QUOTES.map((q) => (
+              <QuoteCard key={q.name} quote={q.quote} name={q.name} role={q.role} />
+            ))}
           </div>
         </div>
       </section>

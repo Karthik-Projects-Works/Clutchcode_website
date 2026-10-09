@@ -1,0 +1,73 @@
+/* ==========================================================================
+   BENTO SHOWCASE MOTION LAYER (.ckg-*)
+   Scoped CSS for the Framer-Motion overlay on the vanilla bento section.
+   Unlayered => these win, but only inside the bento cells that carry the
+   matching classes; the rest of the section stays pixel-identical to the
+   original theme.
+   ========================================================================== */
+
+/* Flashlight glow that tracks the cursor across a bento cell */
+.ckg-spot {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(240px circle at var(--sx, 50%) var(--sy, 50%), rgba(94, 93, 229, 0.16), rgba(200, 255, 61, 0.05) 40%, transparent 65%);
+}
+
+.ckg-card:hover .ckg-spot { opacity: 1; }
+
+/* Border beam — rotating gradient line along the bento-full border */
+.ckg-beam {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1px;
+  overflow: hidden;
+  pointer-events: none;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+}
+
+.ckg-beam::before {
+  content: "";
+  position: absolute;
+  inset: -150%;
+  background: conic-gradient(from 0deg, transparent 0deg, rgba(94, 93, 229, 0.55) 50deg, rgba(200, 255, 61, 0.5) 95deg, transparent 150deg, transparent 360deg);
+  animation: ckg-beam-spin 6s linear infinite;
+}
+
+@keyframes ckg-beam-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* CTA shimmer — light sweep across the primary button */
+.ckg-shine { position: relative; overflow: hidden; }
+
+.ckg-shine::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  bottom: -20%;
+  width: 45%;
+  left: -70%;
+  background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.32), transparent);
+  transform: skewX(-18deg);
+  animation: ckg-shine 3.4s ease-in-out infinite;
+}
+
+@keyframes ckg-shine {
+  0% { left: -70%; }
+  55%, 100% { left: 135%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ckg-beam::before,
+  .ckg-shine::after { animation: none; }
+}

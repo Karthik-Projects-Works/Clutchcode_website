@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import FadeWords from "../components/common/FadeWords";
 
 const TICKER_ITEMS = [
   "Online storefront",
@@ -352,7 +353,8 @@ export default function ClutchKartPage() {
         <div className="wrap">
           <div className="eyebrow">// proprietary software &middot; retail</div>
           <h1>
-            Run your supermarket online — <span className="ck-grad">and keep every rupee.</span>
+            <span className="line">Run your supermarket online</span>
+            <span className="line"><span className="ck-grad">— and keep every rupee.</span></span>
           </h1>
           <p className="lede">
             ClutchKart gives your store its own branded storefront, fast counter billing, live inventory, home delivery, and WhatsApp ordering — without paying a single rupee of marketplace commission.
@@ -368,6 +370,9 @@ export default function ClutchKartPage() {
             <a href="#product" className="btn btn-ghost btn-lg">
               See what’s inside
             </a>
+          </div>
+          <div className="trust" style={{ marginTop: "18px" }}>
+            0% marketplace commission &middot; your own customers &middot; guided onboarding
           </div>
           <div className="subnav">
             <a className="chip" href="#product">What’s inside</a>
@@ -407,7 +412,7 @@ export default function ClutchKartPage() {
         <div className="wrap">
           <div className="section-head" data-reveal>
             <div className="kicker">// what’s inside</div>
-            <h2>One system, the whole shop.</h2>
+            <h2><FadeWords>One system, the whole shop.</FadeWords></h2>
             <p className="section-sub">From the till to the doorstep — everything a supermarket needs to sell online and offline, working together.</p>
           </div>
           <div className="ck-grid">
@@ -428,7 +433,7 @@ export default function ClutchKartPage() {
         <div className="wrap">
           <div className="section-head" data-reveal>
             <div className="kicker">// how shopping works</div>
-            <h2>From a shared link to the doorstep.</h2>
+            <h2><FadeWords>From a shared link to the doorstep.</FadeWords></h2>
             <p className="section-sub">A simple, familiar journey your customers already understand.</p>
           </div>
           <div className="steps four ck-flow">
@@ -448,7 +453,7 @@ export default function ClutchKartPage() {
         <div className="wrap">
           <div className="section-head" data-reveal>
             <div className="kicker">// for every role</div>
-            <h2>Made for everyone behind the counter.</h2>
+            <h2><FadeWords>Made for everyone behind the counter.</FadeWords></h2>
             <p className="section-sub">Simple screens for each person, so nobody has to learn a complicated system.</p>
           </div>
           <div className="ck-grid c2">
@@ -468,7 +473,7 @@ export default function ClutchKartPage() {
         <div className="wrap">
           <div className="section-head" data-reveal>
             <div className="kicker">// everything runs together</div>
-            <h2>The details that keep customers coming back.</h2>
+            <h2><FadeWords>The details that keep customers coming back.</FadeWords></h2>
           </div>
           <div className="ck-grid">
             {TOGETHER.map((t, i) => (
@@ -486,7 +491,7 @@ export default function ClutchKartPage() {
         <div className="wrap">
           <div className="section-head" data-reveal>
             <div className="kicker">// getting started</div>
-            <h2>From first visit to go-live.</h2>
+            <h2><FadeWords>From first visit to go-live.</FadeWords></h2>
             <p className="section-sub">We do the setup with you — you don’t get a login and a manual.</p>
           </div>
           <div className="steps four">
@@ -512,7 +517,7 @@ export default function ClutchKartPage() {
         <div className="wrap">
           <div className="section-head" data-reveal>
             <div className="kicker">// questions</div>
-            <h2>Frequently asked questions.</h2>
+            <h2><FadeWords>Frequently asked questions.</FadeWords></h2>
           </div>
           <div className="faq-list">
             {FAQS.map((f, i) => (
@@ -524,9 +529,9 @@ export default function ClutchKartPage() {
               >
                 <h4 style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: openFaq === i ? "12px" : "0" }}>
                   <span>{f.q}</span>
-                  <span style={{ color: "var(--brand)", fontSize: "20px" }}>{openFaq === i ? "-" : "+"}</span>
+                  <span className="faq-plus">+</span>
                 </h4>
-                {openFaq === i && <p style={{ color: "var(--grey)", marginTop: "8px", marginBottom: 0 }}>{f.a}</p>}
+                {openFaq === i && <p className="ck-faq-a" style={{ color: "var(--grey)", marginTop: "8px", marginBottom: 0 }}>{f.a}</p>}
               </div>
             ))}
           </div>

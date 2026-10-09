@@ -577,13 +577,19 @@ h3 {
 .hero-content {
   position: relative;
   z-index: 1;
-  padding: clamp(40px, 5.5vw, 68px) 0 24px;
+  width: 100%;
+  padding: clamp(28px, 4vw, 46px) clamp(20px, 4vw, 40px) 18px;
+}
+
+.hero-content h1 {
+  font-size: clamp(38px, 6.4vw, 72px);
+  margin-bottom: 20px;
 }
 
 .industries-strip {
   position: relative;
   z-index: 1;
-  padding: 18px 0 24px;
+  padding: 14px 0 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(5, 6, 10, 0.35);
   backdrop-filter: blur(8px);
@@ -598,7 +604,7 @@ h3 {
 .hero-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: 56px;
+  gap: 44px;
   align-items: center;
 }
 
@@ -613,12 +619,12 @@ h3 {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   flex-wrap: wrap;
 }
 
 .hero-content .lede {
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 
 .trust {
@@ -655,6 +661,67 @@ h3 {
     0 40px 90px -20px rgba(0, 0, 0, 0.9),
     0 0 60px -8px rgba(94, 93, 229, 0.35),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+/* --- Console project plan widget --- */
+.console .plan {
+  position: relative;
+  z-index: 1;
+  padding: 14px 18px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(9, 10, 18, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.plan-head,
+.plan-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--grey-dim);
+}
+
+.plan-head { margin-bottom: 12px; }
+
+.plan-eta { color: var(--signal-lime); }
+
+.plan-rows { display: grid; gap: 10px; }
+
+.plan-row .plan-label { margin-bottom: 5px; }
+
+.plan-pct { color: var(--brand-lt); }
+.plan-pct.glow-ok { color: var(--signal-lime); }
+
+.plan-track {
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.plan-track span {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--brand-lt), var(--brand));
+  box-shadow: 0 0 12px rgba(94, 93, 229, 0.6);
+}
+
+.plan-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  color: var(--grey-dim);
 }
 
 /* Corner HUD Brackets */
@@ -3673,6 +3740,50 @@ footer {
   justify-content: center;
 }
 
+/* --- ClutchKart hero entrance choreography --- */
+.ck .page-hero .eyebrow { animation: riseIn 0.8s var(--ease-snap) both; }
+.ck .page-hero h1 .line { display: block; animation: riseIn 0.9s var(--ease-snap) both; }
+.ck .page-hero h1 .line:nth-child(1) { animation-delay: 0.05s; }
+.ck .page-hero h1 .line:nth-child(2) { animation-delay: 0.16s; }
+.ck .page-hero .lede { animation: riseIn 0.9s var(--ease-snap) 0.26s both; }
+.ck .page-hero .tag-bracket { animation: riseIn 0.9s var(--ease-snap) 0.35s both; }
+.ck .page-hero .hero-ctas { animation: riseIn 0.9s var(--ease-snap) 0.44s both; }
+.ck .page-hero .trust { animation: riseIn 0.9s var(--ease-snap) 0.52s both; }
+.ck .page-hero .subnav { animation: riseIn 0.9s var(--ease-snap) 0.6s both; }
+
+/* --- Repeatable word-by-word section headings --- */
+.ck.reveal-ready .fade-words .fw {
+  display: inline-block;
+  opacity: 0;
+  translate: 0 12px;
+}
+
+.ck.reveal-ready .fade-words.is-in .fw {
+  animation: wordIn 0.5s var(--ease-snap) both;
+  animation-delay: calc(var(--wi, 0) * var(--word-stagger, 80ms));
+}
+
+/* --- Gradient step numbers --- */
+.ck .step-num {
+  background: linear-gradient(120deg, var(--brand-lt), var(--signal-lime));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* --- FAQ toggle + answer reveal --- */
+.faq-plus {
+  display: inline-block;
+  font-size: 20px;
+  color: var(--brand);
+  transition: transform 0.3s var(--ease-snap);
+}
+
+.faq-list .panel-box.active .faq-plus { transform: rotate(45deg); }
+
+.ck-faq-a { animation: fadeUp 0.45s var(--ease-snap); }
+
 @media (max-width: 980px) {
   .ck-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -3824,7 +3935,7 @@ footer {
 .hero-stats-band {
   position: relative;
   z-index: 1;
-  padding: 40px 0 56px;
+  padding: 28px 0 40px;
 }
 
 .hero-stats {
@@ -3844,7 +3955,7 @@ footer {
   background: rgba(9, 10, 18, 0.55);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  padding: 20px 22px;
+  padding: 16px 20px;
   transition: background var(--trans-fast);
 }
 
@@ -3922,6 +4033,64 @@ footer {
 
 /* --- Testimonial float --- */
 .quote-mark { animation: quoteFloat 4.5s ease-in-out infinite; }
+
+/* --- Testimonials: repeatable word-by-word fade on scroll --- */
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+@media (max-width: 980px) {
+  .quotes-grid { grid-template-columns: 1fr; }
+}
+
+.quotes-grid .quote-wrap { display: flex; flex-direction: column; }
+.quotes-grid blockquote { font-size: clamp(15px, 1.35vw, 18px); line-height: 1.55; }
+.quotes-grid .quote-attr { margin-top: auto; }
+
+.is-reveal-ready .quote-words .fw {
+  display: inline-block;
+  opacity: 0;
+  translate: 0 12px;
+}
+
+.is-reveal-ready .quote-wrap.is-in .quote-words .fw {
+  animation: wordIn 0.5s var(--ease-snap) both;
+  animation-delay: calc(var(--wi, 0) * var(--word-stagger, 55ms));
+}
+
+.is-reveal-ready .quote-wrap .quote-attr { opacity: 0; }
+
+.is-reveal-ready .quote-wrap.is-in .quote-attr {
+  animation: fadeUp 0.7s var(--ease-snap) 0.15s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; translate: 0 16px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+/* --- Word-by-word fade on scroll --- */
+.is-reveal-ready .fade-words[data-reveal] { opacity: 1; translate: 0 0; }
+
+.is-reveal-ready .fade-words .fw {
+  display: inline-block;
+  opacity: 0;
+  translate: 0 14px;
+  will-change: opacity, translate;
+}
+
+.is-reveal-ready .fade-words.is-in .fw {
+  animation: wordIn 0.5s var(--ease-snap) both;
+  animation-delay: calc(var(--wi, 0) * var(--word-stagger, 80ms));
+}
+
+@keyframes wordIn {
+  from { opacity: 0; translate: 0 14px; }
+  to { opacity: 1; translate: 0 0; }
+}
 
 @keyframes quoteFloat {
   0%, 100% { transform: translateY(0); }
@@ -4009,13 +4178,28 @@ details.q[open] p { animation: fadeIn 0.35s ease both; }
   .bento-cell::after,
   .step::after,
   .quote-mark,
+  .quote-words .fw,
+  .quote-wrap.is-in .quote-attr,
   .bento-modal-overlay.is-active,
   .bento-modal-overlay.is-active .bento-modal-card,
-  .cta-banner::after { animation: none; }
+  .cta-banner::after,
+  .ck .page-hero .eyebrow,
+  .ck .page-hero h1 .line,
+  .ck .page-hero .lede,
+  .ck .page-hero .tag-bracket,
+  .ck .page-hero .hero-ctas,
+  .ck .page-hero .trust,
+  .ck .page-hero .subnav,
+  .ck-faq-a { animation: none; }
   .hero-content .eyebrow,
   .hero-content h1 .line,
   .hero-content .lede,
   .hero-content .hero-ctas,
   .hero-content .trust,
-  .hero-grid .console { opacity: 1; translate: 0 0; }
+  .hero-grid .console,
+  .is-reveal-ready .quote-words .fw,
+  .is-reveal-ready .quote-wrap .quote-attr,
+  .is-reveal-ready .fade-words .fw,
+  .ck.reveal-ready .fade-words .fw { opacity: 1; translate: 0 0; }
+  .ck.reveal-ready [data-reveal] { opacity: 1; transform: none; }
 }
