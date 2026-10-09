@@ -27,8 +27,11 @@ tmp/
 *.tmp
 dist/
 
-# Raw unoptimized source media (assets/ contains the compressed web versions)
-source/hero.mp4
-source/*.mp4
-source/*.mov
-source/*.zip
+# Agent skills & local dev tooling (not part of the website)
+.agent/
+.agents/
+skills-lock.json
+scripts/
+
+# Raw unoptimized source media
+source/
