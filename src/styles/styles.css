@@ -4615,3 +4615,98 @@ header.is-scrolled nav {
   .big-mark img { animation: none !important; transform: none !important; }
   .team-row:hover { transform: none !important; }
 }
+
+/* ==========================================================================
+   25. PHASE 5 CLUTCHKART & CONTACT MOTION & UX (THEME-LOCKED)
+   ========================================================================== */
+
+/* 1. Contact Input Focus Ring & Error State */
+.field input,
+.field textarea,
+.field select {
+  transition: border-color var(--dur-2) var(--ease-snap), box-shadow var(--dur-2) var(--ease-snap), background-color var(--dur-2) ease;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px var(--brand-glow);
+  outline: none;
+}
+
+.field input.has-error {
+  border-color: var(--status-alert) !important;
+}
+
+.field-error-msg {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--status-alert);
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+  animation: errorSlideIn 0.25s var(--ease-snap) both;
+}
+
+@keyframes errorSlideIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. Checkbox Pill Spring Feedback */
+.pick-label {
+  transition: transform var(--dur-1) var(--ease-snap), border-color var(--dur-2) ease;
+}
+
+.pick-label.is-picked {
+  animation: pillSpring 0.24s var(--ease-snap) both;
+}
+
+@keyframes pillSpring {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* 3. Contact Confirmation Card Entrance */
+.contact-success-card {
+  animation: successFadeIn 0.45s var(--ease-snap) both;
+}
+
+.success-mark-spin {
+  animation: bladeSpinOnce 0.6s var(--ease-snap) both;
+}
+
+@keyframes successFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bladeSpinOnce {
+  from { transform: rotate(0deg) scale(0.85); }
+  to { transform: rotate(90deg) scale(1); }
+}
+
+/* 4. POS Receipt Feed Simulation */
+.pos-item {
+  animation: posItemSlide 0.4s var(--ease-snap) both;
+}
+
+.pos-item:nth-child(2) { animation-delay: 100ms; }
+.pos-item:nth-child(3) { animation-delay: 200ms; }
+.pos-item:nth-child(4) { animation-delay: 300ms; }
+
+@keyframes posItemSlide {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 5. Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .field-error-msg { animation: none !important; }
+  .pick-label.is-picked { animation: none !important; }
+  .contact-success-card { animation: none !important; }
+  .success-mark-spin { animation: none !important; transform: none !important; }
+  .pos-item { animation: none !important; }
+}

@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 
 export default function ContactPage() {
   const [searchParams] = useSearchParams();
   const [interests, setInterests] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
+  const successRef = useRef(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,6 +25,12 @@ export default function ContactPage() {
     }
   }, [searchParams]);
 
+  useEffect(() => {
+    if (submitted && successRef.current) {
+      successRef.current.focus();
+    }
+  }, [submitted]);
+
   const toggleInterest = (val) => {
     if (interests.includes(val)) {
       setInterests(interests.filter((i) => i !== val));
@@ -29,19 +39,51 @@ export default function ContactPage() {
     }
   };
 
+  const validateField = (field, val) => {
+    let err = "";
+    if (field === "name" && !val.trim()) {
+      err = "Please enter your name.";
+    }
+    if (field === "email") {
+      if (!val.trim()) {
+        err = "Please enter your work email.";
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+        err = "Please enter a valid email address.";
+      }
+    }
+    setErrors((prev) => ({ ...prev, [field]: err }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = "Please enter your name.";
+    if (!formData.email.trim()) {
+      newErrors.email = "Please enter your work email.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }, 450);
   };
 
   return (
-    <main>
+    <main id="main">
       <section className="page-hero" style={{ paddingBottom: "40px" }}>
         <div className="wrap">
           <div className="eyebrow">// contact</div>
-          <h1>Tell us what youâ€™re building.</h1>
+          <h1>Tell us what you’re building.</h1>
           <p className="lede">
-            Software, a campaign, a brand, or all three. Share a few details and weâ€™ll get back to you with next steps.
+            Software, a campaign, a brand, or all three. Share a few details and we’ll get back to you with next steps.
           </p>
         </div>
       </section>
@@ -57,9 +99,15 @@ export default function ContactPage() {
               </div>
               <div className="form-body">
                 {submitted ? (
-                  <div className="success" style={{ display: "block" }}>
-                    <img src="/assets/logo.png" alt="" width="22" height="23" />
-                    <h3>Thanks â€” message received.</h3>
+                  <div
+                    className="success contact-success-card"
+                    ref={successRef}
+                    tabIndex="-1"
+                    aria-live="polite"
+                    style={{ display: "block" }}
+                  >
+                    <img className="success-mark-spin" src="/assets/logo.png" alt="" width="26" height="27" />
+                    <h3>Thanks — message received.</h3>
                     <p>Someone from our team will reply within one business day.</p>
                   </div>
                 ) : (
@@ -73,9 +121,18 @@ export default function ContactPage() {
                           name="name"
                           required
                           autoComplete="name"
+                          className={errors.name ? "has-error" : ""}
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          onBlur={(e) => validateField("name", e.target.value)}
+                          aria-invalid={errors.name ? "true" : "false"}
+                          aria-describedby={errors.name ? "err-name" : undefined}
                         />
+                        {errors.name && (
+                          <span className="field-error-msg" id="err-name" role="alert">
+                            {errors.name}
+                          </span>
+                        )}
                       </div>
                       <div className="field">
                         <label htmlFor="f-email">Work email</label>
@@ -85,9 +142,18 @@ export default function ContactPage() {
                           name="email"
                           required
                           autoComplete="email"
+                          className={errors.email ? "has-error" : ""}
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          onBlur={(e) => validateField("email", e.target.value)}
+                          aria-invalid={errors.email ? "true" : "false"}
+                          aria-describedby={errors.email ? "err-email" : undefined}
                         />
+                        {errors.email && (
+                          <span className="field-error-msg" id="err-email" role="alert">
+                            {errors.email}
+                          </span>
+                        )}
                       </div>
                     </div>
 
@@ -117,9 +183,9 @@ export default function ContactPage() {
                     </div>
 
                     <div className="field">
-                      <span className="lab">Iâ€™m interested in</span>
+                      <span className="lab">I’m interested in</span>
                       <div className="pick">
-                        <label>
+                        <label className={`pick-label ${interests.includes("software") ? "is-picked" : ""}`}>
                           <input
                             type="checkbox"
                             name="interest"
@@ -129,7 +195,7 @@ export default function ContactPage() {
                           />
                           <span>Software</span>
                         </label>
-                        <label>
+                        <label className={`pick-label ${interests.includes("marketing") ? "is-picked" : ""}`}>
                           <input
                             type="checkbox"
                             name="interest"
@@ -139,7 +205,7 @@ export default function ContactPage() {
                           />
                           <span>Digital marketing</span>
                         </label>
-                        <label>
+                        <label className={`pick-label ${interests.includes("branding") ? "is-picked" : ""}`}>
                           <input
                             type="checkbox"
                             name="interest"
@@ -149,7 +215,7 @@ export default function ContactPage() {
                           />
                           <span>Branding</span>
                         </label>
-                        <label>
+                        <label className={`pick-label ${interests.includes("clutchkart") ? "is-picked" : ""}`}>
                           <input
                             type="checkbox"
                             name="interest"
@@ -171,10 +237,10 @@ export default function ContactPage() {
                         onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                       >
                         <option value="">Not sure yet</option>
-                        <option>Under â‚¹50,000</option>
-                        <option>â‚¹50,000 â€“ â‚¹2,00,000</option>
-                        <option>â‚¹2,00,000 â€“ â‚¹10,00,000</option>
-                        <option>â‚¹10,00,000+</option>
+                        <option>Under ?50,000</option>
+                        <option>?50,000 – ?2,00,000</option>
+                        <option>?2,00,000 – ?10,00,000</option>
+                        <option>?10,00,000+</option>
                       </select>
                     </div>
 
@@ -188,10 +254,10 @@ export default function ContactPage() {
                       ></textarea>
                     </div>
 
-                    <button type="submit" className="btn btn-primary btn-lg">
-                      Send message
+                    <button type="submit" className="btn btn-primary btn-lg" disabled={isSubmitting}>
+                      {isSubmitting ? "Transmitting docket..." : "Send message"}
                     </button>
-                    <div className="note">Weâ€™ll only use your details to reply to this enquiry.</div>
+                    <div className="note">We’ll only use your details to reply to this enquiry.</div>
                   </form>
                 )}
               </div>
@@ -209,7 +275,7 @@ export default function ContactPage() {
                 <div className="step">
                   <div className="step-num">02</div>
                   <h3>We talk</h3>
-                  <p>A 30-minute conversation about your goals â€” no sales script.</p>
+                  <p>A 30-minute conversation about your goals — no sales script.</p>
                 </div>
                 <div className="step" style={{ marginBottom: 0 }}>
                   <div className="step-num">03</div>
