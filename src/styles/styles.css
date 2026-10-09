@@ -4554,3 +4554,64 @@ header.is-scrolled nav {
   .animated-spark-path { animation: none !important; stroke-dashoffset: 0 !important; }
   .animated-grow-bar { animation: none !important; height: var(--h) !important; }
 }
+
+/* ==========================================================================
+   24. PHASE 4 WORK & ABOUT PAGE MOTION (THEME-LOCKED)
+   ========================================================================== */
+
+/* 1. Work Card Filter Smooth Transition */
+.project-card-animated {
+  animation: projectFadeIn 0.35s var(--ease-snap) both;
+}
+
+@keyframes projectFadeIn {
+  from { opacity: 0; transform: scale(0.97) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* 2. About Page 30s Ambient Logo Mark Rotation & Hover Snap */
+.big-mark img {
+  transform-origin: center center;
+  animation: bladeSpin30s 30s linear infinite;
+  transition: transform var(--dur-2) var(--ease-snap);
+}
+
+.big-mark:hover img {
+  animation-play-state: paused;
+  transform: rotate(90deg);
+}
+
+@keyframes bladeSpin30s {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 3. Team Row Hover Micro-Interaction */
+.team-row {
+  transition: background-color var(--dur-2) ease, border-color var(--dur-2) ease, transform var(--dur-1) var(--ease-snap);
+}
+
+.team-row:hover {
+  background: rgba(255, 255, 255, 0.02);
+  transform: translateX(4px);
+}
+
+/* 4. Accessible Screen Reader Only Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* 5. Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .project-card-animated { animation: none !important; }
+  .big-mark img { animation: none !important; transform: none !important; }
+  .team-row:hover { transform: none !important; }
+}
