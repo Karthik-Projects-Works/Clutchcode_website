@@ -2610,14 +2610,15 @@ footer {
   transform: translateY(0);
 }
 
-.panel-box, .spec-plate {
+.panel-box, .spec-plate, .person, .detail {
   position: relative;
   transition: border-color var(--trans-fast), transform var(--trans-snap), box-shadow var(--trans-fast);
 }
 
-.panel-box:hover, .spec-plate:hover {
+.panel-box:hover, .spec-plate:hover, .person:hover {
   border-color: rgba(140, 139, 240, 0.45);
   box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6), 0 0 20px -8px rgba(94, 93, 229, 0.2);
+  transform: translateY(-4px);
 }
 
 /* ==========================================================================
