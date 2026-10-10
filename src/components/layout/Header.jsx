@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import useGlobalInteractions from "../../hooks/useGlobalInteractions";
 import { EASE_SPRING } from "../../lib/motion/config";
+import { WHATSAPP_LINK } from "../../lib/contact";
 
 const menuContainer = (reduce) => ({
   hidden: {},
@@ -129,40 +130,44 @@ export default function Header() {
           animate={mobileMenuOpen ? "show" : "hidden"}
         >
           <motion.div className="kicker" variants={menuItem(reduced)}>// menu</motion.div>
-          <motion.div variants={menuItem(reduced)}>
-            <NavLink to="/" end className={({ isActive }) => `mlink ${isActive ? "current" : ""}`}>
-              Home
-            </NavLink>
-          </motion.div>
-          <motion.div variants={menuItem(reduced)}>
-            <NavLink to="/services" className={({ isActive }) => `mlink ${isActive ? "current" : ""}`}>
-              Services
-            </NavLink>
-          </motion.div>
-          <motion.div variants={menuItem(reduced)}>
-            <NavLink to="/work" className={({ isActive }) => `mlink ${isActive ? "current" : ""}`}>
-              Work
-            </NavLink>
-          </motion.div>
-          <motion.div variants={menuItem(reduced)}>
-            <NavLink to="/about" className={({ isActive }) => `mlink ${isActive ? "current" : ""}`}>
-              About
-            </NavLink>
-          </motion.div>
-          <motion.div variants={menuItem(reduced)}>
-            <NavLink to="/clutchkart" className={({ isActive }) => `mlink ${isActive ? "current" : ""}`}>
-              ClutchKart
-            </NavLink>
-          </motion.div>
-          <motion.div variants={menuItem(reduced)}>
-            <NavLink to="/contact" className={({ isActive }) => `mlink ${isActive ? "current" : ""}`}>
-              Contact
-            </NavLink>
-          </motion.div>
+
+          {[
+            { to: "/", label: "Home", idx: "01", end: true },
+            { to: "/services", label: "Services", idx: "02" },
+            { to: "/work", label: "Work", idx: "03" },
+            { to: "/about", label: "About", idx: "04" },
+            { to: "/clutchkart", label: "ClutchKart", idx: "05" },
+            { to: "/contact", label: "Contact", idx: "06" },
+          ].map((item) => (
+            <motion.div key={item.to} variants={menuItem(reduced)}>
+              <NavLink to={item.to} end={item.end} className={({ isActive }) => `mlink ${isActive ? "current" : ""}`}>
+                <span className="mlink-idx">{item.idx}</span>
+                <span className="mlink-txt">{item.label}</span>
+                <svg className="mlink-arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </NavLink>
+            </motion.div>
+          ))}
+
           <motion.div className="mfoot" variants={menuItem(reduced)}>
             <Link to="/contact" className="btn btn-primary btn-lg">
               Talk to our team
             </Link>
+            <div className="mmenu-contact">
+              <a className="mmenu-link" href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
+                <span>WhatsApp</span>
+                <span className="mmenu-link-val">Start a chat</span>
+              </a>
+              <a className="mmenu-link" href="mailto:hello@clutchcode.com">
+                <span>Email</span>
+                <span className="mmenu-link-val">hello@clutchcode.com</span>
+              </a>
+            </div>
+            <div className="mmenu-foot">
+              <span>© {new Date().getFullYear()} Clutch Code</span>
+              <span>software &middot; marketing &middot; branding</span>
+            </div>
           </motion.div>
         </motion.div>
       </div>

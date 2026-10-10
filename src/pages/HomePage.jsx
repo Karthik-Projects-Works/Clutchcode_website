@@ -359,6 +359,7 @@ export default function HomePage() {
                 </Magnetic>
               </div>
               <div className="trust">one team for the software, the marketing, and the brand</div>
+              <span className="hero-scroll-cue" aria-hidden="true">scroll</span>
             </div>
 
             <ConsoleDeck />
