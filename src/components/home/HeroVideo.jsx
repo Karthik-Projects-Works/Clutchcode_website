@@ -6,6 +6,10 @@ export default function HeroVideo({ src = "/assets/hero.mp4", poster = "/assets/
   const activeRef = useRef("a");
 
   useEffect(() => {
+    const reduce =
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+
     const vids = { a: aRef.current, b: bRef.current };
     if (!vids.a || !vids.b) return;
 

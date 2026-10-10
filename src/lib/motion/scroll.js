@@ -45,15 +45,33 @@ export function destroySmoothScroll() {
  */
 export function useRouteScrollReset() {
   const location = useLocation();
+  const { hash } = location;
 
   useEffect(() => {
+    if (hash) {
+      let tries = 0;
+      let cancelled = false;
+      const find = () => {
+        if (cancelled) return;
+        const target = document.getElementById(hash.slice(1));
+        if (target) {
+          smoothScrollToId(hash.slice(1));
+          return;
+        }
+        if (tries++ < 24) setTimeout(find, 40);
+      };
+      find();
+      return () => {
+        cancelled = true;
+      };
+    }
     const lenis = window.__lenis;
     if (lenis) {
       lenis.scrollTo(0, { immediate: true });
     } else {
       window.scrollTo(0, 0);
     }
-  }, [location.pathname]);
+  }, [location.pathname, hash]);
 }
 
 export function smoothScrollToTop() {
@@ -61,7 +79,7 @@ export function smoothScrollToTop() {
   if (lenis) {
     lenis.scrollTo(0, { duration: 0.7 });
   } else {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo(0, 0);
   }
 }
 
@@ -73,6 +91,37 @@ export function smoothScrollToId(id) {
     const top = el.getBoundingClientRect().top + window.scrollY - 84;
     lenis.scrollTo(top, { duration: 0.8 });
   } else {
-    el.scrollIntoView({ behavior: "smooth" });
+    el.scrollIntoView();
   }
+}
+
+export function initAnchorScrolling() {
+  const onClick = (e) => {
+    const link = e.target.closest('a[href^="#"], a[href^="/#"]');
+    if (!link) return;
+    if (
+      link.classList.contains("skip-link") ||
+      link.hasAttribute("download") ||
+      e.defaultPrevented ||
+      e.button !== 0 ||
+      e.metaKey ||
+      e.ctrlKey ||
+      e.shiftKey ||
+      e.altKey
+    ) {
+      return;
+    }
+    const href = link.getAttribute("href");
+    const id = (href || "").split("#").pop();
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    smoothScrollToId(id);
+    target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+  };
+
+  document.addEventListener("click", onClick);
+  return () => document.removeEventListener("click", onClick);
 }

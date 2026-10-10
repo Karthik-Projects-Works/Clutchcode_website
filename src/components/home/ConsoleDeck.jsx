@@ -1,4 +1,5 @@
 ﻿import React, { useState, useEffect, useRef } from "react";
+import { useReducedMotion } from "framer-motion";
 
 const PROJECTS = [
   {
@@ -94,10 +95,22 @@ export default function ConsoleDeck() {
   const [activeTab, setActiveTab] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [tabProgress, setTabProgress] = useState(0);
+  const [visible, setVisible] = useState(true);
   const consoleRef = useRef(null);
+  const reduced = useReducedMotion();
 
   useEffect(() => {
-    if (isPaused) return;
+    const el = consoleRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver((entries) => {
+      setVisible(entries.some((entry) => entry.isIntersecting));
+    }, { threshold: 0 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isPaused || !visible || reduced) return;
     const step = 50;
     const duration = 4000;
     const timer = setInterval(() => {
@@ -111,7 +124,7 @@ export default function ConsoleDeck() {
     }, step);
 
     return () => clearInterval(timer);
-  }, [isPaused, activeTab]);
+  }, [isPaused, visible, reduced, activeTab]);
 
   const selectTab = (index) => {
     setActiveTab(index);

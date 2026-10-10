@@ -4492,6 +4492,13 @@ header.is-scrolled nav {
     transition: opacity 150ms ease !important;
     transform: none !important;
   }
+  .social-dock .social-btn { animation: none !important; }
+  .hud-beacon { animation: none !important; }
+  .tab-btn .tdot { animation: none !important; }
+  .ck-grad, .ck-rule { animation: none !important; }
+  .ck-float { animation: none !important; }
+  .big-mark img { animation: none !important; }
+  .process-dot::after { animation: none !important; display: none !important; }
 }
 
 /* ==========================================================================

@@ -6,6 +6,7 @@ import WhatsAppButton from "./components/common/WhatsAppButton";
 import {
   initSmoothScroll,
   destroySmoothScroll,
+  initAnchorScrolling,
   useRouteScrollReset,
 } from "./lib/motion";
 
@@ -19,7 +20,9 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 export default function App() {
   useEffect(() => {
     const lenis = initSmoothScroll();
+    const stopAnchors = initAnchorScrolling();
     return () => {
+      stopAnchors();
       if (lenis) destroySmoothScroll();
     };
   }, []);
