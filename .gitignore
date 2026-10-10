@@ -25,3 +25,13 @@ lh-*.json
 scratch/
 tmp/
 *.tmp
+dist/
+
+# Agent skills & local dev tooling (not part of the website)
+.agent/
+.agents/
+skills-lock.json
+scripts/
+
+# Raw unoptimized source media
+source/
