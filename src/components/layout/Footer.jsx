@@ -48,7 +48,7 @@ export default function Footer() {
           <div className="footer-col">
             <div className="footer-heading">Connect</div>
             <a href="mailto:hello@clutchcode.com" className="footer-interactive-link">hello@clutchcode.com</a>
-            <span style={{ color: "var(--grey-dim)", fontSize: "14px", display: "block", marginTop: "8px" }}>Bangalore, India</span>
+            <span style={{ color: "var(--grey-dim)", fontSize: "14px", display: "block", marginTop: "8px" }}>Kerala, India</span>
           </div>
         </div>
         <div className="footer-bottom">

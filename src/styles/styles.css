@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CLUTCH CODE — DISTINCTIVE DESIGN SYSTEM
  * Theme: Machined Ink + Technical Warm Paper + Mechanical Indigo + Signal Lime
  * Typography: Space Grotesk + Instrument Serif + DM Sans + JetBrains Mono
@@ -3058,7 +3058,7 @@ footer {
   display: flex;
   width: max-content;
   white-space: nowrap;
-  animation: tickerScroll 38s linear infinite;
+  animation: tickerScroll var(--tic-dur, 38s) linear infinite;
   font-family: var(--font-display);
   font-size: clamp(17px, 2vw, 26px);
   font-weight: 600;
@@ -5308,5 +5308,791 @@ h1.reveal-text {
   .wa-float:hover,
   .wa-float:focus-visible {
     transform: none;
+  }
+}
+
+/* ==========================================================================
+   25. RESPONSIVE MOBILE FIT (P0–P6)
+   ========================================================================== */
+
+/* --- Global no-horizontal-scroll safety net --- */
+html,
+body {
+  overflow-x: clip;
+}
+
+img,
+video,
+svg,
+table {
+  max-width: 100%;
+}
+
+@media (max-width: 360px) {
+  .wrap {
+    padding: 0 18px;
+  }
+  nav {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+/* --- Hero: tighter rhythm + full-width CTAs on small --- */
+@media (max-width: 640px) {
+  .hero {
+    padding: 64px 0 56px;
+  }
+  .hero-grid {
+    gap: 36px;
+  }
+  .hero-content h1 {
+    font-size: clamp(34px, 9vw, 46px);
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-content .hero-ctas {
+    width: 100%;
+    gap: 12px;
+  }
+  .hero-content .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* --- Console deck: wrap HUD, scrollable tabs --- */
+@media (max-width: 640px) {
+  .console-hud-status {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    padding: 10px 14px;
+  }
+  .hud-spec {
+    display: none;
+  }
+  .console-bar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .console-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .tab-btn {
+    flex: 0 0 auto;
+    padding: 10px 14px;
+  }
+  .console .plan {
+    padding: 12px 14px 14px;
+  }
+}
+
+/* --- Bento modal: edge-to-edge on phones --- */
+@media (max-width: 480px) {
+  .bento-modal-overlay {
+    padding: 12px;
+  }
+  .bento-modal-body {
+    padding: 20px;
+  }
+  .bento-modal-close {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+  .bento-modal-head {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .bento-modal-action {
+    flex-shrink: 1;
+  }
+}
+
+/* --- Work in-page subnav: single-line horizontal scroll --- */
+@media (max-width: 760px) {
+  .sticky-subnav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 8px;
+    padding: 8px 0;
+  }
+  .sticky-subnav::-webkit-scrollbar {
+    display: none;
+  }
+  .sticky-subnav .chip {
+    flex: 0 0 auto;
+  }
+}
+
+/* --- Service palette: 2 columns on phones --- */
+@media (max-width: 480px) {
+  .palette-swatches {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .chip {
+    padding: 12px 14px;
+    font-size: 11.5px;
+  }
+  .copy-btn {
+    width: 36px;
+    height: 36px;
+  }
+  .tag-bracket {
+    white-space: normal;
+    line-height: 1.5;
+  }
+}
+
+/* --- About: compact mark on small --- */
+@media (max-width: 640px) {
+  .big-mark {
+    min-height: 200px;
+  }
+  .big-mark img {
+    width: 120px;
+  }
+  .page-hero {
+    padding: 72px 0 44px;
+  }
+}
+
+/* --- iOS safe-area insets for fixed FABs --- */
+@supports (padding: max(0px)) {
+  .wa-float {
+    right: calc(24px + env(safe-area-inset-right, 0px));
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  }
+  .back-to-top-btn {
+    right: calc(24px + env(safe-area-inset-right, 0px));
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+  @media (max-width: 560px) {
+    .wa-float {
+      right: calc(16px + env(safe-area-inset-right, 0px));
+      bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    }
+  }
+}
+
+/* ==========================================================================
+   26. MOBILE-BIGGER — theme-locked mobile redesign
+   Composition, scale, and motion only. Palette, typefaces, imagery, and copy
+   are untouched. Desktop is byte-for-byte identical.
+   ========================================================================== */
+
+/* --- Fullscreen menu: designed editorial index (mobile) --- */
+@media (max-width: 860px) {
+  .mobile-menu {
+    justify-content: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: calc(84px + env(safe-area-inset-top, 0px)) clamp(22px, 6vw, 40px) calc(30px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .mobile-menu-inner {
+    padding: 0;
+    max-width: 720px;
+  }
+
+  .mobile-menu .kicker {
+    margin-bottom: 10px;
+  }
+
+  .mobile-menu a.mlink {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: clamp(30px, 8vw, 46px);
+    color: var(--white);
+    min-height: 64px;
+  }
+
+  .mobile-menu a.mlink .mlink-idx {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--grey-dim);
+    transition: color var(--trans-fast);
+  }
+
+  .mobile-menu a.mlink .mlink-arr {
+    margin-left: auto;
+    align-self: center;
+    color: var(--grey);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity var(--trans-fast), transform var(--trans-fast), color var(--trans-fast);
+  }
+
+  .mobile-menu a.mlink:hover .mlink-arr,
+  .mobile-menu a.mlink:focus-visible .mlink-arr,
+  .mobile-menu a.mlink.current .mlink-arr {
+    opacity: 1;
+    transform: translateX(0);
+    color: var(--signal-lime);
+  }
+
+  .mobile-menu a.mlink:hover .mlink-idx,
+  .mobile-menu a.mlink:focus-visible .mlink-idx,
+  .mobile-menu a.mlink.current .mlink-idx {
+    color: var(--signal-lime);
+  }
+
+  .mobile-menu a.mlink:hover .mlink-txt,
+  .mobile-menu a.mlink:focus-visible .mlink-txt {
+    color: var(--brand-lt);
+  }
+
+  .mobile-menu .mfoot {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .mobile-menu .mfoot .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 52px;
+  }
+
+  .mmenu-contact {
+    display: flex;
+    flex-direction: column;
+    margin-top: 18px;
+  }
+
+  .mmenu-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 17px 4px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey-dim);
+    border-bottom: 1px solid var(--line-soft);
+    transition: color var(--trans-fast);
+    min-height: 48px;
+  }
+
+  .mmenu-link .mmenu-link-val {
+    text-transform: none;
+    letter-spacing: 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    transition: color var(--trans-fast);
+  }
+
+  .mmenu-link:hover,
+  .mmenu-link:focus-visible {
+    color: var(--signal-lime);
+  }
+
+  .mmenu-link:hover .mmenu-link-val,
+  .mmenu-link:focus-visible .mmenu-link-val {
+    color: var(--signal-lime);
+  }
+
+  .mmenu-foot {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    margin-top: 20px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--grey-dim);
+  }
+}
+
+/* --- Hero: bigger type, full-bleed console, scroll cue --- */
+@media (max-width: 640px) {
+  .hero-content h1 {
+    font-size: clamp(42px, 11.5vw, 64px);
+    line-height: 1.03;
+    margin-bottom: 22px;
+  }
+
+  .hero-content .lede {
+    font-size: 16.5px;
+    line-height: 1.62;
+  }
+
+  .hero-content .hero-ctas {
+    width: 100%;
+  }
+
+  .hero-content .hero-ctas .btn {
+    flex: 1 1 100%;
+    justify-content: center;
+    min-height: 52px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .hero-grid > div:first-child {
+    padding: 0 clamp(18px, 5vw, 24px);
+  }
+
+  .hero-grid .console {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+}
+
+.hero-scroll-cue {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hero-scroll-cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 28px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--grey-dim);
+  }
+}
+
+.hero-scroll-cue::before {
+  content: "";
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(180deg, var(--signal-lime), transparent);
+  transform-origin: top;
+  animation: scrollCue 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollCue {
+  0%, 100% { transform: scaleY(0.35); opacity: 0.4; }
+  50% { transform: scaleY(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-cue,
+  .hero-scroll-cue::before {
+    display: none;
+  }
+}
+
+/* --- Industries strip: swipeable snap rail (mobile) --- */
+@media (max-width: 640px) {
+  .industries-strip .wrap {
+    align-items: center;
+    text-align: center;
+  }
+
+  .industries-strip .chips {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin: 0 calc(-1 * clamp(20px, 4vw, 40px));
+    padding: 2px clamp(20px, 4vw, 40px) 10px;
+  }
+
+  .industries-strip .chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .industries-strip .chip {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* --- Sections: hairlined editorial panel-list + bolder type (mobile) --- */
+@media (max-width: 640px) {
+  .section-head h2 {
+    font-size: clamp(28px, 8.4vw, 40px);
+    line-height: 1.1;
+  }
+
+  .promise-grid,
+  .why-grid {
+    gap: 0;
+  }
+
+  .promise-grid .cell,
+  .why-grid .cell {
+    background: transparent;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .promise-grid .cell:last-child,
+  .why-grid .cell:last-child {
+    border-bottom: none;
+  }
+
+  .cell h3 {
+    font-size: 1.4rem;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .cell .num {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+
+  .steps {
+    gap: 34px;
+  }
+
+  .step {
+    padding-top: 30px;
+  }
+
+  .step-num {
+    font-size: 44px;
+    margin-bottom: 14px;
+  }
+
+  .cards {
+    gap: 20px;
+  }
+
+  .card .thumb {
+    min-height: 200px;
+  }
+
+  #work h3,
+  .card h3 {
+    font-size: 1.4rem;
+    line-height: 1.25;
+  }
+}
+
+/* --- CTA banner: full-width surface (mobile) --- */
+@media (max-width: 480px) {
+  .cta-banner {
+    border-radius: 0;
+    padding: 48px 20px;
+  }
+
+  .cta-banner .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 52px;
+  }
+}
+
+/* --- Footer: touch-friendly link rows (mobile) --- */
+@media (max-width: 860px) {
+  .footer-col a {
+    padding: 12px 0;
+    margin-bottom: 0;
+  }
+
+  .footer-bottom {
+    padding-top: 24px;
+  }
+}
+
+
+/* ==========================================================================
+   24. COMPREHENSIVE THEME-LOCKED MOBILE ENHANCEMENTS
+   Strictly adheres to Clutch Code tokens, 44px touch targets, zero overflow
+   ========================================================================== */
+
+/* 1. Mobile Menu Elevation & Floating Elements Safety */
+.mobile-menu {
+  z-index: 990;
+}
+
+body.menu-open .wa-float,
+body.menu-open .back-to-top-btn {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: scale(0.8) !important;
+}
+
+/* 2. Global Mobile Touch Targets & Safe Areas */
+@media (max-width: 640px) {
+  /* Prevent horizontal micro-shifts */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  /* Header mobile padding */
+  header nav {
+    padding: 12px 16px;
+  }
+
+  .menu-btn {
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hero Mobile Layout */
+  .hero-content {
+    padding: 24px 16px 14px;
+  }
+
+  .hero-content .eyebrow {
+    font-size: 11px;
+    margin-bottom: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(34px, 9.2vw, 52px);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .hero-content .lede {
+    font-size: 14.5px;
+    line-height: 1.62;
+    margin-bottom: 18px;
+    color: var(--grey);
+  }
+
+  .hero-content .hero-ctas {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .hero-content .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    padding: 12px 20px;
+  }
+
+  .hero-content .trust {
+    font-size: 11px;
+    line-height: 1.5;
+    padding-left: 10px;
+    margin-bottom: 8px;
+    color: var(--grey-dim);
+  }
+
+  /* Console Deck Mobile Refinements */
+  .console-deck {
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+
+  .hud-header {
+    padding: 8px 12px;
+    font-size: 9.5px;
+  }
+
+  .hud-meta-right {
+    gap: 10px;
+  }
+
+  .console-bar {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 6px 8px;
+    gap: 6px;
+  }
+
+  .console-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-btn {
+    flex: 0 0 auto;
+    font-size: 11px;
+    padding: 9px 13px;
+    min-height: 42px;
+    border-radius: 5px;
+  }
+
+  .console-body {
+    min-height: 380px;
+  }
+
+  .panel {
+    padding: 16px 14px;
+  }
+
+  .panel-meta-row {
+    margin-bottom: 12px;
+  }
+
+  .panel-title {
+    font-size: 16px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+  }
+
+  .terminal-window {
+    padding: 14px 12px;
+  }
+
+  /* 3-column micro grid for stat chips to prevent cutoff */
+  .stat-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+
+  .stat-chip {
+    flex: none !important;
+    padding: 8px 6px;
+    border-radius: 5px;
+  }
+
+  .stat-chip .stat-chip-top {
+    font-size: 9px;
+    gap: 4px;
+  }
+
+  .stat-chip .n {
+    font-size: 15px;
+    margin-top: 4px;
+  }
+
+  /* Industries Strip Mobile Affordance */
+  .industries-strip {
+    padding: 16px 0 20px;
+  }
+
+  .industries-strip .wrap {
+    align-items: center !important;
+    text-align: center !important;
+    padding: 0 16px;
+  }
+
+  .industries-strip .kicker {
+    margin-bottom: 12px;
+  }
+
+  .industries-strip .chips {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: 4px 12px 8px;
+    gap: 8px;
+    mask-image: linear-gradient(90deg, transparent 0%, black 14px, black calc(100% - 20px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 14px, black calc(100% - 20px), transparent 100%);
+  }
+
+  .industries-strip .chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .industries-strip .chip {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    min-height: 42px;
+    padding: 8px 14px;
+    font-size: 11.5px;
+  }
+
+  /* Filter Rails & Subnavs (Services, Work) */
+  .subnav {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+    gap: 8px;
+    mask-image: linear-gradient(90deg, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, black 85%, transparent 100%);
+  }
+
+  .subnav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .subnav .chip {
+    flex: 0 0 auto;
+    min-height: 44px;
+    font-size: 12px;
+  }
+
+  .sticky-subnav {
+    top: 54px;
+    padding: 8px 0;
+  }
+
+  /* Form Fields: Prevent iOS Safari Auto-Zoom */
+  .field input[type="text"],
+  .field input[type="email"],
+  .field input[type="tel"],
+  .field select,
+  .field textarea {
+    font-size: 16px !important;
+    min-height: 48px;
+    padding: 12px 14px;
+    border-radius: 5px;
+  }
+
+  .field textarea {
+    min-height: 120px;
+  }
+
+  /* Floating WhatsApp Safe Area */
+  .wa-float {
+    right: calc(16px + env(safe-area-inset-right, 0px));
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    width: 46px;
+    height: 46px;
+  }
+
+  /* Back to Top Safe Area */
+  .back-to-top-btn {
+    right: calc(16px + env(safe-area-inset-right, 0px));
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    width: 44px;
+    height: 44px;
   }
 }
