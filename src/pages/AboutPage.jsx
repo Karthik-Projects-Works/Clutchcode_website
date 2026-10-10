@@ -1,7 +1,22 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import FadeWords from "../components/common/FadeWords";
 import useScrollReveal from "../hooks/useScrollReveal";
+import { Magnetic, RevealText } from "../lib/motion";
+import { EASE_SPRING } from "../lib/motion/config";
+
+const TIMELINE = [
+  { phase: "01", name: "Discovery", copy: "We map how your business runs today — the tools, the gaps, and the real goal behind the brief." },
+  { phase: "02", name: "Architecture", copy: "One written plan across software, marketing, and brand, so every piece fits before work starts." },
+  { phase: "03", name: "Execution", copy: "Sprints and campaigns on a fixed cadence. Progress you can point at, not a big reveal at the end." },
+  { phase: "04", name: "Growth", copy: "Post-launch tuning, plain reports, and the next round of improvements decided on evidence." },
+];
+
+const timelineItem = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_SPRING } },
+};
 
 export default function AboutPage() {
   const rootRef = useRef(null);
@@ -12,7 +27,7 @@ export default function AboutPage() {
       <section className="page-hero">
         <div className="wrap">
           <div className="eyebrow">// about</div>
-          <h1>A small team that dislikes handoffs.</h1>
+          <RevealText as="h1" lines={["A small team that", "dislikes handoffs."]} />
           <p className="lede">
             Clutch Code is a software, digital marketing, and branding company. We exist so that businesses don’t have to translate between three different vendors.
           </p>
@@ -53,6 +68,44 @@ export default function AboutPage() {
           <div className="big-mark" data-reveal style={{ marginTop: "48px" }}>
             <img src="/assets/logo.png" alt="Clutch Code mark" />
           </div>
+        </div>
+      </section>
+
+      <section className="process-section">
+        <div className="wrap">
+          <div className="section-head" data-reveal>
+            <div className="kicker">// how an engagement runs</div>
+            <h2><FadeWords>Four phases, one plan.</FadeWords></h2>
+          </div>
+          <motion.div
+            className="process-timeline"
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.14 } } }}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px 0px" }}
+          >
+            <motion.span
+              className="process-line"
+              aria-hidden="true"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true, margin: "-60px 0px" }}
+              transition={{ duration: 1.1, ease: EASE_SPRING }}
+              style={{ transformOrigin: "top" }}
+            />
+            {TIMELINE.map((step) => (
+              <motion.div className="process-step" variants={timelineItem} key={step.phase}>
+                <div className="process-node">
+                  <span className="process-phase">{step.phase}</span>
+                  <span className="process-dot" aria-hidden="true" />
+                </div>
+                <div className="process-card">
+                  <h3>{step.name}</h3>
+                  <p>{step.copy}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -138,9 +191,11 @@ export default function AboutPage() {
           <div className="cta-banner" data-reveal>
             <h2>Ready to talk?</h2>
             <p>Tell us what you’re working on. We’ll tell you honestly what we can do and what it will take.</p>
-            <Link to="/contact" className="btn btn-primary btn-lg">
-              Talk to our team
-            </Link>
+            <Magnetic strength={12}>
+              <Link to="/contact" className="btn btn-primary btn-lg">
+                Talk to our team
+              </Link>
+            </Magnetic>
           </div>
         </div>
       </section>

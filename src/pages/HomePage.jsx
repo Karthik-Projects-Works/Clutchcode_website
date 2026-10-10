@@ -6,6 +6,7 @@ import BentoShowcase from "../components/home/BentoShowcase";
 import FadeWords from "../components/common/FadeWords";
 import QuoteCard from "../components/common/QuoteCard";
 import useScrollReveal from "../hooks/useScrollReveal";
+import { Magnetic } from "../lib/motion";
 
 const TICKER_ITEMS = [
   "Software that scales",
@@ -314,7 +315,54 @@ function BentoWhy() {
 
 export default function HomePage() {
   const rootRef = useRef(null);
+  const stripRef = useRef(null);
   useScrollReveal(rootRef);
+
+  useEffect(() => {
+    const strip = stripRef.current;
+    if (!strip) return;
+    const wrap = strip.querySelector(".strip-reveal");
+    if (!wrap) return;
+
+    const reduce =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || !("IntersectionObserver" in window)) {
+      wrap.classList.add("is-in");
+      return;
+    }
+
+    let started = false;
+    let io;
+    const start = () => {
+      if (started) return;
+      started = true;
+      window.removeEventListener("scroll", onFirstScroll);
+      io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) =>
+            entry.target.classList.toggle("is-in", entry.isIntersecting)
+          );
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      );
+      io.observe(wrap);
+    };
+    const onFirstScroll = () => {
+      if (window.scrollY > 0) start();
+    };
+
+    if (window.scrollY > 0) {
+      start();
+    } else {
+      window.addEventListener("scroll", onFirstScroll, { passive: true });
+    }
+
+    return () => {
+      window.removeEventListener("scroll", onFirstScroll);
+      if (io) io.disconnect();
+    };
+  }, []);
 
   const handleCardMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -345,12 +393,16 @@ export default function HomePage() {
                 Clutch Code builds the systems growing businesses run on — custom software, the marketing that brings people to it, and the brand that makes them stay. One team, three practices, built to work together from day one.
               </p>
               <div className="hero-ctas">
-                <Link to="/contact" className="btn btn-primary btn-lg">
-                  Talk to our team
-                </Link>
-                <Link to="/services" className="btn btn-ghost btn-lg">
-                  See what we do
-                </Link>
+                <Magnetic strength={10}>
+                  <Link to="/contact" className="btn btn-primary btn-lg">
+                    Talk to our team
+                  </Link>
+                </Magnetic>
+                <Magnetic strength={10}>
+                  <Link to="/services" className="btn btn-ghost btn-lg">
+                    See what we do
+                  </Link>
+                </Magnetic>
               </div>
               <div className="trust">one team for the software, the marketing, and the brand</div>
             </div>
@@ -358,20 +410,21 @@ export default function HomePage() {
             <ConsoleDeck />
           </div>
         </div>
+      </section>
 
-        <div className="industries-strip">
-          <div className="wrap">
-            <div className="kicker" data-reveal>// who we work with</div>
-            <div className="chips" data-reveal style={{ "--d": "90ms" }}>
-              {INDUSTRIES.map((name) => (
-                <span key={name} className="chip chip-static">
-                  {name}
-                </span>
-              ))}
-            </div>
+      {/* INDUSTRIES STRIP */}
+      <div className="industries-strip" ref={stripRef}>
+        <div className="wrap strip-reveal start-hidden">
+          <div className="kicker strip-reveal-item">// who we work with</div>
+          <div className="chips strip-reveal-item" style={{ "--d": "90ms" }}>
+            {INDUSTRIES.map((name) => (
+              <span key={name} className="chip chip-static">
+                {name}
+              </span>
+            ))}
           </div>
         </div>
-      </section>
+      </div>
 
       {/* TICKER */}
       <div className="ticker-wrap" aria-hidden="true">
@@ -519,9 +572,11 @@ export default function HomePage() {
           <div className="cta-banner" data-reveal>
             <h2>Tell us what you're building.</h2>
             <p>Software, a campaign, a brand, or all three — we'll tell you honestly what we can do and when.</p>
-            <Link to="/contact" className="btn btn-primary btn-lg">
-              Talk to our team
-            </Link>
+            <Magnetic strength={12}>
+              <Link to="/contact" className="btn btn-primary btn-lg">
+                Talk to our team
+              </Link>
+            </Magnetic>
           </div>
         </div>
       </section>

@@ -620,7 +620,7 @@ h3 {
   position: relative;
   z-index: 1;
   padding: 14px 0 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 2px solid rgba(255, 255, 255, 0.08);
   background: rgba(5, 6, 10, 0.35);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -4730,4 +4730,557 @@ header.is-scrolled nav {
   .contact-success-card { animation: none !important; }
   .success-mark-spin { animation: none !important; transform: none !important; }
   .pos-item { animation: none !important; }
+}
+
+/* ==========================================================================
+   26. PHASE 6 MOTION PRIMITIVES & PAGE MICRO-INTERACTIONS (THEME-LOCKED)
+   ========================================================================== */
+
+/* 0. Lenis smooth scroll integration */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* 1. Magnetic wrap */
+.magnetic-wrap {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* 2. Glow spotlight cards */
+.glow-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.glow-card > *:not(.glow-card-spot) {
+  position: relative;
+  z-index: 1;
+}
+
+.glow-card-spot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  border-radius: inherit;
+  background: radial-gradient(320px circle at var(--gx, 50%) var(--gy, 50%), rgba(94, 93, 229, 0.14), transparent 65%);
+  transition: opacity var(--dur-3) ease;
+}
+
+.glow-card.glow-subtle .glow-card-spot {
+  background: radial-gradient(280px circle at var(--gx, 50%) var(--gy, 50%), rgba(94, 93, 229, 0.07), transparent 65%);
+}
+
+.glow-card:hover .glow-card-spot,
+.glow-card:focus-within .glow-card-spot {
+  opacity: 1;
+}
+
+/* 3. Masked line reveal */
+.reveal-text .rt-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.reveal-text .rt-inner {
+  display: block;
+  will-change: transform;
+}
+
+h1.reveal-text {
+  animation: none !important;
+}
+
+/* 4. Animated nav active line */
+.navlinks a.current::after {
+  display: none;
+}
+
+.nav-pill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--brand);
+  box-shadow: 0 0 12px rgba(94, 93, 229, 0.5);
+  pointer-events: none;
+}
+
+/* 5. Mobile menu stagger container */
+.mobile-menu-inner {
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 6. Ticker hover pause */
+.ticker-wrap:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+/* 7. Services: stack badges */
+.stack-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 4px 0 28px;
+}
+
+/* 8. Services: marketing proof band */
+.proof-band {
+  margin-top: 28px;
+  border: 1px solid var(--line-bright);
+  border-radius: 6px;
+  background: var(--panel);
+  overflow: hidden;
+  box-shadow: 0 18px 50px -22px rgba(0, 0, 0, 0.6);
+}
+
+.proof-band-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--grey-dim);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.proof-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.proof-stat {
+  padding: 18px 16px;
+}
+
+.proof-stat + .proof-stat {
+  border-left: 1px solid var(--line-soft);
+}
+
+.proof-stat b {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--signal-lime);
+  font-variant-numeric: tabular-nums;
+}
+
+.proof-stat span {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--grey);
+}
+
+.proof-note {
+  padding: 12px 16px;
+  border-top: 1px solid var(--line-soft);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--grey-dim);
+}
+
+@media (max-width: 480px) {
+  .proof-stats {
+    grid-template-columns: 1fr;
+  }
+  .proof-stat + .proof-stat {
+    border-left: none;
+    border-top: 1px solid var(--line-soft);
+  }
+}
+
+/* 9. Services: brand palette preview */
+.palette-preview {
+  margin-top: 28px;
+}
+
+.palette-swatches {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.palette-swatch {
+  position: relative;
+  height: 68px;
+  border-radius: 6px;
+  border: 1px solid var(--line-bright);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.03em;
+  color: var(--grey);
+}
+
+.palette-swatch span {
+  position: absolute;
+  left: 8px;
+  bottom: 6px;
+  color: var(--white);
+  opacity: 0.75;
+}
+
+.palette-swatch:nth-child(3) span,
+.palette-swatch:nth-child(4) span {
+  color: var(--ink);
+}
+
+@media (max-width: 720px) {
+  .palette-swatches {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 10. About: engagement process timeline */
+.process-section {
+  padding-top: 24px;
+}
+
+.process-timeline {
+  position: relative;
+  margin-top: 12px;
+}
+
+.process-line {
+  position: absolute;
+  left: 15px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--brand), var(--line-bright));
+  will-change: transform;
+}
+
+.process-step {
+  position: relative;
+  padding-left: 64px;
+  padding-bottom: 32px;
+}
+
+.process-step:last-child {
+  padding-bottom: 0;
+}
+
+.process-node {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.process-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink-2);
+  border: 1px solid var(--brand);
+  color: var(--brand-lt);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.process-dot::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid var(--brand);
+  opacity: 0;
+  animation: dotPing 2.6s var(--ease-snap) infinite;
+}
+
+.process-step:nth-child(2) .process-dot::after { animation-delay: 0.4s; }
+.process-step:nth-child(3) .process-dot::after { animation-delay: 0.8s; }
+.process-step:nth-child(4) .process-dot::after { animation-delay: 1.2s; }
+
+@keyframes dotPing {
+  0% { opacity: 0.5; transform: scale(0.8); }
+  70% { opacity: 0; transform: scale(1.5); }
+  100% { opacity: 0; transform: scale(1.5); }
+}
+
+.process-card h3 {
+  font-size: clamp(17px, 2vw, 21px);
+}
+
+.process-card p {
+  margin-top: 6px;
+  color: var(--grey);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* 11. Contact: submit spinner & copy row */
+.btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: btnSpin 0.7s linear infinite;
+}
+
+@keyframes btnSpin {
+  to { transform: rotate(360deg); }
+}
+
+.copy-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  border: 1px solid var(--line-bright);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--grey);
+  cursor: pointer;
+  transition: color var(--trans-fast), border-color var(--trans-fast), transform var(--dur-1) var(--ease-snap);
+}
+
+.copy-btn:hover {
+  color: var(--signal-lime);
+  border-color: var(--brand);
+}
+
+.copy-btn:active {
+  transform: scale(0.9);
+}
+
+.copy-tip {
+  display: block;
+  min-height: 12px;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--signal-lime);
+}
+
+/* 12. Work: CTA arrow nudge */
+.arrow-cta {
+  display: inline-block;
+  transition: transform var(--dur-2) var(--ease-snap);
+}
+
+.btn:hover .arrow-cta,
+.btn:focus-visible .arrow-cta {
+  transform: translateX(4px);
+}
+
+/* 13. Sticky in-page subnav beneath the header */
+.sticky-subnav {
+  position: sticky;
+  top: 64px;
+  z-index: 30;
+  background: linear-gradient(180deg, var(--ink) 0%, var(--ink) 72%, transparent 100%);
+}
+
+/* 14. Reduced motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .glow-card-spot { display: none !important; }
+  .glow-card { pointer-events: auto !important; }
+  .ticker-wrap:hover .ticker-track { animation-play-state: inherit; }
+  .process-dot::after { display: none !important; }
+  .btn-spinner { animation: none !important; }
+  .process-line { transform: none !important; }
+  .process-step { opacity: 1 !important; transform: none !important; }
+  .nav-pill { transition: none !important; }
+  .magnetic-wrap { transform: none !important; }
+}
+
+/* 15. Route-level lazy-load placeholder */
+.route-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 50vh;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--grey-dim);
+}
+
+.route-loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand);
+  animation: routeLoadPulse 0.9s var(--ease-snap) infinite alternate;
+}
+
+@keyframes routeLoadPulse {
+  from { opacity: 0.25; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-loading-dot { display: none; }
+}
+
+/* 16. Industries strip scroll-gated reveal */
+.strip-reveal.start-hidden .strip-reveal-item {
+  opacity: 0;
+  translate: 0 28px;
+  transition: opacity 0.7s var(--ease-snap), translate 0.8s var(--ease-snap);
+  transition-delay: var(--d, 0ms);
+  will-change: opacity, translate;
+}
+
+.strip-reveal.start-hidden.is-in .strip-reveal-item {
+  opacity: 1;
+  translate: 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip-reveal.start-hidden .strip-reveal-item {
+    opacity: 1;
+    translate: 0 0;
+    transition: none;
+  }
+}
+
+/* 17. Floating WhatsApp button */
+.wa-float {
+  position: fixed;
+  right: 24px;
+  bottom: 84px;
+  z-index: 940;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 6px;
+  background: rgba(13, 14, 23, 0.88);
+  border: 1px solid var(--line-bright);
+  color: var(--white);
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background var(--dur-2) var(--ease-out), border-color var(--dur-1) ease, color var(--dur-1) ease, transform var(--dur-2) var(--ease-out);
+  animation: wa-in 0.5s var(--ease-out) 0.4s both;
+  will-change: transform, opacity;
+}
+
+.wa-float::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+  box-shadow: 0 0 0 0 rgba(200, 255, 61, 0.5);
+  animation: wa-pulse 2.6s var(--ease-out) 1.2s infinite;
+  pointer-events: none;
+}
+
+.wa-float svg {
+  width: 22px;
+  height: 22px;
+}
+
+.wa-float:hover,
+.wa-float:focus-visible {
+  background: #12a50b;
+  border-color: #12a50b;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.wa-float .wa-tip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--signal-lime);
+  padding: 6px 10px;
+  background: var(--ink-2);
+  border: 1px solid var(--line-bright);
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateY(-50%) translateX(6px);
+  transition: opacity var(--dur-1) ease, transform var(--dur-2) var(--ease-out);
+  pointer-events: none;
+}
+
+.wa-float:hover .wa-tip,
+.wa-float:focus-visible .wa-tip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+@keyframes wa-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(200, 255, 61, 0.5); }
+  70% { box-shadow: 0 0 0 12px rgba(200, 255, 61, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(200, 255, 61, 0); }
+}
+
+@media (max-width: 560px) {
+  .wa-float {
+    right: 16px;
+    bottom: 76px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wa-float {
+    animation: none;
+  }
+  .wa-float::before {
+    display: none;
+  }
+  .wa-float:hover,
+  .wa-float:focus-visible {
+    transform: none;
+  }
 }
