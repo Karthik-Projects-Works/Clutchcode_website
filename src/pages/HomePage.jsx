@@ -315,54 +315,7 @@ function BentoWhy() {
 
 export default function HomePage() {
   const rootRef = useRef(null);
-  const stripRef = useRef(null);
   useScrollReveal(rootRef);
-
-  useEffect(() => {
-    const strip = stripRef.current;
-    if (!strip) return;
-    const wrap = strip.querySelector(".strip-reveal");
-    if (!wrap) return;
-
-    const reduce =
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce || !("IntersectionObserver" in window)) {
-      wrap.classList.add("is-in");
-      return;
-    }
-
-    let started = false;
-    let io;
-    const start = () => {
-      if (started) return;
-      started = true;
-      window.removeEventListener("scroll", onFirstScroll);
-      io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) =>
-            entry.target.classList.toggle("is-in", entry.isIntersecting)
-          );
-        },
-        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
-      );
-      io.observe(wrap);
-    };
-    const onFirstScroll = () => {
-      if (window.scrollY > 0) start();
-    };
-
-    if (window.scrollY > 0) {
-      start();
-    } else {
-      window.addEventListener("scroll", onFirstScroll, { passive: true });
-    }
-
-    return () => {
-      window.removeEventListener("scroll", onFirstScroll);
-      if (io) io.disconnect();
-    };
-  }, []);
 
   const handleCardMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -413,8 +366,8 @@ export default function HomePage() {
       </section>
 
       {/* INDUSTRIES STRIP */}
-      <div className="industries-strip" ref={stripRef}>
-        <div className="wrap strip-reveal start-hidden">
+      <div className="industries-strip">
+        <div className="wrap strip-reveal">
           <div className="kicker strip-reveal-item">// who we work with</div>
           <div className="chips strip-reveal-item" style={{ "--d": "90ms" }}>
             {INDUSTRIES.map((name) => (

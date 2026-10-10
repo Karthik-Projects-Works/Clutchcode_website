@@ -1,5 +1,5 @@
 ﻿/**
- * CLUTCH CODE â€” DISTINCTIVE DESIGN SYSTEM
+ * CLUTCH CODE — DISTINCTIVE DESIGN SYSTEM
  * Theme: Machined Ink + Technical Warm Paper + Mechanical Indigo + Signal Lime
  * Typography: Space Grotesk + Instrument Serif + DM Sans + JetBrains Mono
  */
@@ -478,13 +478,13 @@ nav {
 }
 
 .kicker::before {
-  content: 'â”Œ';
+  content: '\250C';
   color: var(--brand-lt);
   font-weight: 400;
 }
 
 .kicker::after {
-  content: 'â”';
+  content: '\2510';
   color: var(--brand-lt);
   font-weight: 400;
 }
@@ -624,6 +624,24 @@ h3 {
   background: rgba(5, 6, 10, 0.35);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+}
+
+.industries-strip .wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.industries-strip .kicker {
+  margin-bottom: 12px;
+}
+
+.industries-strip .chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 .hero {
@@ -1921,7 +1939,7 @@ a.cell:hover .more {
 }
 
 /* ==========================================================================
-   12. WORK PAGE â€” CONTACT SHEET & PROOF WALL (ASYMMETRIC MASONRY)
+   12. WORK PAGE — CONTACT SHEET & PROOF WALL (ASYMMETRIC MASONRY)
    ========================================================================== */
 .cards {
   display: grid;
@@ -2049,7 +2067,7 @@ a.cell:hover .more {
 }
 
 /* ==========================================================================
-   13. SERVICES â€” PARTS CATALOGUE SPEC PLATES
+   13. SERVICES — PARTS CATALOGUE SPEC PLATES
    ========================================================================== */
 .spec-plate {
   border: 1px solid var(--line-bright);
@@ -2133,7 +2151,7 @@ ul.ticks li b {
 }
 
 ul.ticks li::before {
-  content: 'â–¸';
+  content: '\25B8';
   position: absolute;
   left: 0;
   top: 0;
@@ -2158,7 +2176,7 @@ ul.ticks li::before {
 }
 
 /* ==========================================================================
-   14. ABOUT â€” BROADSHEET MANIFESTO & CROPPED BLADE GEOMETRY
+   14. ABOUT — BROADSHEET MANIFESTO & CROPPED BLADE GEOMETRY
    ========================================================================== */
 .broadsheet-layout {
   display: grid;
@@ -2275,7 +2293,7 @@ ul.ticks li::before {
 }
 
 /* ==========================================================================
-   15. CLUTCHKART â€” INTERACTIVE LIVE SUPERMARKET COUNTER
+   15. CLUTCHKART — INTERACTIVE LIVE SUPERMARKET COUNTER
    ========================================================================== */
 .hero-split {
   display: grid;
@@ -2417,7 +2435,7 @@ ul.ticks li::before {
 }
 
 /* ==========================================================================
-   16. CONTACT â€” WORK ORDER FORM (WO-0001)
+   16. CONTACT — WORK ORDER FORM (WO-0001)
    ========================================================================== */
 .work-order-sheet {
   border: 1px solid var(--line-bright);
@@ -2576,7 +2594,7 @@ ul.ticks li::before {
 }
 
 .pick input:checked + span::before {
-  content: 'âœ“';
+  content: '\2713';
   font-weight: 800;
 }
 
@@ -3605,7 +3623,7 @@ footer {
 }
 
 /* ==========================================================================
-    20. CLUTCHKART PRODUCT PAGE â€” SCROLL REVEAL, COUNTERS & MOTION (.ck)
+    20. CLUTCHKART PRODUCT PAGE — SCROLL REVEAL, COUNTERS & MOTION (.ck)
    Scoped to the ClutchKart page; does not affect any other route.
    ========================================================================== */
 .ck.reveal-ready [data-reveal] {
@@ -4198,7 +4216,7 @@ details.q[open] { transform: translateY(0); }
 details.q[open] p { animation: fadeIn 0.35s ease both; }
 
 /* ==========================================================================
-    20B. ABOUT PAGE â€” ENTRANCE, REVEAL & MICRO-INTERACTIONS (.ab)
+    20B. ABOUT PAGE — ENTRANCE, REVEAL & MICRO-INTERACTIONS (.ab)
    Scoped to the About page; does not affect any other route.
    ========================================================================== */
 .ab .page-hero .eyebrow { animation: riseIn 0.75s var(--ease-snap) both; }
@@ -5167,25 +5185,26 @@ h1.reveal-text {
   .route-loading-dot { display: none; }
 }
 
-/* 16. Industries strip scroll-gated reveal */
-.strip-reveal.start-hidden .strip-reveal-item {
-  opacity: 0;
-  translate: 0 28px;
-  transition: opacity 0.7s var(--ease-snap), translate 0.8s var(--ease-snap);
-  transition-delay: var(--d, 0ms);
-  will-change: opacity, translate;
-}
-
-.strip-reveal.start-hidden.is-in .strip-reveal-item {
+/* 16. Industries strip reveal */
+.strip-reveal .strip-reveal-item {
   opacity: 1;
   translate: 0 0;
+  animation: riseIn 0.85s var(--ease-snap) both;
+}
+
+.strip-reveal .strip-reveal-item:nth-child(1) {
+  animation-delay: 0.35s;
+}
+
+.strip-reveal .strip-reveal-item:nth-child(2) {
+  animation-delay: 0.45s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .strip-reveal.start-hidden .strip-reveal-item {
+  .strip-reveal .strip-reveal-item {
     opacity: 1;
     translate: 0 0;
-    transition: none;
+    animation: none;
   }
 }
 
