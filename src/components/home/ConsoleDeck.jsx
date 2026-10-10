@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 
 const PROJECTS = [
@@ -92,7 +92,7 @@ function ProjectChips({ chips }) {
 }
 
 export default function ConsoleDeck() {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
   const [tabProgress, setTabProgress] = useState(0);
   const [visible, setVisible] = useState(true);
