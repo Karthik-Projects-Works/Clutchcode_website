@@ -5,6 +5,7 @@ import HeroVideo from "../components/home/HeroVideo";
 import BentoShowcase from "../components/home/BentoShowcase";
 import FadeWords from "../components/common/FadeWords";
 import QuoteCard from "../components/common/QuoteCard";
+import Ticker from "../components/common/Ticker";
 import useScrollReveal from "../hooks/useScrollReveal";
 import { Magnetic } from "../lib/motion";
 
@@ -380,16 +381,7 @@ export default function HomePage() {
       </div>
 
       {/* TICKER */}
-      <div className="ticker-wrap" aria-hidden="true">
-        <div className="ticker-track">
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-            <React.Fragment key={i}>
-              <span>{item}</span>
-              <span className="dot">&middot;</span>
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
+      <Ticker items={TICKER_ITEMS} />
 
       {/* THREE PRACTICES BENTO — TAILWIND + FRAMER MOTION */}
       <BentoShowcase />

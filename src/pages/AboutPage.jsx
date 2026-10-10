@@ -61,7 +61,7 @@ export default function AboutPage() {
               </div>
               <div className="spec-item" data-reveal style={{ "--d": "160ms" }}>
                 <b>// PRODUCTION</b>
-                Headquarters: Bangalore, India &middot; Built for Indian retail, clinical, and enterprise operations.
+                Headquarters: Kerala, India &middot; Built for Indian retail, clinical, and enterprise operations.
               </div>
             </aside>
           </div>

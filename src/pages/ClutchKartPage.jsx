@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import FadeWords from "../components/common/FadeWords";
+import Ticker from "../components/common/Ticker";
 
 const TICKER_ITEMS = [
   "Online storefront",
@@ -392,16 +393,7 @@ export default function ClutchKartPage() {
             ))}
           </div>
         </div>
-        <div className="ticker-wrap" aria-hidden="true" style={{ marginTop: "40px" }}>
-          <div className="ticker-track">
-            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-              <React.Fragment key={i}>
-                <span>{item}</span>
-                <span className="dot">&middot;</span>
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
+        <Ticker items={TICKER_ITEMS} style={{ marginTop: "40px" }} />
       </section>
 
       {/* PRODUCT */}

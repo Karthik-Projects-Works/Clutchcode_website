@@ -338,7 +338,7 @@ setIsSubmitting(true);
                     {copied ? "COPIED" : ""}
                   </span>
                 </div>
-                <div className="detail"><div className="k">Office</div><div className="v">Bangalore, India</div></div>
+                <div className="detail"><div className="k">Office</div><div className="v">Kerala, India</div></div>
                 <div className="detail" style={{ marginBottom: 0 }}><div className="k">Hours</div><div className="v">Mon &ndash; Fri &middot; 9:00 &ndash; 18:00</div></div>
 
                 <div className="social-dock" aria-label="Social media channels" style={{ marginTop: "20px", width: "100%" }}>

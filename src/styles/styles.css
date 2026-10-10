@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CLUTCH CODE — DISTINCTIVE DESIGN SYSTEM
  * Theme: Machined Ink + Technical Warm Paper + Mechanical Indigo + Signal Lime
  * Typography: Space Grotesk + Instrument Serif + DM Sans + JetBrains Mono
@@ -3058,7 +3058,7 @@ footer {
   display: flex;
   width: max-content;
   white-space: nowrap;
-  animation: tickerScroll 38s linear infinite;
+  animation: tickerScroll var(--tic-dur, 38s) linear infinite;
   font-family: var(--font-display);
   font-size: clamp(17px, 2vw, 26px);
   font-weight: 600;
