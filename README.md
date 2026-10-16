@@ -1,70 +1,108 @@
 # Clutch Code — Multi-Page Marketing Website
 
-Marketing website for **Clutch Code** — offering Software Solutions, Digital Marketing, and Branding, plus proprietary retail management product **ClutchKart**.
+Marketing website for **Clutch Code** — offering Software Solutions, Digital
+Marketing, and Branding, plus proprietary retail management product
+**ClutchKart**.
 
 Tagline: *"everything clicks into place."*
 
 ---
 
-## 1. How to Run Locally
+## 1. Stack
 
-This is a pure static website requiring no build tools, bundlers, or package dependencies.
-
-### Option A: Node.js Static Server
-```bash
-npx serve -l 4173
-```
-Then open `http://localhost:4173` in any browser.
-
-### Option B: Python
-```bash
-python -m http.server 4173
-```
-Then open `http://localhost:4173`.
+- **React 18** + **Vite 6** + **React Router 6**
+- **Framer Motion**, **GSAP** + **Lenis** for motion
+- Hand-written CSS — the single source of truth is `src/styles/styles.css`
+  (`src/styles/tailwind.css` holds a scoped motion layer only). Do not add
+  Tailwind utility classes to components.
+- Deployed on **Vercel** (SPA, with a serverless contact endpoint).
 
 ---
 
-## 2. Workspace & Folder Map
+## 2. How to Run Locally
+
+Requires **Node.js 18+**.
+
+```bash
+npm install
+npm run dev        # Vite dev server → http://localhost:4173
+npm run build      # production build → dist/
+npm run preview    # preview the built output
+```
+
+> The contact form posts to `/api/contact`, a Vercel serverless function.
+> Plain `npm run dev` proxies `/api/*` to `http://localhost:3000`, so run
+> `vercel dev` alongside it to exercise the form locally.
+
+### Environment variables
+
+Create a local `.env.local` (git-ignored) for development. Values marked
+*server* must be set in the Vercel project settings for production.
+
+| Variable | Scope | Purpose |
+|----------|-------|---------|
+| `VITE_GA_ID` | client | Google Analytics 4 measurement ID (`G-XXXXXXXXXX`). Analytics is a no-op when unset. |
+| `RESEND_API_KEY` | server | Resend API key for the contact endpoint. |
+| `CONTACT_FROM` | server | Verified sender, e.g. `Clutch Code <hello@clutchcode.com>`. |
+| `CONTACT_TO` | server | Destination inbox for enquiries. |
+
+---
+
+## 3. Folder Map
 
 ```
 /
-├── index.html                 # Homepage (Hero console, services, why, process, work, FAQ)
-├── services.html              # Software Solutions, Digital Marketing, Branding, Models
-├── work.html                  # Filterable case studies (Software / Marketing / Branding)
-├── about.html                 # Story, principles, brand mark explanation, team
-├── clutchkart.html            # Supermarket & retail software product page + POS receipt
-├── contact.html               # Project intake form with ?interest= prefill & Honeypot
+├── index.html                 # Vite entry (base meta, fonts)
+├── vite.config.js             # Vite config (+ /api dev proxy)
+├── vercel.json                # SPA fallback rewrites
+├── robots.txt / sitemap.xml   # SEO (https://clutchcode.com)
 │
-├── css/
-│   └── styles.css             # Consolidated, tokenized "ink + indigo" design system
-├── js/
-│   └── main.js                # Consolidated guarded IIFE for mobile menu, tabs, filters, form
-├── assets/
-│   ├── logo.png               # Canonical brand mark
-│   ├── favicon-32.png         # 32x32 favicon
-│   ├── favicon-180.png        # 180x180 apple-touch-icon
-│   └── og.png                 # 1200x630 social share Open Graph card
+├── api/
+│   └── contact.js             # Vercel serverless function → Resend email
 │
-├── docs/
-│   └── partials.md            # Verbatim markup for shared header, mobile menu, and footer
-├── robots.txt                 # Search engine crawler directives
-├── sitemap.xml                # Sitemap referencing all 6 pages
-└── .agent/skills/             # Agent skills: design system, voice, architecture, QA, brand
+├── public/
+│   └── assets/                # logo, favicon, og.png, hero.mp4, hero-poster.jpg
+│
+├── src/
+│   ├── main.jsx               # React root + BrowserRouter
+│   ├── App.jsx                # Routes, smooth scroll, analytics, layout
+│   ├── pages/                 # HomePage, ServicesPage, WorkPage, AboutPage,
+│   │                          #   ClutchKartPage, ContactPage, NotFoundPage
+│   ├── components/
+│   │   ├── layout/            # Header, Footer
+│   │   ├── home/              # HeroVideo, ConsoleDeck, BentoShowcase
+│   │   └── common/            # SocialDock, Ticker, CountUp, QuoteCard, ...
+│   ├── hooks/                 # useDocumentMeta, usePageview, useScrollReveal, ...
+│   ├── lib/
+│   │   ├── contact.js         # WhatsApp link
+│   │   ├── analytics.js       # GA4 loader + page_view
+│   │   └── motion/            # Scroll, reveal, magnetic + motion primitives
+│   └── styles/                # styles.css (design system), tailwind.css
+│
+├── docs/                      # STYLE_GUIDE.md, motion-spec.md
+└── AGENTS.md                  # Agent working rules
 ```
+
+Routes: `/`, `/services`, `/work`, `/about`, `/clutchkart`, `/contact`
+(`*.html` aliases also resolve). Unknown paths render `NotFoundPage`.
 
 ---
 
-## 3. "Before Launch" Checklist
+## 4. "Before Launch" Checklist
 
-The following items are placeholders or sample content and must be replaced or connected prior to production deployment:
+The following are placeholders or require production values and must be
+resolved before launch:
 
-- [ ] **Domain Replacement:** Update `https://example.com` placeholder with the real production domain in:
-  - `sitemap.xml`
-  - `robots.txt`
-  - Canonical tags & Open Graph URLs (`og:url`, `og:image`) across all 6 HTML files.
-- [ ] **Contact Form Backend:** Connect the form submission in `/js/main.js` (line marked `// TODO: send the form data to your email service / backend here.`) to your chosen email provider or API (e.g. Formspree, Resend, or custom backend).
-- [ ] **Team Bios & Names:** On `about.html`, replace `[Name]` placeholders with real founder and leadership names.
-- [ ] **Direct Contact Info:** On `contact.html`, replace `[Phone number]` and `[Office address]` with verified company contact numbers and street address.
-- [ ] **Work Page Case Studies:** Replace sample client projects (`Horizon Retail`, `Greenleaf Organics`, `Brightside Café`, `Northfield Clinic`, `Atlas Hardware`, `Greenfield Supermarkets`) on `work.html` and `index.html` with real portfolio work.
-- [ ] **Testimonial Attribution:** On `index.html`, replace placeholder quote from Dana Okafor with genuine client review, or remove the quote block.
-- [ ] **Analytics Setup:** Configure production analytics (e.g., Plausible, PostHog, or Google Analytics) respecting privacy preferences.
+- [ ] **WhatsApp number:** replace `91XXXXXXXXXX` in `src/lib/contact.js`.
+- [ ] **Social links:** replace the generic `instagram.com` / `twitter.com` /
+      `discord.com` URLs in `src/components/common/SocialDock.jsx`.
+- [ ] **Team bios & names:** replace `[Name]` placeholders on the About page.
+- [ ] **Direct contact info:** confirm office address / hours on the Contact page.
+- [ ] **Work case studies & testimonial:** replace the sample projects
+      (`Horizon Retail`, `Greenleaf Organics`, `Brightside Café`, …) and the
+      placeholder quote on the home page with real content, or remove them.
+- [ ] **Contact form:** set `RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO` in
+      Vercel, and verify delivery end-to-end.
+- [ ] **Analytics:** set `VITE_GA_ID` (GA4) and confirm page views are recorded.
+- [ ] **Domain:** `robots.txt`, `sitemap.xml`, canonical and Open Graph URLs all
+      reference `https://clutchcode.com` — update if the production domain differs.

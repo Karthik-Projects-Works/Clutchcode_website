@@ -2,6 +2,11 @@
 node_modules/
 .npm/
 
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
 # OS metadata & editors
 .DS_Store
 Thumbs.db

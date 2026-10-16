@@ -1,6 +1,7 @@
 ﻿import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import useDocumentMeta from "../hooks/useDocumentMeta";
 import { RevealText } from "../lib/motion";
 import { EASE_SPRING } from "../lib/motion/config";
 
@@ -17,6 +18,13 @@ export default function WorkPage() {
   const navigate = useNavigate();
   const reduced = useReducedMotion();
   const [filter, setFilter] = useState("all");
+
+  useDocumentMeta({
+    title: "Work",
+    description:
+      "Selected software, digital marketing, and branding projects from Clutch Code — outcomes, not just deliverables.",
+    path: "/work",
+  });
 
   useEffect(() => {
     const hash = location.hash.replace("#", "");

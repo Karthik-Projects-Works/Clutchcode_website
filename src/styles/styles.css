@@ -4437,6 +4437,7 @@ h1.reveal-text {
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;

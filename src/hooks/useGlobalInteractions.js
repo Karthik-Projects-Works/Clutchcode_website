@@ -1,30 +1,45 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export default function useGlobalInteractions() {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [showBackToTop, setShowBackToTop] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [state, setState] = useState({
+    scrollProgress: 0,
+    showBackToTop: false,
+    isScrolled: false,
+  });
 
   useEffect(() => {
-    const handleScroll = () => {
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      
-      setIsScrolled(scrollTop > 24);
-      setShowBackToTop(scrollTop > window.innerHeight * 1.5);
-
-      if (scrollHeight > 0) {
-        setScrollProgress((scrollTop / scrollHeight) * 100);
-      }
+      setState({
+        isScrolled: scrollTop > 24,
+        showBackToTop: scrollTop > window.innerHeight * 1.5,
+        scrollProgress: scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0,
+      });
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  }, []);
 
-  return { scrollProgress, showBackToTop, isScrolled, scrollToTop };
+  return { ...state, scrollToTop };
 }

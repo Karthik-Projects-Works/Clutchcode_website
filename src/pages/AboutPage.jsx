@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import FadeWords from "../components/common/FadeWords";
 import useScrollReveal from "../hooks/useScrollReveal";
+import useDocumentMeta from "../hooks/useDocumentMeta";
 import { Magnetic, RevealText } from "../lib/motion";
 import { EASE_SPRING } from "../lib/motion/config";
 
@@ -21,6 +22,13 @@ const timelineItem = {
 export default function AboutPage() {
   const rootRef = useRef(null);
   useScrollReveal(rootRef);
+
+  useDocumentMeta({
+    title: "About",
+    description:
+      "Clutch Code is a software, digital marketing, and branding company built so businesses never have to translate between three vendors.",
+    path: "/about",
+  });
 
   return (
     <main id="main" className="ab" ref={rootRef}>
@@ -96,8 +104,7 @@ export default function AboutPage() {
             {TIMELINE.map((step) => (
               <motion.div className="process-step" variants={timelineItem} key={step.phase}>
                 <div className="process-node">
-                  <span className="process-phase">{step.phase}</span>
-                  <span className="process-dot" aria-hidden="true" />
+                  <span className="process-dot">{step.phase}</span>
                 </div>
                 <div className="process-card">
                   <h3>{step.name}</h3>

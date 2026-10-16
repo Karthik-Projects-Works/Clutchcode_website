@@ -2,6 +2,7 @@ import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import FadeWords from "../components/common/FadeWords";
 import Ticker from "../components/common/Ticker";
+import useDocumentMeta from "../hooks/useDocumentMeta";
 
 const TICKER_ITEMS = [
   "Online storefront",
@@ -324,6 +325,13 @@ function Counter({ to, prefix = "", suffix = "" }) {
 export default function ClutchKartPage() {
   const [openFaq, setOpenFaq] = useState(null);
   const rootRef = useRef(null);
+
+  useDocumentMeta({
+    title: "ClutchKart — Retail Management Software",
+    description:
+      "ClutchKart is Clutch Code's retail management platform for supermarkets — online storefront, WhatsApp ordering, fast billing, and live inventory.",
+    path: "/clutchkart",
+  });
 
   const toggleFaq = (idx) => {
     setOpenFaq(openFaq === idx ? null : idx);

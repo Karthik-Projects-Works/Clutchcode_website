@@ -7,6 +7,7 @@ import FadeWords from "../components/common/FadeWords";
 import QuoteCard from "../components/common/QuoteCard";
 import Ticker from "../components/common/Ticker";
 import useScrollReveal from "../hooks/useScrollReveal";
+import useDocumentMeta from "../hooks/useDocumentMeta";
 import { Magnetic } from "../lib/motion";
 
 const TICKER_ITEMS = [
@@ -345,6 +346,12 @@ function BentoWhy() {
 export default function HomePage() {
   const rootRef = useRef(null);
   useScrollReveal(rootRef);
+  useDocumentMeta({
+    title: "Software, Digital Marketing & Branding",
+    description:
+      "Clutch Code builds custom software, runs digital marketing, and designs brands for growing businesses — one team, three practices.",
+    path: "/",
+  });
 
   const handleCardMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();

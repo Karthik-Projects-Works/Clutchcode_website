@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import CountUp from "../components/common/CountUp";
+import useDocumentMeta from "../hooks/useDocumentMeta";
 import { Magnetic, GlowCard, RevealText } from "../lib/motion";
 import { EASE_SPRING } from "../lib/motion/config";
 
@@ -19,6 +20,13 @@ const stackItem = {
 
 export default function ServicesPage() {
   const [activeSection, setActiveSection] = useState("software");
+
+  useDocumentMeta({
+    title: "Services",
+    description:
+      "Software solutions, digital marketing, and branding — delivered by one team that owns strategy, build, and execution end to end.",
+    path: "/services",
+  });
 
   useEffect(() => {
     const sectionIds = ["software", "marketing", "branding", "models"];

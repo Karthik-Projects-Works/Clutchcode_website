@@ -72,7 +72,7 @@ export default function HeroVideo({ src = "/assets/hero.mp4", poster = "/assets/
         id="heroVidB"
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         disablePictureInPicture
         disableRemotePlayback
       >

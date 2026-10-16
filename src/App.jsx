@@ -9,6 +9,7 @@ import {
   initAnchorScrolling,
   useRouteScrollReset,
 } from "./lib/motion";
+import usePageview from "./hooks/usePageview";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ServicesPage = lazy(() => import("./pages/ServicesPage"));
@@ -16,6 +17,7 @@ const WorkPage = lazy(() => import("./pages/WorkPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const ClutchKartPage = lazy(() => import("./pages/ClutchKartPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 export default function App() {
   useEffect(() => {
@@ -28,6 +30,7 @@ export default function App() {
   }, []);
 
   useRouteScrollReset();
+  usePageview();
 
   return (
     <>
@@ -52,6 +55,7 @@ export default function App() {
           <Route path="/clutchkart.html" element={<ClutchKartPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/contact.html" element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
 </Suspense>
       <Footer />
