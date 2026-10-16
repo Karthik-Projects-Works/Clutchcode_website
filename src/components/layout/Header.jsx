@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import useGlobalInteractions from "../../hooks/useGlobalInteractions";
@@ -26,6 +26,8 @@ const menuItem = (reduce) => ({
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const menuBtnRef = useRef(null);
+  const mobileMenuRef = useRef(null);
   const location = useLocation();
   const reduced = useReducedMotion();
   const { scrollProgress, isScrolled } = useGlobalInteractions();
@@ -33,6 +35,37 @@ export default function Header() {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const menu = mobileMenuRef.current;
+    if (!menu) return;
+    const getFocusable = () =>
+      Array.from(
+        menu.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])')
+      ).filter((el) => el.offsetParent !== null);
+    const focusable = getFocusable();
+    if (focusable.length) focusable[0].focus();
+    const onKeyDown = (e) => {
+      if (e.key !== "Tab") return;
+      const items = getFocusable();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      if (menuBtnRef.current) menuBtnRef.current.focus();
+    };
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", mobileMenuOpen);
@@ -105,8 +138,10 @@ export default function Header() {
             <motion.button
               className={`menu-btn ${mobileMenuOpen ? "is-open" : ""}`}
               id="menuBtn"
+              ref={menuBtnRef}
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
+              aria-controls="mobileMenu"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               whileTap={reduced ? undefined : { scale: 0.94 }}
             >
@@ -122,7 +157,7 @@ export default function Header() {
         </nav>
       </header>
 
-      <div className={`mobile-menu ${mobileMenuOpen ? "is-open" : ""}`} id="mobileMenu">
+      <div className={`mobile-menu ${mobileMenuOpen ? "is-open" : ""}`} id="mobileMenu" ref={mobileMenuRef}>
         <motion.div
           className="mobile-menu-inner"
           variants={menuContainer(reduced)}
@@ -155,7 +190,7 @@ export default function Header() {
               Talk to our team
             </Link>
             <div className="mmenu-contact">
-              <a className="mmenu-link" href={WHATSAPP_LINK} target="_blank" rel="noreferrer">
+              <a className="mmenu-link" href={WHATSAPP_LINK} target="_blank" rel="noopener noreferrer">
                 <span>WhatsApp</span>
                 <span className="mmenu-link-val">Start a chat</span>
               </a>

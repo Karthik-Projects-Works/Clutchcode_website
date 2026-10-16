@@ -223,17 +223,45 @@ const FAQ_ITEMS = [
 
 function BentoWhy() {
   const [active, setActive] = useState(null);
+  const modalRef = useRef(null);
+  const closeBtnRef = useRef(null);
+  const lastFocusedRef = useRef(null);
+
+  const openModal = (id, trigger) => {
+    lastFocusedRef.current = trigger || null;
+    setActive(id);
+  };
 
   useEffect(() => {
     if (!active) return;
     const onKey = (e) => {
       if (e.key === "Escape") setActive(null);
     };
+    const onTab = (e) => {
+      if (e.key !== "Tab" || !modalRef.current) return;
+      const items = Array.from(
+        modalRef.current.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])')
+      ).filter((el) => el.offsetParent !== null);
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
     document.addEventListener("keydown", onKey);
+    document.addEventListener("keydown", onTab);
     document.body.classList.add("menu-open");
+    if (closeBtnRef.current) closeBtnRef.current.focus();
     return () => {
       document.removeEventListener("keydown", onKey);
+      document.removeEventListener("keydown", onTab);
       document.body.classList.remove("menu-open");
+      if (lastFocusedRef.current) lastFocusedRef.current.focus();
     };
   }, [active]);
 
@@ -251,11 +279,11 @@ function BentoWhy() {
             aria-haspopup="dialog"
             data-reveal
             style={{ "--d": `${(i % 2) * 90}ms` }}
-            onClick={() => setActive(c.id)}
+            onClick={(e) => openModal(c.id, e.currentTarget)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault();
-                setActive(c.id);
+                openModal(c.id, e.currentTarget);
               }
             }}
           >
@@ -276,11 +304,11 @@ function BentoWhy() {
       </div>
 
       {cell && (
-        <div className="bento-modal-overlay is-active" role="dialog" aria-modal="true" aria-hidden="false">
+        <div className="bento-modal-overlay is-active" role="dialog" aria-modal="true" aria-labelledby="bento-modal-title" ref={modalRef}>
           <div className="bento-modal-backdrop" onClick={() => setActive(null)}></div>
           <div className="bento-modal-container">
             <div className="bento-modal-card">
-              <button className="bento-modal-close" aria-label="Close dialog" onClick={() => setActive(null)}>
+              <button className="bento-modal-close" aria-label="Close dialog" onClick={() => setActive(null)} ref={closeBtnRef}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="18" y1="6" x2="6" y2="18"></line>
                   <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -293,7 +321,7 @@ function BentoWhy() {
                 <div className="bento-modal-head">
                   <div>
                     <div className="bento-modal-num">{cell.num}</div>
-                    <h3 className="bento-modal-title">{cell.title}</h3>
+                    <h3 className="bento-modal-title" id="bento-modal-title">{cell.title}</h3>
                   </div>
                   <Link to="/contact" className="btn btn-primary btn-sm bento-modal-action">
                     Talk to team
@@ -325,7 +353,7 @@ export default function HomePage() {
   };
 
   return (
-    <main ref={rootRef}>
+    <main id="main" ref={rootRef}>
       <section className="hero-master" style={{ borderTop: "none" }}>
         <HeroVideo />
 

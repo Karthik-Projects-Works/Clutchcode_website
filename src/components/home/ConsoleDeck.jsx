@@ -196,7 +196,10 @@ export default function ConsoleDeck() {
             className={`tab-btn ${activeTab === i ? "active" : ""}`}
             type="button"
             role="tab"
+            id={`console-tab-${i}`}
             aria-selected={activeTab === i}
+            aria-controls={`console-panel-${i}`}
+            tabIndex={activeTab === i ? 0 : -1}
             onClick={() => selectTab(i)}
           >
             <span className="tdot"></span>
@@ -214,7 +217,15 @@ export default function ConsoleDeck() {
 
       <div className="console-body">
         {PROJECTS.map((p, i) => (
-          <div key={p.name} className={`panel ${activeTab === i ? "active" : ""}`} data-panel={i} role="tabpanel">
+          <div
+            key={p.name}
+            className={`panel ${activeTab === i ? "active" : ""}`}
+            id={`console-panel-${i}`}
+            data-panel={i}
+            role="tabpanel"
+            aria-labelledby={`console-tab-${i}`}
+            aria-hidden={activeTab !== i}
+          >
             <div className="panel-meta-row">
               <span className="panel-kicker">{p.kicker}</span>
               <span className={`panel-pill ${p.pillClass}`}>{p.pill}</span>
@@ -260,7 +271,7 @@ export default function ConsoleDeck() {
                       <span>CONVERSION PACING</span>
                       <span className="spark-tag">{p.chipNote}</span>
                     </div>
-                    <div className="bars" id="barRow" aria-label="Marketing performance graph">
+                    <div className="bars" id="barRow" role="group" aria-label="Marketing performance graph">
                       {p.bars.map((h, bi) => (
                         <div
                           key={bi}

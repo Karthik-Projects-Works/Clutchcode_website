@@ -17,7 +17,7 @@ export default function Footer() {
               <span>CLUTCH CODE</span>
             </Link>
             <p>Software, digital marketing, and branding for growing businesses.</p>
-            <div className="social-dock" aria-label="Social media channels">
+            <div className="social-dock" role="group" aria-label="Social media channels">
               <a href="https://instagram.com" className="social-btn social-link1" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
               </a>
@@ -53,7 +53,7 @@ export default function Footer() {
         </div>
         <div className="footer-bottom">
           <div>&copy; {new Date().getFullYear()} Clutch Code. All rights reserved.</div>
-          <div>One team &middot; three practices &middot; Bangalore</div>
+          <div>One team &middot; three practices &middot; Kerala, India</div>
         </div>
       </div>
 

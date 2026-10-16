@@ -23,7 +23,7 @@ export default function AboutPage() {
   useScrollReveal(rootRef);
 
   return (
-    <main className="ab" ref={rootRef}>
+    <main id="main" className="ab" ref={rootRef}>
       <section className="page-hero">
         <div className="wrap">
           <div className="eyebrow">// about</div>

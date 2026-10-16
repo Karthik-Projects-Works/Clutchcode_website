@@ -207,10 +207,26 @@ Clutch Code uses a **strict GPU-only motion system** (`transform`, `opacity`):
 | Breakpoint | Width Range | Layout Behavior |
 | :--- | :--- | :--- |
 | **Max Content Wrap** | `1220px` / `1280px` | Center aligned with `clamp(20px, 4vw, 40px)` gutter padding |
-| **Desktop Wide** | `1280px+` | Full multi-column Bento grids, sticky split console deck, 3-column service matrix |
-| **Laptop / Tablet Landscape**| `981px – 1279px` | Dual-column layouts, sticky subnavigation active |
-| **Tablet Portrait** | `641px – 980px` | Hamburger menu activates; bento cards stack into 2-column or 1-column layouts |
-| **Mobile Standard** | `360px – 640px` | Full-width single column cards, 44px min touch targets, horizontal overflow disabled (`overflow-x: clip`) |
+| **Desktop Wide** | `1281px+` | Full multi-column Bento grids, sticky split console deck, 3-column service matrix |
+| **Laptop / Tablet Landscape** | `981px – 1280px` | Dual-column layouts, sticky subnavigation active |
+| **Tablet** | `861px – 980px` | Inline nav retained; bento/service grids step down to 2 columns |
+| **Tablet Portrait** | `769px – 860px` | Hamburger menu activates (`.navlinks` hidden, `.menu-btn` shown) |
+| **Small Tablet** | `641px – 768px` | Console/grid components collapse to a single column |
+| **Mobile Standard** | `480px – 640px` | Full-width single column cards, 44px min touch targets, horizontal overflow disabled (`overflow-x: clip`) |
+| **Compact Mobile** | `360px – 479px` | Tightened type scale, hidden HUD spec, condensed padding |
+
+### 7.1 Canonical Breakpoint Ladder
+
+`styles.css` is authored against a canonical ladder of **480 / 640 / 768 / 860 / 980** (plus `360` for compact mobile). New rules should reuse one of these values:
+
+- `980px` — desktop → tablet (nav/hero/grid step-downs)
+- `860px` — nav switch (mobile menu); paired with `min-width: 861px` for the desktop complement
+- `768px` — unified tablet point (grids, cards, palette, hero cue)
+- `640px` — unified phone point (cards, footer stack, mobile menu, `overflow-x: clip`)
+- `480px` — small phone
+- `360px` — compact mobile
+
+A few **component-tuned points** remain intentionally (`520px` HUD spec, `560px` rails/type, `900px` `.split` / `.contact-grid` stack). These are local to a single component and must not be treated as global breakpoints.
 
 ---
 

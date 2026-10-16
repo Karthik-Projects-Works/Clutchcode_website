@@ -346,7 +346,7 @@ export default function ClutchKartPage() {
   }, []);
 
   return (
-    <main className="ck" ref={rootRef}>
+    <main id="main" className="ck" ref={rootRef}>
       <section className="page-hero">
         <div className="wrap">
           <div className="eyebrow">// proprietary software &middot; retail</div>

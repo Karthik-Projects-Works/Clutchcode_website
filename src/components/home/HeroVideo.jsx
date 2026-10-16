@@ -60,6 +60,8 @@ export default function HeroVideo({ src = "/assets/hero.mp4", poster = "/assets/
         muted
         playsInline
         preload="auto"
+        disablePictureInPicture
+        disableRemotePlayback
         poster={poster}
       >
         <source src={src} type="video/mp4" />
@@ -71,6 +73,8 @@ export default function HeroVideo({ src = "/assets/hero.mp4", poster = "/assets/
         muted
         playsInline
         preload="auto"
+        disablePictureInPicture
+        disableRemotePlayback
       >
         <source src={src} type="video/mp4" />
       </video>

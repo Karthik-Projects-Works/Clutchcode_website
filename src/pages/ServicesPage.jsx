@@ -110,10 +110,11 @@ export default function ServicesPage() {
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, margin: "-40px 0px" }}
+                role="list"
                 aria-label="Technology stack"
               >
                 {STACK.map((t) => (
-                  <motion.span key={t} className="mono-badge stack-badge" variants={stackItem}>
+                  <motion.span key={t} className="mono-badge stack-badge" role="listitem" variants={stackItem}>
                     {t}
                   </motion.span>
                 ))}
@@ -133,7 +134,7 @@ export default function ServicesPage() {
                 <span className="spec-tag">SCOPE 01</span>
               </div>
               <GlowCard className="panel-box">
-                <h4>What we deliver</h4>
+                <h3 className="panel-heading">What we deliver</h3>
                 <ul className="ticks">
                   <li><b>Web applications</b> — portals, booking systems, dashboards, customer-facing products</li>
                   <li><b>Mobile apps</b> — iOS and Android, from first prototype to store release</li>
@@ -144,7 +145,7 @@ export default function ServicesPage() {
                 </ul>
               </GlowCard>
               <GlowCard className="panel-box">
-                <h4>A good fit if</h4>
+                <h3 className="panel-heading">A good fit if</h3>
                 <ul className="ticks">
                   <li>Your business runs on spreadsheets that only one person understands</li>
                   <li>Off-the-shelf software forces workarounds your team is tired of</li>
@@ -199,7 +200,7 @@ export default function ServicesPage() {
                 <span className="spec-tag">SCOPE 02</span>
               </div>
               <GlowCard className="panel-box">
-                <h4>What we deliver</h4>
+                <h3 className="panel-heading">What we deliver</h3>
                 <ul className="ticks">
                   <li><b>SEO &amp; content</b> — be found by people already searching for what you do</li>
                   <li><b>Paid advertising</b> — Google and Meta campaigns with budgets that are tracked to the rupee</li>
@@ -210,7 +211,7 @@ export default function ServicesPage() {
                 </ul>
               </GlowCard>
               <GlowCard className="panel-box">
-                <h4>A good fit if</h4>
+                <h3 className="panel-heading">A good fit if</h3>
                 <ul className="ticks">
                   <li>You have a good product or service, but not enough people know about it</li>
                   <li>You’re spending on ads without knowing what’s working</li>
@@ -273,7 +274,7 @@ export default function ServicesPage() {
                 <span className="spec-tag">SCOPE 03</span>
               </div>
               <GlowCard className="panel-box">
-                <h4>What we deliver</h4>
+                <h3 className="panel-heading">What we deliver</h3>
                 <ul className="ticks">
                   <li><b>Brand strategy</b> — positioning, audience, and the voice you’ll speak in</li>
                   <li><b>Logo &amp; visual identity</b> — mark, colours, typography, and usage rules</li>
@@ -284,7 +285,7 @@ export default function ServicesPage() {
                 </ul>
               </GlowCard>
               <GlowCard className="panel-box">
-                <h4>A good fit if</h4>
+                <h3 className="panel-heading">A good fit if</h3>
                 <ul className="ticks">
                   <li>You’re launching a new business and want to start with a strong identity</li>
                   <li>You’ve outgrown your first logo or your name has changed</li>

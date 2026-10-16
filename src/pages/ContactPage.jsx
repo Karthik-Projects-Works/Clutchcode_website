@@ -82,6 +82,9 @@ export default function ContactPage() {
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      const firstInvalid = newErrors.name ? "f-name" : "f-email";
+      const el = document.getElementById(firstInvalid);
+      if (el) el.focus();
       return;
     }
 
@@ -133,7 +136,7 @@ setIsSubmitting(true);
                     style={{ display: "block" }}
                   >
                     <img className="success-mark-spin" src="/assets/logo.png" alt="" width="26" height="27" />
-                    <h3>Thanks — message received.</h3>
+                    <h2>Thanks — message received.</h2>
                     <p>Someone from our team will reply within one business day.</p>
                   </div>
                 ) : (
@@ -305,7 +308,7 @@ setIsSubmitting(true);
                 viewport={{ once: true, margin: "-40px 0px" }}
               >
                 <motion.div variants={sideItem}>
-                  <h4>What happens next</h4>
+                  <h2 className="panel-heading">What happens next</h2>
                 </motion.div>
                 <motion.div className="step" variants={sideItem}>
                   <div className="step-num">01</div>
@@ -325,7 +328,7 @@ setIsSubmitting(true);
               </motion.div>
 
               <div className="panel-box">
-                <h4>Reach us directly</h4>
+                <h2 className="panel-heading">Reach us directly</h2>
                 <div className="detail">
                   <div className="k">Email</div>
                   <div className="v copy-row">
@@ -341,7 +344,7 @@ setIsSubmitting(true);
                 <div className="detail"><div className="k">Office</div><div className="v">Kerala, India</div></div>
                 <div className="detail" style={{ marginBottom: 0 }}><div className="k">Hours</div><div className="v">Mon &ndash; Fri &middot; 9:00 &ndash; 18:00</div></div>
 
-                <div className="social-dock" aria-label="Social media channels" style={{ marginTop: "20px", width: "100%" }}>
+                <div className="social-dock" role="group" aria-label="Social media channels" style={{ marginTop: "20px", width: "100%" }}>
                   <a href="https://instagram.com" className="social-btn social-link1" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                   </a>
